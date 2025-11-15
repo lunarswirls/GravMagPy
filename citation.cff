@@ -1,0 +1,25 @@
+abstract: GravMagPy is an open-source software suite that utilizes minimization techniques to efficiently solve for
+parameters of equivalent source models such as moonsphere, and reproject and georeference global magnetic field models
+from SHTOOLS. It has tools for analyzing potential fields and visualizing fields with georeferenced maps.
+authors:
+- affiliation: Umeå University
+  family-names: Waller
+  given-names: Dany
+  orcid: 0000-0002-6310-3766
+cff-version: 1.0.0
+date-released: '2025-11-15'
+doi: tbd
+keywords:
+    - Potential Fields
+    - Equivalent Source Model
+    - Planetary Science
+    - Moons
+    - Mercury
+    - Earth
+    - Moon
+    - Mars
+license:
+- LGPL-3.0
+title: GravMagPy
+type: software
+version: 2025.11.15a

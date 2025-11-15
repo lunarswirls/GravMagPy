@@ -1,0 +1,6 @@
+numpy>=2.3.4
+scipy>=1.16.2
+matplotlib>=3.10.7
+magpylib>=5.2.1
+spiceypy>=7.0.0
+pandas>=2.3.3
