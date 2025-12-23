@@ -144,12 +144,12 @@ def fit_prism_sources(obs_points, B_obs, n_prisms):
 
 
 # Main execution
-filename = "/Users/danywaller/Data/LP_modeled_surface_total_field_2ppd.tiff"  # Example GeoTIFF file
+fname = "/Users/danywaller/Data/LP_modeled_surface_total_field_2ppd.tiff"  # Example GeoTIFF file
 lt_range = (-10, 10)  # Example latitude range
 ln_range = (-20, 20)  # Example longitude range
 
 # Load GeoTIFF
-data, transform, crs = load_geotiff(filename)
+data, transform, crs = load_geotiff(fname)
 
 # Extract a subset of magnetic field data
 subset, coords = extract_subset(data, transform, lt_range, ln_range)

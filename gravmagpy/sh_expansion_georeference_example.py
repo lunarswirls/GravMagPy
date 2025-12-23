@@ -46,7 +46,7 @@ print("Georeferencing data...")
 
 moon_wkt = wkt_defs.WKT_dict["GCS_Moon_2000"]
 
-moon_crs = CRS.from_wkt(moon_wkt)
+moon_crs = CRS.from_wkt(wkt=moon_wkt)
 
 # Same as GeoTIFF
 with rasterio.open(
