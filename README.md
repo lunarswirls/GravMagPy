@@ -23,6 +23,18 @@ As an example, if you are user tycho and you want to use your copy of the gravma
 pip install -e /homes/tycho/code/GravMagPy/
 ```
 
+### Fortran compilation
+A bash script has been provided that compiles and runs ```gravmag_sphere_brtp```
+Usage:
+```
+./run_gravmag_sphere.sh <R_sphere_km> <gauss_coeff_file> <input_in_file> [output_file]
+```
+
+An example input file has been provided that can be run as:
+```
+./run_gravmag_sphere.sh 1737.4 gauss2_32.data gravmag_sphere_test.in results.txt
+```
+and compared against the provided output file.
 
 ## Visuals
 TBD
