@@ -42,9 +42,9 @@ but with reduced magnetization amplitudes to test low-amplitude response.
 ## Run examples
 
 ```bash
-./gravmag_sphere_brtp 1737.4 examples/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient.in output/1body_mag_inc45_dec45.txt
-./gravmag_sphere_brtp 1737.4 examples/gravmag_sphere_3body_mag_polygon_incmix_decmix.in output/3body_mag_incmix_decmix.txt 1
-./gravmag_sphere_brtp 1737.4 examples/gravmag_sphere_5body_mag_polygon_incmix_decmix.in output/5body_mag_incmix_decmix.txt 1
+./gravmag_sphere_bxyz 1737.4 examples/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient.in output/1body_mag_inc45_dec45.txt
+./gravmag_sphere_bxyz 1737.4 examples/gravmag_sphere_3body_mag_polygon_incmix_decmix.in output/3body_mag_incmix_decmix.txt 1
+./gravmag_sphere_bxyz 1737.4 examples/gravmag_sphere_5body_mag_polygon_incmix_decmix.in output/5body_mag_incmix_decmix.txt 1
 ./gravmag_sphere_brtp 1737.4 examples/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge.in output/1body_mag_polygon_complexlarge.txt 1
 ```
 
