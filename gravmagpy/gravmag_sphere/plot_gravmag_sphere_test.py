@@ -23,8 +23,11 @@ import matplotlib.pyplot as plt
 # ============================================================
 # edit me! :)
 # ============================================================
-input_in_file = "gravmag_sphere_test.in"    # Fortran input file
-results_brtp   = "results.txt"              # Fortran output
+# input_in_file = "gravmag_sphere_test.in"    # Fortran input file
+# results_brtp   = "results.txt"              # Fortran output
+
+input_in_file = "/Users/danywaller/Projects/moon/equivalent_source_modeling/reiner_gamma_3body.in"
+results_brtp   = "/Users/danywaller/Projects/moon/equivalent_source_modeling/reiner_gamma_3body.txt"              # Fortran output
 output_name  = "gravmag_sphere_map_2x2"
 
 figsize = (10, 8)

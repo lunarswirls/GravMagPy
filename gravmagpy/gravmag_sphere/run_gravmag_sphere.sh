@@ -83,6 +83,6 @@ if [[ -n "${OUTFILE}" ]]; then
 fi
 
 # clean up
-rm fort.*
-rm sphereiiscratch
-rm sphout
+#rm fort.*
+#rm sphereiiscratch
+#rm sphout
