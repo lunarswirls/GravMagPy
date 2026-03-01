@@ -6,7 +6,7 @@ Gravity and magnetic equivalent source solver with minimization functions, globa
 ---
 
 ## GravMag Sphere
-Fortran code is provided in `gravmag_sphere` with [documentation](https://github.com/lunarswirls/GravMagPy/blob/73e48e9c7f4809ac19a8636c23b8d75ec3037ddf/gravmagpy/gravmag_sphere/README.md) and bash scripts to compile and run [examples](https://github.com/lunarswirls/GravMagPy/blob/73e48e9c7f4809ac19a8636c23b8d75ec3037ddf/gravmagpy/gravmag_sphere/examples/README_orientation_multibody_examples.md).
+Fortran code is provided in `gravmag_sphere` with [documentation](https://github.com/lunarswirls/GravMagPy/blob/13f79e1af644f10f0ae065d26ee83a0252258685/src/gravmag_sphere/GravMagSphere_README.md) and bash scripts to compile and run [examples](https://github.com/lunarswirls/GravMagPy/blob/73e48e9c7f4809ac19a8636c23b8d75ec3037ddf/gravmagpy/gravmag_sphere/examples/README_orientation_multibody_examples.md).
 
 GravMag Sphere is based on legacy `sphere` program developed by Dr. Dhahanjay Ravat, modernized and modularized during his Fall 2018 EES-395 "Special Topics: Gravity and Magnetics" course at the University of Kentucky. Modifications are documented inline and output has been validated against last known working version of `sphere`.
 
