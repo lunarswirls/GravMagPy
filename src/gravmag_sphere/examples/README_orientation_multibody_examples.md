@@ -1,6 +1,6 @@
 # Orientation + Multi-body Example Inputs
 
-New magnetic examples for the volume solver (`gravmag_sphere_brtp`):
+New magnetic examples for the volume solver (`gravmag_sphere_bxyz`):
 
 ## 1-body orientation series (fixed limits)
 - `gravmag_sphere_1body_mag_fixedlim_inc90_dec0_orient.in`
