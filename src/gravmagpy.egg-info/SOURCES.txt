@@ -1,0 +1,7 @@
+LICENSE
+README.md
+setup.py
+src/gravmagpy.egg-info/PKG-INFO
+src/gravmagpy.egg-info/SOURCES.txt
+src/gravmagpy.egg-info/dependency_links.txt
+src/gravmagpy.egg-info/top_level.txt

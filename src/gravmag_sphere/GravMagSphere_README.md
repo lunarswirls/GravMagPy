@@ -1,4 +1,4 @@
-# gravmag_sphere_f90
+# GravMag Sphere
 
 Fortran + Python workflow for spherical gravity/magnetic forward modeling.
 
@@ -15,7 +15,7 @@ Fortran + Python workflow for spherical gravity/magnetic forward modeling.
 ## Build
 
 ```bash
-cd /Users/tycho/code/LAVA/fortran/gravmag_sphere_f90
+cd /Users/tycho/code/GravMagPy/src/gravmag_sphere
 ./build_gravmag_tools.sh
 ```
 
@@ -29,16 +29,16 @@ Build outputs:
 
 ### 1) Direct volume solver (Fortran)
 
-`gravmag_sphere_brtp` computes XYZ fields directly from discretized source volume/surfaces
+`gravmag_sphere_bxyz` computes XYZ fields directly from discretized source volume/surfaces
 
 ```bash
-./gravmag_sphere_brtp <R_sphere_km> <input.in> <output_xyz.txt> [refine_factor] [source_nlat] [source_nlon] [source_nr]
+./gravmag_sphere_bxyz <R_sphere_km> <input.in> <output_xyz.txt> [refine_factor] [source_nlat] [source_nlon] [source_nr]
 ```
 
 Example:
 
 ```bash
-./gravmag_sphere_brtp 1737.4 \
+./gravmag_sphere_bxyz 1737.4 \
   examples/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base.in \
   output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_xyz.txt \
   2 0 0 0
@@ -65,7 +65,7 @@ Example:
 
 ### 3) XYZ -> spherical converter (Fortran)
 
-`gravmag_xyz_to_brtp` converts XYZ components to `Br Btheta Bphi`.
+`gravmag_xyz_to_brtp` converts XYZ components to `Br Btheta Bphi`
 
 ```bash
 ./gravmag_xyz_to_brtp <input_xyz.txt> <output_brtp.txt>

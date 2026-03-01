@@ -6,7 +6,7 @@ import pyshtools as pysh
 import rasterio
 from rasterio.transform import from_origin
 from rasterio.crs import CRS
-import gravmagpy.utils.wkt_defs as wkt_defs
+import src.utils.wkt_defs as wkt_defs
 
 """
 @author lunarswirls
