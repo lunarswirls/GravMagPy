@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Format GravMag Sphere examples for external solvers and compare predictions.
+Format GravMag Sphere examples for external solvers and compare predictions
 
 Subcommands:
-  - repos:    write a markdown list of candidate external solver repositories.
-  - format:   run direct baseline and export solver-friendly CSV/JSON files.
-  - compare:  compare baseline against available solver backends.
+  - repos:    write a markdown list of candidate external solver repositories
+  - format:   run direct baseline and export solver-friendly CSV/JSON files
+  - compare:  compare baseline against available solver backends
 """
 
 from __future__ import annotations

@@ -17,7 +17,7 @@ module gravmag_sphere_physics
   ! - keep only two direct cartesian kernels:
   !   1) magnetic dipole kernel from elemental dipole moments m*dV
   !   2) point-mass gravity kernel from elemental masses rho*dV
-  ! - this keeps mode switching (mag vs grav) explicit and testable
+  ! - this keeps mode switching (mag vs grav) explicit
   !***********************************************************************
 
   real(real32), parameter :: pi  = 3.14159265358979323846_real32
@@ -116,7 +116,7 @@ contains
   !---------------------------------------------------------------------
   subroutine add_mcharge_field_cart(xo, yo, zo, xs, ys, zs, qmag_A, dBx, dBy, dBz)
     ! Equivalent magnetic surface-charge contribution
-    ! qmag_A is elemental magnetic charge [A] = (M·n)*dS
+    ! qmag_A is magnetic charge [A] = (M·n)*dS
     ! Returns dB [Tesla] in cartesian XYZ
     real(real32), intent(in)  :: xo, yo, zo
     real(real32), intent(in)  :: xs, ys, zs

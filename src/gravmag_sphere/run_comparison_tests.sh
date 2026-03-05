@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Run GravMagSphere comparison pipelines end-to-end.
+# run GravMagSphere comparison pipelines end-to-end
 #
 # Covered test groups:
 #   - external:  Fortran spectral vs SciPy SH LSQ vs SHTOOLS LSQ (shared residual suite)
@@ -11,8 +11,8 @@ set -euo pipefail
 #   - hybrid:    hybrid-vs-spectral vertex sweep
 #
 # Notes:
-#   - Uses python scripts already in this directory.
-#   - Can auto-clean intermediate text/csv artifacts to keep diagnostics mostly md/png.
+#   - uses python scripts in same directory
+#   - can auto-clean intermediate text/csv artifacts
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

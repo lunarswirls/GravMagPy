@@ -641,9 +641,8 @@ contains
   !---------------------------------------------------------------------
   ! append_source
   !
-  ! centralized append helper for either magnetic charge elements
-  ! (qmag) or gravity mass elements (mass). capacity growth is delegated
-  ! to grow_sources so the call sites in the physics loops stay clean.
+  ! centralized append helper for either:
+  ! magnetic charge elements (qmag) or gravity mass elements (mass)
   !---------------------------------------------------------------------
   subroutine append_source(cap, ns, xs, ys, zs, qmag, mass, x, y, z, qv, mv)
     integer(int32), intent(inout) :: cap, ns
@@ -760,7 +759,7 @@ contains
       nz = -nz
     end if
 
-    ! elemental magnetic charge assigned to triangle centroid
+    ! magnetic charge assigned to triangle centroid
     qel = (Mx*nx + My*ny + Mz*nz) * area
     call append_source(cap, ns, xs, ys, zs, qmag, mass, gx, gy, gz, qel, 0.0_real32)
   end subroutine add_triangle_charge_source

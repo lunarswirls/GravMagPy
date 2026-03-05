@@ -1,4 +1,4 @@
-# GravMagSphere Spectral vs Harmonica (XYZ)
+# GravMagSphere Spectral (XYZ) vs Harmonica Residuals
 
 - fortran mode: `auto`
 - fortran seed (manual mode): lmax `24`, reg_lambda `0.2`, reg_power `4.0`
@@ -64,15 +64,15 @@ Residual definitions:
 - `harmonica_eqs_vs_direct_xyz`: `harmonica - direct_baseline`.
 - `fortran_minus_harmonica_xyz`: `spectral - harmonica`.
 
-## Methodology Differences and Why GravMagSphere-Harmonica Solutions Diverge
+## Solution Divergence
 
-- GravMagSphere direct/spectral starts from spherical body geometry and physical source kernels; Harmonica EQS solves for Cartesian equivalent sources on a chosen depth layer.
-- Harmonica solutions depend strongly on depth/block/damping settings that control smoothness and continuation behavior.
-- GravMagSphere spectral adds SH truncation/regularization effects; Harmonica adds equivalent-source depth-conditioning effects.
+- GravMagSphere direct/spectral starts from spherical body geometry and physical source kernels; Harmonica EQS solves for Cartesian equivalent sources on a chosen depth layer
+- Harmonica solutions depend strongly on depth/block/damping settings that control smoothness and continuation behavior
+- GravMagSphere spectral adds SH truncation/regularization effects; Harmonica adds equivalent-source depth-conditioning effects
 
-Main causes of residual structure in this table and plots:
+Possible causes of residuals/structures:
 
-- Edge contrast differences from SH truncation (GravMagSphere spectral) versus smoothed equivalent-source reconstructions (Harmonica).
-- Amplitude leakage when one method regularizes high-frequency content more strongly than the other.
-- Multi-body interference handled differently by a global SH model versus Cartesian source inversion.
-- Component-wise differences in inversion stability, especially in tangential components (`Bx/By` behavior tied to geometry and conditioning).
+- Edge contrast differences from SH truncation (GravMagSphere spectral) versus smoothed equivalent-source reconstructions (Harmonica)
+- Amplitude leakage when one method regularizes high-frequency content more strongly than the other
+- Multi-body interference handled differently by global SH model versus Cartesian source inversion
+- Component-wise differences in inversion stability, especially in tangential components (`Bx/By` behavior tied to geometry and conditioning)

@@ -73,7 +73,7 @@ Example:
   24 2 72 144 0.2 4.0 0 0 0 1 1.0 1 1 1.5 12 0.75
 ```
 
-### New Spectral Flags and Use Cases
+### Spectral Flags and Use Cases
 
 `gravmag_sphere_gauss` / `run_input_to_xyz.sh` / `run_gravmag_sphere_gauss.sh` now expose:
 
@@ -203,7 +203,7 @@ Example:
 
 ## Visualization scripts
 
-### 2D maps for all examples (Python)
+### 2D maps for all examples
 
 `run_all_examples_brtp.py` can run solver + converter + plotting in one Python workflow
 
@@ -306,9 +306,9 @@ Outputs:
 
 The benchmark report includes:
 
-- wall time per compiler/case,
-- slowest solver stage (from internal Fortran timers),
-- largest memory bucket estimate.
+- wall time per compiler/case
+- slowest solver stage (from internal Fortran timers)
+- largest memory bucket estimate
 
 ### 2) Spherical harmonic `lmax` ringing sweep
 
@@ -341,27 +341,26 @@ Diagnostics lines are emitted as `DIAG|<solver>|<category>|<key>=<value>`.
 
 `run_comparison_tests.sh` orchestrates all comparison workflows:
 
-- external solver comparison (Fortran spectral vs SciPy SH LSQ vs SHTOOLS LSQ),
-- dedicated GravMagSphere-vs-SHTOOLS residual suite,
-- GravMagSphere-vs-Harmonica XYZ residual suite,
-- complexlarge direct-vs-spectral boundary analysis,
-- hybrid-vs-spectral vertex sweep.
+- external solver comparison (Fortran spectral vs SciPy SH LSQ vs SHTOOLS LSQ)
+- GravMagSphere-vs-SHTOOLS residual suite
+- GravMagSphere-vs-Harmonica XYZ residual suite
+- complexlarge direct-vs-spectral boundary analysis
+- hybrid-vs-spectral vertex sweep
 
 ```bash
 # Run all comparison suites
-PYTHON_BIN=.venv_compare/bin/python ./run_comparison_tests.sh
+./run_comparison_tests.sh
 
 # Run selected suites only
-PYTHON_BIN=.venv_compare/bin/python ./run_comparison_tests.sh \
+./run_comparison_tests.sh \
   --tests external,shtools,harmonica
 
 # Limit to specific examples
-PYTHON_BIN=.venv_compare/bin/python ./run_comparison_tests.sh \
+./run_comparison_tests.sh \
   --tests external,harmonica \
   --examples gravmag_sphere_1body_mag_polygon_inc90_dec0_base,gravmag_sphere_3body_mag_polygon_incmix_decmix
 ```
 
 Notes:
-
-- Set `--no-clean` to keep intermediate txt/csv artifacts.
-- Set `--strict-deps` to fail immediately if Python dependencies are missing.
+- Set `--no-clean` to keep intermediate txt/csv artifacts
+- Set `--strict-deps` to fail immediately if Python dependencies are missing

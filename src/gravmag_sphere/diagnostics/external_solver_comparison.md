@@ -60,17 +60,18 @@
 Residuals are `prediction - direct-baseline` on the shared lon/lat grid.
 SciPy and SHTOOLS rows use per-case optimized settings from the configured search grids.
 
-## Methodology Differences and Why Solutions Differ
+## Why Solutions Differ
 
-- Reference in this table is always the GravMagSphere direct solver, which evaluates physical source kernels from discretized bodies.
-- `fortran_spectral` is a two-stage model: physical source discretization first, then spherical-harmonic coefficient inversion and synthesis.
-- `scipy_sh_lsq` and `shtools_lsq` fit spherical-harmonic coefficients directly to sampled fields per component, without the same equivalent-source discretization prior.
-- GravMagSphere uses joint vector fitting with explicit `reg_lambda` and `reg_power`; SciPy/SHTOOLS rows here are component-wise LSQ fits with different regularization behavior.
+- Reference in this table is always the GravMagSphere direct solver, which evaluates physical source kernels from discretized bodies
+  - Is this *the best* way to do it though?
+- `fortran_spectral` is a two-stage model: physical source discretization first, then spherical-harmonic coefficient inversion
+- `scipy_sh_lsq` and `shtools_lsq` fit spherical-harmonic coefficients directly to sampled fields per component, without equivalent-source discretization first
+- GravMagSphere uses joint vector fitting with explicit `reg_lambda` and `reg_power`; SciPy/SHTOOLS rows here are component-wise LSQ fits with different regularization
 
-Primary reasons residuals change between models:
+Primary differences so far:
 
-- Spectral truncation near sharp boundaries introduces ringing and boundary overshoot.
-- Different regularization forms shift energy between low and high degree terms, changing anomaly amplitude and edge sharpness.
-- Joint-vector fitting versus per-component fitting changes cross-component consistency, especially for `Btheta/Bphi`.
-- In multi-body cases, collective versus separate body treatment changes how overlapping anomalies are partitioned into coefficients.
-- Coordinate/basis differences (global spherical fit vs Cartesian/local approximations) create systematic spatial pattern differences away from source centers.
+- Spectral truncation near sharp boundaries introduces ringing and boundary overshoot
+  - Really bad Gibbs in SHTOOLS output... Maybe artifacts from direct solver
+- Different regularization shifts energy between low and high degree terms, changes anomaly amplitude and edge sharpness
+- Joint-vector fitting versus per-component fitting changes cross-component consistency, especially for `Btheta/Bphi`
+- In multi-body cases, collective versus separate body treatment changes how overlapping anomalies are partitioned into coefficients

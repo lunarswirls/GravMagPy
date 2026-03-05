@@ -7,7 +7,7 @@ set -euo pipefail
 # Usage:
 #   ./run_gravmag_end_to_end.sh <R_sphere_km> <input_in_file> [xyz_output_file] [spherical_output_file] [refine_factor] [source_nlat] [source_nlon] [source_nr]
 #
-# This is the compact "single-case direct solver" wrapper.
+# This is the new clean "single-case direct solver" wrapper
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 R_SPHERE_KM="${1:-}"

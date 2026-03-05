@@ -9,14 +9,14 @@ set -euo pipefail
 #     [refine_factor] [lmax] [ntheta_fit] [nphi_fit] [reg_lambda] [reg_power] \
 #     [source_nlat] [source_nlon] [source_nr]
 #
-# solver:
+# solver options:
 #   - spectral (default)
 #   - direct
 #
-# behavior:
-#   - compiles tools once,
-#   - runs every example .in (except "*comment*"),
-#   - writes xyz and brtp text outputs.
+# method:
+#   - compiles tools once
+#   - runs every example .in (except "*comment*" if they exist)
+#   - writes xyz and brtp text outputs
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

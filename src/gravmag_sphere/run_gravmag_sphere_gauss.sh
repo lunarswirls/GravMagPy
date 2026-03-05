@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Gauss/spectral solver runner.
+# Gauss/spectral solver runner
 # Usage:
 #   ./run_gravmag_sphere_gauss.sh <R_sphere_km> <input_in_file> [output_file] [lmax] [refine_factor] [ntheta_fit] [nphi_fit] [reg_lambda] [reg_power] [source_nlat] [source_nlon] [source_nr] [auto_mode] [joint_strength] [edge_correction] [hybrid_mode] [hybrid_band_deg] [complex_vertex_threshold] [hybrid_transition_deg]
 #   Optional named args:
@@ -11,9 +11,9 @@ set -euo pipefail
 #     --auto-mode 0|1 --joint-strength X --edge-correction 0|1 --no-local-correction
 #     --hybrid-mode 0|1|2 --hybrid-band-deg X --complex-vertex-threshold N --hybrid-transition-deg X
 #
-# This wrapper exposes all main spectral controls:
-#   - lmax controls harmonic resolution,
-#   - reg_lambda/reg_power control high-degree damping.
+# This wrapper exposes spectral controls:
+#   - lmax controls harmonic resolution
+#   - reg_lambda/reg_power control high-degree damping
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 R_SPHERE_KM="${1:-}"

@@ -9,7 +9,7 @@ set -euo pipefail
 #     [reg_lambda] [reg_power] [source_nlat] [source_nlon] [source_nr] \
 #     [auto_mode] [joint_strength] [edge_correction] [hybrid_mode] \
 #     [hybrid_band_deg] [complex_vertex_threshold] [hybrid_transition_deg]
-#   Optional named args:
+#   Optional args:
 #     --refine-factor N --lmax N --ntheta-fit N --nphi-fit N
 #     --reg-lambda X --reg-power P
 #     --source-nlat N --source-nlon N --source-nr N

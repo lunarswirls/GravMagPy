@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Sweep GravMag spectral solver parameters against a SHTOOLS target and build
-an operating map for runtime/accuracy tradeoffs.
+Sweep GravMag spectral solver parameters against SHTOOLS target
+Builds operating map for runtime/accuracy tradeoffs
+
+THIS IS A WORK IN PROGRESS!!!!!!!
+Do not touch unless you know what you are doing!
 """
 
 from __future__ import annotations

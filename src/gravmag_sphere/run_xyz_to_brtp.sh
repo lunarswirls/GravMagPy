@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Step 2: XYZ output -> Br/Btheta/Bphi output
+# XYZ output -> Br/Btheta/Bphi output
 #
 # Usage:
 #   ./run_xyz_to_brtp.sh <input_xyz_file> [output_brtp_file]
 #
-# This step is deterministic post-processing:
-# - no source physics, only coordinate-basis rotation
+# this is strictly post-processing, only coordinate-basis rotation
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -35,7 +34,7 @@ if [[ -z "${BRTP_OUT}" ]]; then
 fi
 
 if [[ "${SKIP_BUILD:-0}" != "1" ]]; then
-  # converter is tiny, but we keep build behavior consistent with other wrappers.
+  # converter is absurdly tiny, but keep build behavior consistent with other wrappers
   "${ROOT_DIR}/build_gravmag_tools.sh"
 fi
 

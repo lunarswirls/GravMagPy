@@ -39,19 +39,17 @@
 | spectral | 2.218059e+02 | 7.464443e+01 | 2.972 |
 | spectral_nolocal | 1.727446e+02 | 7.464788e+01 | 2.314 |
 
-## Interpretation
 
-The visible boundary is primarily a high-gradient edge effect from approximating a sharp polygonal source with a finite-order spectral model. Residuals concentrate near edge-like zones much more strongly than away from edges.
-Local edge correction changes the solution significantly near boundaries (see local-vs-nolocal metrics), which can make boundary contrast more visible even when broad ringing is reduced.
+## Super Visible Boundary Effects
 
-## Methodology Difference Behind the Visible Boundary
+- Direct model uses physical source-kernel summation, preserves discontinuous boundary behavior
+- Spectral model uses finite SH representation, which cannot reproduce abrupt polygon edges without oscillatory spillover
+- Local edge correction modifies near-boundary amplitudes but cannot fully remove global truncation effects from the SH backbone :(
 
-- Direct model uses physical source-kernel summation and preserves discontinuous boundary behavior.
-- Spectral model uses finite SH representation, which cannot reproduce abrupt polygon edges without oscillatory spillover.
-- Local edge correction modifies near-boundary amplitudes but cannot fully remove global truncation effects from the SH backbone.
+Why are boundaries so prominent:
 
-Why boundaries remain prominent:
+- High gradient at polygon limits injects high-degree spectral content beyond chosen bandwidth
+- Residual energy concentrates where boundary curvature changes rapidly
+- Edge-zone mismatch dominates far-field mismatch, so the boundary appears visually emphasized in residual maps :(
+  - Local edge correction changes the solution significantly near boundaries (see local-vs-nolocal metrics), boundary contrast emphasized even when ringing is reduced
 
-- High gradient at polygon limits injects high-degree spectral content beyond chosen bandwidth.
-- Residual energy concentrates where boundary curvature changes rapidly.
-- In this case, edge-zone mismatch dominates far-field mismatch, so the boundary appears visually emphasized in residual maps.

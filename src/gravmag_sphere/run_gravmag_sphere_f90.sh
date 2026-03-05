@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Direct solver runner (XYZ output).
+# Direct solver runner (XYZ output)
 # Usage:
 #   ./run_gravmag_sphere_f90.sh <R_sphere_km> <input_in_file> [xyz_output_file] [refine_factor] [source_nlat] [source_nlon] [source_nr]
 #

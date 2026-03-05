@@ -25,7 +25,7 @@ program gravmag_xyz_to_brtp
   ! - legacy sphere workflows selected components inside the forward
   !     solver and wrote one component per run (messy)
   ! - this post-processing keeps the forward solver in cartesian XYZ
-  !     and performs coordinate conversion as a separate deterministic step
+  !     and performs coordinate conversion as a separate step
   !***********************************************************************
 
   integer, parameter :: wp = real64
@@ -83,7 +83,7 @@ program gravmag_xyz_to_brtp
 
     if (len_trim(line) == 0) cycle
 
-    ! pass over comments, but mine unit hints from the source header
+    ! pass over comments, unit hints from the source header
     if (line(1:1) == '#') then
       if (index(line, '# solver=') == 1) meta_solver = trim(line)
       if (index(line, '# collective_multi_body=') == 1) meta_collective = trim(line)

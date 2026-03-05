@@ -1,19 +1,10 @@
-# GravMagSphere Inclination/Declination Physical Audit (2026-03-04)
+# GravMagSphere Inclination/Declination Physics
 
 ## Scope
-This audit investigates:
-- how GravMagSphere interprets inclination/declination,
-- whether the implementation is physically coherent,
-- how to interpret GravMagSphere vs SHTOOLS comparison residuals.
-
-Primary artifacts audited:
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/gravmag_sphere_bxyz.f90`
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/gravmag_sphere_gauss.f90`
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/gravmag_sphere_physics.f90`
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/gravmag_xyz_to_brtp.f90`
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/external_solver_compare.py`
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/diagnostics/external_solver_comparison.csv`
-- `/Users/danywaller/code/GravMagPy/src/gravmag_sphere/diagnostics/gravmag_vs_shtools_residuals.md`
+This exposes:
+- how GravMagSphere interprets inclination/declination
+- whether the implementation is physically coherent
+- how to interpret GravMagSphere vs SHTOOLS comparison residuals
 
 ---
 
@@ -30,9 +21,11 @@ Source code:
 - `gravmag_sphere_gauss.f90` lines 493-495, 425-427
 
 Interpretation:
-- +X points to lon=0, lat=0.
-- +Y points to lon=90, lat=0.
-- +Z points to the north pole.
+- +X points to lon=0, lat=0
+- +Y points to lon=90, lat=0
+- +Z points to the north pole
+
+This makes sense to me, SEL frame of reference.
 
 ### 1.2 Inclination/declination mapping
 Both solvers convert Card-5 `(M_amp, inc, dec)` to Cartesian magnetization as:
@@ -44,12 +37,12 @@ Source code:
 - `gravmag_sphere_bxyz.f90` lines 247-254
 - `gravmag_sphere_gauss.f90` lines 322-329
 
-This is mathematically consistent and normalized (unit-direction check below), but it is a **global XYZ angular convention**:
-- declination `D` is azimuth in global XY plane from +X toward +Y,
-- inclination `I` is elevation from global XY plane toward +Z.
+This is mathematically consistent and normalized, but it is a **global XYZ angular convention**:
+- declination `D` is azimuth in global XY plane from +X toward +Y
+- inclination `I` is elevation from global XY plane toward +Z
 
-Important caveat:
-- This is **not** the usual local geophysical declination/inclination convention (defined in local horizontal N/E plane with local vertical).
+Important!!!! This is **not** local geophysical declination/inclination convention (defined in local horizontal N/E plane with local vertical)
+- Do I want to change though...
 
 ---
 
@@ -66,8 +59,7 @@ Source code:
 - side-wall triangle outward normal orientation by interior-point test: lines 755-761
 - elemental charge assignment: line 764
 
-Assessment:
-- This is a standard and physically valid formulation for uniformly magnetized bodies.
+This is a standard for uniformly magnetized bodies, see von Frese & Hinze textbook.
 
 ### 2.2 Spectral solver magnetic physics (`gravmag_sphere_gauss`)
 Spectral solver first builds volume dipole elements (`m = M dV`) then fits SH coefficients:
@@ -78,19 +70,18 @@ Source code:
 - dipole kernel (double precision): lines 1014-1042
 - fit samples and SH solve: lines 502-583
 
-Assessment:
-- This is physically valid; residuals relative to direct model are dominated by fit/truncation/regularization effects, not by an obvious inc/dec sign/frame bug.
+Residuals relative to direct model are dominated by fit/truncation/regularization effects, no obvious inc/dec sign/frame bug...
 
 ### 2.3 Spherical component conventions
 `Br/Btheta/Bphi` conversion is internally consistent:
-- solver uses spherical basis with `theta` as colatitude and `Btheta` southward,
-- converter uses inverse-consistent transform.
+- solver uses spherical basis with `theta` as colatitude and `Btheta` southward
+- converter uses inverse-consistent transform
 
 Source code:
 - XYZ from `Br/Btheta/Bphi`: `gravmag_sphere_gauss.f90` lines 760-763
 - `Br/Btheta/Bphi` from XYZ: `gravmag_xyz_to_brtp.f90` lines 141-143
 
-A direct numerical roundtrip test of these formulas gave max error `1.33e-15`.
+Direct numerical roundtrip test gave max error `1.33e-15` nT. Nice! :)
 
 ---
 
@@ -116,33 +107,21 @@ Test (spectral solver, same geometry, `dec=0` vs `dec=137`):
 - relative max diff `0.116 %` of max field
 
 Interpretation:
-- Direct path is essentially dec-invariant at `I=90`.
-- Spectral path shows tiny leakage from finite-precision + inversion sensitivity, but magnitude is very small.
+- Direct path is essentially dec-invariant at `I=90`
+- Spectral path shows tiny leakage from finite-precision + inversion sensitivity, but magnitude is very small...
 
 ### 3.3 Orientation sanity at map center (I=0)
 Direct-solver center-point fields for fixed-limits orientation test:
 - `I=0, D=0`: center field unit direction ~ `[+1, 0, 0]`
 - `I=0, D=90`: center field unit direction ~ `[0, -1, 0]`
 
-This confirms declination rotates the effective magnetization azimuth in the global XY frame as implemented.
+Declination rotates the effective magnetization azimuth in the global XY frame as intended.
 
 ---
 
-## 4) What SHTOOLS Comparison Does (and Does Not) Test
+## 4) SHTOOLS/SciPy Comparison Tests
 
-### 4.1 In the current comparison pipeline, SHTOOLS does not consume inc/dec
-`external_solver_compare.py` fits SH coefficients directly to observed component fields (`Br`, `Btheta`, `Bphi`) via LSQ.
-- `SHExpandLSQ` and `LSQ_G` are used on component data.
-- inc/dec is not read by SHTOOLS in that pipeline.
-
-Source code:
-- `solve_shtools_lsq_component`: `external_solver_compare.py` lines 381-399
-- case comparison loop: lines 661-789
-
-Implication:
-- GravMagSphere vs SHTOOLS residuals mostly diagnose solver approximation/modeling differences, not inc/dec parsing differences.
-
-### 4.2 Residual behavior in latest comparison output
+### 4.1 Residual behavior in latest comparison output
 From `diagnostics/external_solver_comparison.csv` (auto-mode GravMagSphere spectral + optimized SHTOOLS/SciPy grids):
 
 - Fixed-limit magnetic orientation cases (non-weak):
@@ -161,55 +140,39 @@ From `diagnostics/external_solver_comparison.csv` (auto-mode GravMagSphere spect
   - SciPy RMSE(Btot): `279.29`
 
 Interpretation:
-- No case pattern suggests an inc/dec sign/axis bug as the dominant residual source.
-- Largest errors concentrate in geometrically sharp/complex cases where spectral truncation and ringing/regularization dominate.
+- No case pattern suggests an inc/dec sign/axis bug as the dominant residual source
+- Largest errors concentrate in geometrically sharp/complex cases where spectral truncation and ringing/regularization dominate
+
+Yay :)
 
 ---
 
-## 5) Physical Correctness Judgment
+## 5) Physical Correctness?
 
-### Verdict
-The inclination/declination implementation is **physically coherent and internally consistent** with the model's global XYZ coordinate system.
+### The judge says:
+The inclination/declination implementation is **physically coherent and internally consistent** with global XYZ coordinate system :)
 
-What is correct:
-- same `inc/dec -> Mx,My,Mz` mapping in direct and spectral paths,
-- physically valid magnetic kernels in both paths,
-- consistent Cartesian/spherical transforms,
-- no evidence of a direct sign inversion or axis swap bug.
+Validated:
+- same `inc/dec -> Mx,My,Mz` mapping in direct and spectral paths
+- physically valid magnetic kernels in both paths
+- consistent Cartesian/spherical transforms
+- no evidence of a direct sign inversion or axis swap bug
 
-What can be misinterpreted:
-- The angle convention is global XYZ, not local geophysical dec/inc.
-- If users assume local N/E/U (or N/E/Down) conventions, they can interpret inputs incorrectly even though solver math is consistent.
+Maybe a sneaky pitfall:
+- The angle convention is global XYZ, not local geophysical dec/inc
+- If user assumes local N/E/U (or N/E/Down) conventions, can interpret inputs incorrectly even though solver math is consistent
 
 ---
 
-## 6) Recommended Improvements
+## 6) Maybe Future Improvements
 
-1. Explicitly document angle convention in README and input-card docs.
-- State that Card-5 declination is azimuth from global +X toward +Y; inclination is from global XY toward +Z.
+1. Add optional local geophysical mode
+- Add a switch to interpret dec/inc in local frame at body center (N/E/U or N/E/Down), then rotate to global XYZ
 
-2. Add optional local geophysical mode.
-- Add a switch to interpret dec/inc in local frame at body center (N/E/U or N/E/Down), then rotate to global XYZ.
+2. Add a small numerical guard at `|I| ~ 90`
+- If `abs(cosI) < eps`, set horizontal components exactly to zero to suppress tiny dec leakage in spectral fitting
 
-3. Add a small numerical guard at `|I| ~ 90`.
-- If `abs(cosI) < eps`, set horizontal components exactly to zero to suppress tiny dec leakage in spectral fitting.
-
-4. Add regression tests.
-- Vertical-inclination dec-invariance test (`I=90`, vary `D`).
-- Known-axis tests (`I=0,D=0`; `I=0,D=90`; `I=90,D=any`).
-- Cartesian/spherical roundtrip consistency tests.
-
-
-## 9) Implications for Cross-Model Residual Interpretation
-
-Given the audit findings, model differences should be interpreted as a combination of:
-
-- physically different inverse assumptions (equivalent-source versus pure SH LSQ formulations),
-- coordinate-convention differences (global XYZ angle interpretation versus local geophysical conventions in other tools),
-- regularization and bandwidth choices that redistribute anomaly energy.
-
-Practical consequence:
-
-- residuals near sharp edges mainly indicate basis/regularization limits,
-- broad regional offsets indicate different low-degree parameterization or continuation behavior,
-- multi-body residuals indicate coefficient competition and source-partition choices rather than a single coding bug.
+3. Add more smoke tests?
+- Vertical-inclination dec-invariance test (`I=90`, vary `D`)
+- Known-axis tests (`I=0,D=0`; `I=0,D=90`; `I=90,D=any`)
+- Cartesian/spherical roundtrip consistency tests

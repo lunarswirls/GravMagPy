@@ -24,13 +24,13 @@
 
 ## Methodology Differences and Residual Drivers
 
-- `gravmag_sphere_gauss` in this comparison uses GravMagSphere's physical-source-to-SH pipeline with its own regularization controls.
-- `shtools_lsq` uses direct SH least-squares expansion from sampled field values.
+- `gravmag_sphere_gauss` in this comparison uses GravMagSphere's physical-source-to-SH pipeline with its own regularization controls
+- `shtools_lsq` uses direct SH least-squares expansion from sampled field values
 
 Residuals increase when:
 
-- Polygon boundaries are sharp relative to resolved harmonic degree.
-- Model regularization suppresses high-degree content differently between solvers.
-- Multi-body anomalies compete for the same low-degree coefficients in a global fit.
+- Polygon boundaries are sharp relative to resolved harmonic degree
+- Solver-specific regularization suppresses high-degree content differently
+- Multi-body anomalies compete for the same low-degree coefficients in a global fit
 
-Large-complex polygon cases are worst because discontinuous geometry excites high-degree terms that truncated SH models cannot represent without ringing.
+Large-complex polygon cases are worst because discontinuous geometry excites high-degree terms that truncated SH models cannot represent without ringing. Sad :(
