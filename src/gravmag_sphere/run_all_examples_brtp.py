@@ -110,6 +110,19 @@ def parse_unit_from_header(path: Path):
     return unit
 
 
+def parse_unit_from_fname(path: Path):
+    """Infer display units from file name"""
+    if "_mag_" in str(path):
+        unit = "nT"
+        return unit
+
+    elif "_grav_" in str(path):
+        unit = "mGal"
+        return unit
+    else:
+        raise ValueError("Filename must contain either mag or grav file!")
+
+
 def plot_brtp(data, out_png: Path, title: str, unit: str):
     """Create and save Br/Btheta/Bphi/Btot 2x2 panel figure."""
     keys = ["Br", "Btheta", "Bphi", "Btot"]
@@ -141,7 +154,7 @@ def plot_brtp(data, out_png: Path, title: str, unit: str):
 
 
 def should_skip_example(path: Path):
-    """Skip non-runnable documentation example files by filename."""
+    """Skip non-runnable documentation example files by name"""
     name = path.name.lower()
     # Skip purely commented documentation examples
     if "comment" in name:
@@ -319,7 +332,7 @@ def main():
 
         data = load_brtp(out_brtp)
         total = aggregate_total(data)
-        unit = parse_unit_from_header(out_brtp)
+        unit = parse_unit_from_fname(out_brtp)
         human = pretty_case_name(stem)
         title = f"{human} [{solver_label}]: Br / Btheta / Bphi / Btot (summed over bodies)"
         plot_brtp(total, out_png, title, unit)
