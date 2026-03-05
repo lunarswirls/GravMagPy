@@ -34,6 +34,7 @@ program gravmag_xyz_to_brtp
 
   character(len=512) :: infile, outfile, line
   character(len=32)  :: unit_lbl
+  character(len=512) :: meta_solver, meta_collective, meta_lmax, meta_auto
   integer(int32) :: argc, ios
   integer(int32) :: inunit, outunit
   integer(int32) :: lineno, nread, nwrite, nskip
@@ -64,6 +65,10 @@ program gravmag_xyz_to_brtp
   if (ios /= 0) stop 'ERROR: cannot open output file'
 
   unit_lbl = ''
+  meta_solver = ''
+  meta_collective = ''
+  meta_lmax = ''
+  meta_auto = ''
   wrote_header = .false.
   lineno = 0
   nread = 0
@@ -80,6 +85,10 @@ program gravmag_xyz_to_brtp
 
     ! pass over comments, but mine unit hints from the source header
     if (line(1:1) == '#') then
+      if (index(line, '# solver=') == 1) meta_solver = trim(line)
+      if (index(line, '# collective_multi_body=') == 1) meta_collective = trim(line)
+      if (index(line, '# lmax=') == 1 .and. index(line, 'reg_lambda=') > 0) meta_lmax = trim(line)
+      if (index(line, '# auto_mode=') == 1 .and. index(line, 'joint_strength=') > 0) meta_auto = trim(line)
       if (index(line, '_nT') > 0) then
         unit_lbl = 'nT'
       else if (index(line, '_mGal') > 0 .or. index(line, '_MGAL') > 0) then
@@ -103,6 +112,10 @@ program gravmag_xyz_to_brtp
     if (.not. wrote_header) then
       ! write one self-describing header once, then stream data rows
       write(outunit,'(A)') '# converted from cartesian xyz to spherical br,btheta,bphi'
+      if (len_trim(meta_solver) > 0) write(outunit,'(A)') trim(meta_solver)
+      if (len_trim(meta_collective) > 0) write(outunit,'(A)') trim(meta_collective)
+      if (len_trim(meta_lmax) > 0) write(outunit,'(A)') trim(meta_lmax)
+      if (len_trim(meta_auto) > 0) write(outunit,'(A)') trim(meta_auto)
       if (trim(unit_lbl) == 'nT') then
         write(outunit,'(A)') '# body_id lon_deg[-180,180) lat_deg Br_nT Btheta_nT Bphi_nT Btot_nT'
       else if (trim(unit_lbl) == 'mGal') then

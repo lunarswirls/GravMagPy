@@ -1,5 +1,5 @@
 program gravmag_sphere_brtp
-  use, intrinsic :: iso_fortran_env, only: real32, int32
+  use, intrinsic :: iso_fortran_env, only: int32, int64, real32, real64
   use gravmag_sphere_subs
   use gravmag_sphere_physics
   implicit none
@@ -142,6 +142,12 @@ program gravmag_sphere_brtp
 
   ! per-thread accumulators
   real(real32) :: bx_acc, by_acc, bz_acc
+  logical :: diag_enabled
+  character(len=32) :: diag_env
+  real :: t_body0, t_body1, t_phase0, t_phase1
+  real :: t_obsgrid_s, t_source_s, t_accum_s, t_output_s
+  integer(int64) :: obs_cells64, source_cap64
+  integer(int64) :: mem_obs_bytes, mem_source_bytes, mem_total_bytes
 
   ! ----------------------------
   ! CLI
@@ -193,6 +199,10 @@ program gravmag_sphere_brtp
     if (ios /= 0 .or. src_nr_cli < 0) stop "ERROR: invalid source_nr CLI argument"
   end if
 
+  diag_env = ''
+  call get_environment_variable('GRAVMAG_DIAGNOSTICS', diag_env)
+  diag_enabled = (len_trim(diag_env) > 0 .and. trim(diag_env) /= '0')
+
   do
     ! ---- read title (skip blanks/comments) ----
     title = ''
@@ -207,6 +217,11 @@ program gravmag_sphere_brtp
 
     knk = knk + 1
     write(*,'(A,I0,2A)') 'Body ', knk, ': ', trim(title)
+    t_obsgrid_s = 0.0
+    t_source_s = 0.0
+    t_accum_s = 0.0
+    t_output_s = 0.0
+    call cpu_time(t_body0)
 
     ! ---- Cards 2-6 ----
     read(4,*,iostat=ios) lat0_deg, lon0_deg, dlat_deg, dlon_deg, elvo_km, nlat, nlon
@@ -308,6 +323,7 @@ program gravmag_sphere_brtp
     ro_m = (rsphere_km + elvo_km) * 1000.0_real32
 
     ! ---- allocate observation arrays ----
+    call cpu_time(t_phase0)
     if (.not. allocated(xo)) then
       allocate(xo(nlat,nlon), yo(nlat,nlon), zo(nlat,nlon))
       allocate(Bx(nlat,nlon), By(nlat,nlon), Bz(nlat,nlon))
@@ -334,6 +350,8 @@ program gravmag_sphere_brtp
         zo(i,j) = ro_m * sin(lat_rad)
       end do
     end do
+    call cpu_time(t_phase1)
+    t_obsgrid_s = t_obsgrid_s + (t_phase1 - t_phase0)
 
     ! ------------------------------------------
     ! rasterize polygon on fine grid
@@ -341,6 +359,7 @@ program gravmag_sphere_brtp
     ! Source mesh is now decoupled from Card 2 output grid:
     ! - default source controls come from Card 3 (ntheta, nphi, nr)
     ! - optional CLI overrides can replace them globally
+    call cpu_time(t_phase0)
     nlat_seed = ntheta
     nlon_seed = nphi
     nr_s = nr
@@ -491,10 +510,26 @@ program gravmag_sphere_brtp
 
       write(*,'(A,I0)') '  Source elements (grav masses): ', ns
     end if
+    call cpu_time(t_phase1)
+    t_source_s = t_source_s + (t_phase1 - t_phase0)
+
+    if (diag_enabled) then
+      obs_cells64 = int(nlat, int64) * int(nlon, int64)
+      source_cap64 = int(cap, int64)
+      mem_obs_bytes = 6_int64 * obs_cells64 * 4_int64
+      mem_source_bytes = source_cap64 * 5_int64 * 4_int64
+      mem_total_bytes = mem_obs_bytes + mem_source_bytes
+      write(*,'(A,I0)') 'DIAG|direct|meta|source_capacity=', cap
+      write(*,'(A,I0)') 'DIAG|direct|meta|source_elements=', ns
+      write(*,'(A,F12.6)') 'DIAG|direct|memory|obs_arrays_mib=', bytes_to_mib(mem_obs_bytes)
+      write(*,'(A,F12.6)') 'DIAG|direct|memory|source_arrays_mib=', bytes_to_mib(mem_source_bytes)
+      write(*,'(A,F12.6)') 'DIAG|direct|memory|total_est_mib=', bytes_to_mib(mem_total_bytes)
+    end if
 
     ! ------------------------------------------
     ! Field accumulation: OpenMP over obs grid
     ! ------------------------------------------
+    call cpu_time(t_phase0)
     Bx(:,:) = 0.0_real32
     By(:,:) = 0.0_real32
     Bz(:,:) = 0.0_real32
@@ -550,8 +585,11 @@ program gravmag_sphere_brtp
       end do
       !$omp end parallel do
     end if
+    call cpu_time(t_phase1)
+    t_accum_s = t_accum_s + (t_phase1 - t_phase0)
 
     ! ---- output ----
+    call cpu_time(t_phase0)
     if (nfile /= 0) then
       if (ifield == 2) then
         write(2,'(A)') '# body_id lon_deg lat_deg Bx_nT By_nT Bz_nT Btot_nT'
@@ -577,12 +615,28 @@ program gravmag_sphere_brtp
         end do
       end do
     end if
+    call cpu_time(t_phase1)
+    t_output_s = t_output_s + (t_phase1 - t_phase0)
+
+    if (diag_enabled) then
+      call cpu_time(t_body1)
+      write(*,'(A,F12.6)') 'DIAG|direct|time|obs_grid_s=', real(t_obsgrid_s, real64)
+      write(*,'(A,F12.6)') 'DIAG|direct|time|source_mesh_s=', real(t_source_s, real64)
+      write(*,'(A,F12.6)') 'DIAG|direct|time|field_accum_s=', real(t_accum_s, real64)
+      write(*,'(A,F12.6)') 'DIAG|direct|time|output_write_s=', real(t_output_s, real64)
+      write(*,'(A,F12.6)') 'DIAG|direct|time|body_total_s=', real(t_body1 - t_body0, real64)
+    end if
 
   end do
 
   close(4); close(2)
 
 contains
+
+  pure real(real64) function bytes_to_mib(nbytes)
+    integer(int64), intent(in) :: nbytes
+    bytes_to_mib = real(nbytes, real64) / (1024.0_real64 * 1024.0_real64)
+  end function bytes_to_mib
 
   !---------------------------------------------------------------------
   ! append_source

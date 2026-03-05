@@ -1,0 +1,17 @@
+{
+  "title": "Sphere wcirc  1-body orientation test (inc=45 dec=45)",
+  "mode": "magnetic",
+  "lat0_deg": -6.0,
+  "lon0_deg": -6.0,
+  "dlat_deg": 0.15,
+  "dlon_deg": 0.15,
+  "elvo_km": 0.0,
+  "nlat": 81,
+  "nlon": 81,
+  "radius_m": 1737400.0,
+  "example_path": "/Users/danywaller/code/GravMagPy/src/gravmag_sphere/examples/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient.in",
+  "baseline_xyz": "/Users/danywaller/code/GravMagPy/src/gravmag_sphere/external_solver_inputs/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient_direct_xyz.txt",
+  "baseline_brtp": "/Users/danywaller/code/GravMagPy/src/gravmag_sphere/external_solver_inputs/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient/gravmag_sphere_1body_mag_fixedlim_inc45_dec45_orient_direct_brtp.txt",
+  "refine_factor": 2,
+  "rsphere_km": 1737.4
+}
