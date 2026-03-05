@@ -1,0 +1,17 @@
+{
+  "title": "Sphere wcirc  3-body weak polygon case (Body 1)",
+  "mode": "magnetic",
+  "lat0_deg": -12.0,
+  "lon0_deg": -12.0,
+  "dlat_deg": 0.4,
+  "dlon_deg": 0.4,
+  "elvo_km": 0.0,
+  "nlat": 61,
+  "nlon": 61,
+  "radius_m": 1737400.0,
+  "example_path": "/Users/danywaller/code/GravMagPy/src/gravmag_sphere/examples/gravmag_sphere_3body_mag_polygon_incmix_decmix_weak.in",
+  "baseline_xyz": "/Users/danywaller/code/GravMagPy/src/gravmag_sphere/external_solver_inputs/gravmag_sphere_3body_mag_polygon_incmix_decmix_weak/gravmag_sphere_3body_mag_polygon_incmix_decmix_weak_direct_xyz.txt",
+  "baseline_brtp": "/Users/danywaller/code/GravMagPy/src/gravmag_sphere/external_solver_inputs/gravmag_sphere_3body_mag_polygon_incmix_decmix_weak/gravmag_sphere_3body_mag_polygon_incmix_decmix_weak_direct_brtp.txt",
+  "refine_factor": 2,
+  "rsphere_km": 1737.4
+}

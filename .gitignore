@@ -1,2 +1,4 @@
 /.idea
 .DS_Store
+/src/gravmag_sphere/__pycache__
+/src/gravmag_sphere/.mplconfig
