@@ -1,20 +1,5 @@
 #!/usr/bin/env python3
-from __future__ import annotations
-
-import os
 from pathlib import Path
-
-LOCAL_HERE = Path(__file__).resolve().parent
-LOCAL_CACHE = LOCAL_HERE / ".cache"
-LOCAL_MPLCONFIG = LOCAL_HERE / ".mplconfig"
-LOCAL_CACHE.mkdir(exist_ok=True)
-LOCAL_MPLCONFIG.mkdir(exist_ok=True)
-os.environ["XDG_CACHE_HOME"] = str(LOCAL_CACHE)
-os.environ["MPLCONFIGDIR"] = str(LOCAL_MPLCONFIG)
-
-import matplotlib
-
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 

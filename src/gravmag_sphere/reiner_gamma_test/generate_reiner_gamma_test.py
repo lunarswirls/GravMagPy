@@ -656,7 +656,6 @@ write_input_file(
 )
 
 env = os.environ.copy()
-env["MPLCONFIGDIR"] = str(HERE / ".mplconfig")
 
 run([str(ROOT / "build_gravmag_tools.sh")], cwd=ROOT, env=env)
 run(
