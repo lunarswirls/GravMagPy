@@ -124,7 +124,7 @@ def plot_equivalent_maps(solution, rasters, image_path=None, *, bounds, altitude
                          shape=(241, 241), radius_km=None, components=("btot",), source_layer=1,
                          show_source_panel=True, show_sources=True, contours=True, contour_levels=6,
                          ncols=2, title=None, dpi=200):
-    """plot equivalent fields and geotiff context panels in the lavapy spectral-map style
+    """plot equivalent fields alongside georeferenced context panels
 
     solution is a fit result, source dataframe, or dipoles.csv path
     rasters is a list of dictionaries with path, title, cmap, unit, vmin/vmax,

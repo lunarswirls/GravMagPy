@@ -8,7 +8,7 @@ The GravMag Sphere `.in` format describes finite magnetized bodies rather than z
 
 ### `bangui_equivalent_dipoles.in`
 
-Default numeric output for the direct executable is `output/bangui_equivalent_dipoles.txt` inside this case directory. Python figures default to `figs/` here. Explicit paths still override these defaults; see [output path conventions](../../../docs/output_paths.md).
+Default numeric output for the direct executable is `output/bangui_equivalent_dipoles.txt` inside this case directory. Python figures default to `figs/` here. Explicit paths override these defaults; see [output path conventions](../../docs/output_paths.md).
 
 - 163 half-degree source cells within 400 km of `4.37 deg N, 18.56 deg E`
 - source layer from 3.0 to 7.5 km depth
@@ -26,7 +26,7 @@ This is a discretized version of the published 800 km diameter, 4.5 km thick Ban
 - ten reproducible proxy magnetization classes from 0.05 to 1.10 A/m
 - observations at 400 km altitude on a 5-degree global grid
 
-The grid, layer count and source count reproduce the published Meyer et al. geometry. The original ten-class thickness and susceptibility table and the recovered individual moments were not available in machine-readable form, so the class placement and strengths here are explicit synthetic proxies. This is a solver stress case, not a reproduction of the published field solution.
+The grid, layer count and source count follow the published Meyer et al. geometry. Class placement and strengths are explicit synthetic proxies, not a transcription of the published thickness/susceptibility classes or individual moments. This is a solver stress case, not a reproduction of the published field solution.
 
 ### `mayhew_north_america_equivalent_layer.in`
 
@@ -36,19 +36,19 @@ The grid, layer count and source count reproduce the published Meyer et al. geom
 - reproducible regional proxy magnetizations for the Canadian Shield, western thermal provinces, central continent and Appalachians
 - observations at 400 km altitude on a 2-degree regional grid
 
-The source spacing, equal-area design and layer thickness follow the published Mayhew configuration. Published source moments were not available as a numerical table, so the magnetization contrasts are documented proxies.
+The source spacing, equal-area design and layer thickness follow the published Mayhew configuration. Magnetization contrasts are documented proxies, not fitted or transcribed published source moments.
 
 ## Generate
 
-Run the generator with a repository venv Python:
+Run the generator from the repository root using the selected virtual environment:
 
 ```bash
-/Users/danywaller/code/venvs/gravmagpy/bin/python examples/gravmag_sphere/earth_crust_cases/generate_earth_crust_cases.py
+/Users/danywaller/code/venvs/gravmagpy/bin/python examples/earth_crust_cases/generate_earth_crust_cases.py
 ```
 
 ## Run
 
-From `examples/gravmag_sphere`, tested one-dipole-per-cell Gauss setups are:
+From `examples`, one-dipole-per-cell Gauss configurations are:
 
 ```bash
 ./gravmag_sphere_gauss 6371.2 earth_crust_cases/bangui_equivalent_dipoles.in "" 20 1 21 41 0.05 4 1 1 1 0

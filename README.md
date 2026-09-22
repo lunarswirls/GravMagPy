@@ -1,4 +1,4 @@
-# GravMagPy
+# GravMagSphere
 
 Python interface to Fortran gravity/magnetic models and subsurface magnetic-source inversion from spacecraft measurements. Python handles CSV ingestion, geometry, bounded minimization, diagnostics, and plots; Fortran evaluates the magnetic forward model.
 
@@ -16,15 +16,16 @@ src/gravmagpy/              importable Python package
   plotting.py              Bx/By/Bz/Btot grid and orbital-fit plots
   maps.py                  georeferenced GeoTIFF panels and equivalent-source maps
   utils/fortran.py          cached compilation and GravMag Sphere executable calls
+  utils/paths.py            input-relative output and figure destinations
 fortran/
   orbital.f90              shared-library kernel for arbitrary spacecraft positions
-  gravmag_*.f90            maintained grid, spectral, conversion, and dipole-fit programs
-examples/lpmag/             real wake-data and synthetic recovery workflows
-examples/gravmag_sphere/    test cases, notebooks, shell workflows, and saved results
+  gravmag_*.f90             grid, spectral, conversion, and dipole-fit programs
+examples/                  test cases, notebooks, shell workflows, and saved results
+  lpmag/                   real wake-data and synthetic recovery workflows
 diagnostics/               benchmark/comparison scripts, external-solver inputs, reports, plots
 docs/                      architecture, modeling, mapping, and execution guides
 tests/                     numerical and integration checks
-data/spice_kernels/        SPICE kernels, separate from package code
+data/spice_kernels/         SPICE kernels, separate from package code
 ```
 
 ## Install
@@ -83,7 +84,7 @@ For geologic context maps, use `gravmagpy.maps.plot_equivalent_maps` to place th
 
 ## Python models for GravMag Sphere
 
-The GravMag Sphere tools are maintained backends with Python frontends. You can define sources and grids in Python; input cards are generated internally:
+The GravMag Sphere tools are maintained as backends with Python frontends. You can define sources and grids in Python; input cards are generated internally:
 
 ```python
 import numpy as np
@@ -108,20 +109,16 @@ Use `block` or `polygon` for individual magnetic or gravity volumes. `fit_equiva
 from gravmagpy import run_grid_model
 from gravmagpy.plotting import plot_fields
 
-input_path = 'examples/gravmag_sphere/seafloor_spreading_cases/st_paul_symmetric_stripes.in'
+input_path = 'examples/seafloor_spreading_cases/st_paul_symmetric_stripes.in'
 result = run_grid_model(input_path, radius_km=6371.2, solver='direct', options=(1,))
 plot_fields(input_path, result['output_path'])
 ```
 
-`build_fortran` supports `orbital`, `direct`, `spectral`, `xyz_to_brtp`, and `dipole_grid`. `run_fortran` exposes the positional interfaces. Shell runners work from `examples/gravmag_sphere`; their builds resolve the canonical files directly under `fortran`. Fortran `.in` files are supported directly. See [architecture and development direction](docs/architecture.md) and the [solver guide](examples/gravmag_sphere/GravMagSphere_README.md).
+`build_fortran` supports `orbital`, `direct`, `spectral`, `xyz_to_brtp`, and `dipole_grid`. `run_fortran` exposes the positional interfaces. Shell runners work from `examples`; their builds resolve the canonical files directly under `fortran`. Fortran `.in` files are supported directly. See [architecture and development direction](docs/architecture.md) and the [solver guide](examples/GravMagSphere_README.md).
 
 ## Tests and diagnostics
 
 Solver comparisons and compiler diagnostics are grouped in the top-level [diagnostics folder](diagnostics/README.md). Package regression tests are in `tests/`.
-
-```bash
-PYTHONPATH=src /Users/danywaller/code/venvs/gravmagpy/bin/python -m unittest discover -s tests -v
-```
 
 Tests exercise the Fortran kernel against an independent point-dipole limit and the GravMag Sphere surface-charge solver, quadrature convergence, magnetic cancellation, CSV handling, inversion, Python model/card compatibility, gravity and spectral calls, and equivalent-dipole fitting.
 

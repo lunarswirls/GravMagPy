@@ -12,7 +12,7 @@ class build_with_fortran(build_py):
         super().run()
         source = Path(__file__).parent / "fortran"
         destination = Path(self.build_lib) / "gravmagpy" / "_fortran"
-        # replace only this generated build subtree so moved sources cannot linger in wheels
+        # rebuild the generated package source subtree to avoid stale files
         if destination.is_dir():
             shutil.rmtree(destination)
         shutil.copytree(source, destination, dirs_exist_ok=True, ignore=shutil.ignore_patterns("*.mod", "*.o"))

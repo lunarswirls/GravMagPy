@@ -50,7 +50,7 @@ class output_path_tests(unittest.TestCase):
     def make_launchers(self):
         directory = self.root / "launchers"
         directory.mkdir()
-        scripts = self.repo / "examples/gravmag_sphere"
+        scripts = self.repo / "examples"
         for name in ("run_gravmag_sphere_f90.sh", "run_gravmag_sphere_gauss.sh",
                      "run_input_to_xyz.sh", "run_xyz_to_brtp.sh", "run_gravmag_end_to_end.sh",
                      "run_all_examples_end_to_end.sh", "run_all_examples_brtp.py"):
@@ -137,7 +137,7 @@ class output_path_tests(unittest.TestCase):
         self.assertEqual(figure, self.case_dir / "figs/small_bxyz.png")
         explicit = self.root / "chosen.png"
         self.assertEqual(plot_fields(self.input_path, output, explicit), explicit)
-        run = self.run_command([sys.executable, self.repo / "examples/gravmag_sphere/seafloor_spreading_cases/plot_bxyz.py",
+        run = self.run_command([sys.executable, self.repo / "examples/seafloor_spreading_cases/plot_bxyz.py",
                                 self.input_path, output])
         self.assertIn(str(figure), run.stdout)
 

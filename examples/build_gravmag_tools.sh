@@ -13,7 +13,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MODDIR="${ROOT_DIR}/mod"
-source_dir="${ROOT_DIR}/../../fortran"
+source_dir="${ROOT_DIR}/../fortran"
 mkdir -p "${MODDIR}"
 
 echo "+ building gravmag_sphere_bxyz"

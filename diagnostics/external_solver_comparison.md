@@ -63,15 +63,15 @@ SciPy and SHTOOLS rows use per-case optimized settings from the configured searc
 ## Why Solutions Differ
 
 - Reference in this table is always the GravMagSphere direct solver, which evaluates physical source kernels from discretized bodies
-  - Is this *the best* way to do it though?
+  - It is a numerical baseline, not an exact solution; assess its refinement independently
 - `fortran_spectral` is a two-stage model: physical source discretization first, then spherical-harmonic coefficient inversion
 - `scipy_sh_lsq` and `shtools_lsq` fit spherical-harmonic coefficients directly to sampled fields per component, without equivalent-source discretization first
 - GravMagSphere uses joint vector fitting with explicit `reg_lambda` and `reg_power`; SciPy/SHTOOLS rows here are component-wise LSQ fits with different regularization
 
-Primary differences so far:
+Interpretation:
 
 - Spectral truncation near sharp boundaries introduces ringing and boundary overshoot
-  - Really bad Gibbs in SHTOOLS output... Maybe artifacts from direct solver
+  - Residual patterns can also reflect error in the sampled direct baseline
 - Different regularization shifts energy between low and high degree terms, changes anomaly amplitude and edge sharpness
 - Joint-vector fitting versus per-component fitting changes cross-component consistency, especially for `Btheta/Bphi`
 - In multi-body cases, collective versus separate body treatment changes how overlapping anomalies are partitioned into coefficients

@@ -1,6 +1,9 @@
 # Hybrid Vertex Sweep
 
+This report compares spectral and hybrid fields against direct predictions for the specified polygon families. The threshold is conditional on these settings; use [the sweep workflow](../README.md) to assess another geometry family.
+
 ## Setup
+
 - shapes: `regular,wavy`
 - vertices: `4,6,8,10,12,14,16,20,24,30,36,48`
 - spectral seeds: lmax `18`, reg_lambda `0.2`, reg_power `4.0`, auto_mode `0`
@@ -8,6 +11,7 @@
 - recommendation criteria: improvement >= `0.100`, runtime_ratio <= `2.500`, fraction_better >= `0.500`
 
 ## Recommendation
+
 - recommended `complex_vertex_threshold`: **12**
 
 ## By Vertex (mean across shapes)
@@ -57,13 +61,14 @@
 | wavy_v048 | 1 | 1 | 1.8169e+01 | 1.7316e+01 | 0.0469 | 1.0201 |
 
 ## Files
+
 - detailed csv: `/Users/danywaller/code/GravMagPy/diagnostics/hybrid_vertex_sweep/hybrid_vertex_sweep_detailed.csv`
 - by-vertex csv: `/Users/danywaller/code/GravMagPy/diagnostics/hybrid_vertex_sweep/hybrid_vertex_sweep_by_vertex.csv`
 - plot: `/Users/danywaller/code/GravMagPy/diagnostics/hybrid_vertex_sweep/hybrid_vertex_sweep.png`
 
 ## Methodology Note: Why Hybrid Helps Above the Threshold
 
-- Spectral-only mode represents fields with finite SH bandwidth, which smooths discontinuities and can ring near polygon boundaries.
+- Spectral-only mode represents fields with finite SH bandwidth, which can smooth sharp spatial variations and introduce ringing near polygon boundaries.
 - Hybrid mode replaces spectral prediction with direct kernel evaluation inside a boundary band and blends back outside that band.
 
 Why the recommendation lands near 12 vertices in this sweep:

@@ -727,7 +727,7 @@ def build_parser() -> argparse.ArgumentParser:
     bench.add_argument("--repeats", type=int, default=3)
     bench.add_argument(
         "--example",
-        default="examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in",
+        default="examples/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in",
     )
     bench.add_argument("--rsphere-km", type=float, default=1737.4)
     bench.add_argument("--refine-factor", type=int, default=2)
@@ -746,7 +746,7 @@ def build_parser() -> argparse.ArgumentParser:
     sweep.add_argument("--compiler", default="gfortran")
     sweep.add_argument(
         "--example",
-        default="examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in",
+        default="examples/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in",
     )
     sweep.add_argument("--rsphere-km", type=float, default=1737.4)
     sweep.add_argument("--refine-factor", type=int, default=2)

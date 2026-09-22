@@ -9,7 +9,7 @@ HERE = Path(__file__).resolve().parent
 # Hardcoded files and plot settings for the Reiner Gamma Table 4 surface case.
 INPUT_IN = HERE / "reiner_gamma_table4_surface_direct.in"
 INPUT_BRTP = HERE / "output" / "reiner_gamma_table4_surface_direct_brtp.txt"
-OUTPUT_PNG = HERE / "fig" / "reiner_gamma_table4_surface_direct_brtp_2x2.png"
+OUTPUT_PNG = HERE / "figs" / "reiner_gamma_table4_surface_direct_brtp_2x2.png"
 BOX_WIDTH_DEG = 0.0196
 THICKNESS_KM = 1.0
 ELVO_KM = 0.0

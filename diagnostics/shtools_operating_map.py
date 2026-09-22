@@ -23,7 +23,7 @@ import numpy as np
 
 
 repo_root = Path(__file__).resolve().parent.parent
-example_root = repo_root / "examples" / "gravmag_sphere"
+example_root = repo_root / "examples"
 COMPONENTS = ("br", "btheta", "bphi", "btot")
 DIAG_RE = re.compile(r"^DIAG\|gauss\|time\|([^=]+)=(.+)$")
 
@@ -542,7 +542,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Build operating map vs SHTOOLS target for GravMag spectral solver.")
     p.add_argument(
         "--example",
-        default="examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge.in",
+        default="examples/lunar_examples/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge.in",
         help="Example .in file to sweep.",
     )
     p.add_argument("--rsphere-km", type=float, default=1737.4)

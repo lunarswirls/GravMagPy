@@ -1,6 +1,8 @@
 # Fortran Compiler Benchmark
 
-- Example: `/Users/danywaller/code/GravMagPy/examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in`
+Reference timings for the case below. Runtime and memory depend on compiler, hardware, source discretization, and solver settings. Use [the benchmark workflow](README.md#1-compiler-runtime-benchmark--hotspot-report) to measure another configuration.
+
+- Example: `/Users/danywaller/code/GravMagPy/examples/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in`
 
 | Compiler | Case | Median wall (s) | Slowest stage | Largest memory bucket |
 |---|---:|---:|---|---|

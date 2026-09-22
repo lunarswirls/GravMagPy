@@ -40,16 +40,15 @@
 | spectral_nolocal | 1.727446e+02 | 7.464788e+01 | 2.314 |
 
 
-## Super Visible Boundary Effects
+## Boundary effects
 
-- Direct model uses physical source-kernel summation, preserves discontinuous boundary behavior
-- Spectral model uses finite SH representation, which cannot reproduce abrupt polygon edges without oscillatory spillover
-- Local edge correction modifies near-boundary amplitudes but cannot fully remove global truncation effects from the SH backbone :(
+- The direct model evaluates physical source kernels for the specified polygon geometry
+- A finite spherical-harmonic representation can under-resolve sharp near-boundary spatial variation and introduce oscillatory structure
+- Local edge correction modifies near-boundary amplitudes but does not eliminate the finite bandwidth of the global representation
 
 Why are boundaries so prominent:
 
 - High gradient at polygon limits injects high-degree spectral content beyond chosen bandwidth
 - Residual energy concentrates where boundary curvature changes rapidly
-- Edge-zone mismatch dominates far-field mismatch, so the boundary appears visually emphasized in residual maps :(
+- Edge-zone mismatch dominates far-field mismatch in this case, emphasizing the boundary in residual maps
   - Local edge correction changes the solution significantly near boundaries (see local-vs-nolocal metrics), boundary contrast emphasized even when ringing is reduced
-

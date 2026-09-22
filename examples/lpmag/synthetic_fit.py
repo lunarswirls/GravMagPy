@@ -1,4 +1,4 @@
-"""create a reproducible lavapy-format csv and recover its source geometry"""
+"""create a reproducible lpmag-format csv and recover its source geometry"""
 
 from pathlib import Path
 

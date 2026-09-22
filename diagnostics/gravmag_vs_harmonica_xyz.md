@@ -1,5 +1,7 @@
 # GravMagSphere Spectral (XYZ) vs Harmonica Residuals
 
+These comparisons use the recorded case settings and Cartesian components. Magnetic errors use nT and gravity errors use mGal. The Harmonica adapter fits components independently and serves as a diagnostic approximation, not a vector-dipole inversion backend. See the [comparison overview](README.md) for commands and dependency requirements.
+
 - fortran mode: `auto`
 - fortran seed (manual mode): lmax `24`, reg_lambda `0.2`, reg_power `4.0`
 - harmonica damping grid: `0`
@@ -60,6 +62,7 @@
 | gravmag_sphere_5body_mag_polygon_incmix_decmix_weak | fortran_minus_harmonica_xyz | ok | 18 | 0.2 | 4 | 0 | 29736 | 446040 | 4.295155e-01 | 3.730645e-01 | 2.856809e-01 | 6.281141e-01 | -1429.110430 | /Users/danywaller/code/GravMagPy/diagnostics/gravmag_vs_harmonica_xyz_residuals/gravmag_sphere_5body_mag_polygon_incmix_decmix_weak_gravmagsphere_minus_harmonica_xyz_residuals.png | /Users/danywaller/code/GravMagPy/diagnostics/gravmag_vs_harmonica_xyz_side_by_side/gravmag_sphere_5body_mag_polygon_incmix_decmix_weak_gravmagsphere_vs_harmonica_xyz.png |
 
 Residual definitions:
+
 - `fortran_spectral_vs_direct_xyz`: `spectral - direct_baseline`.
 - `harmonica_eqs_vs_direct_xyz`: `harmonica - direct_baseline`.
 - `fortran_minus_harmonica_xyz`: `spectral - harmonica`.

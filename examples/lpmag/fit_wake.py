@@ -1,4 +1,4 @@
-"""fit spherical subsurface blocks to lavapy wake-sorted lpmag observations"""
+"""fit spherical subsurface blocks to wake-sorted lpmag observations"""
 
 from pathlib import Path
 
@@ -6,7 +6,7 @@ from gravmagpy import fit_sources, load_lpmag_csv, save_fit, write_source_input
 from gravmagpy.plotting import plot_fit
 
 # edit these settings for the anomaly and source hypothesis being tested
-# path from lavapy/lpmag_data/lp_wake_cme_3D.py, non-cme branch
+# directory containing wake-selected magnetic csv files
 wake_dir = Path("/Users/danywaller/Projects/moon/lpmag_l1b_5s_avg/lp_mag_shadow_state")
 output_dir = wake_dir / "output" / "wake_fit"
 figs_dir = wake_dir / "figs" / "wake_fit"

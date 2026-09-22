@@ -1,6 +1,20 @@
 # Reiner Gamma Test
 
+This case approximates a published equivalent-dipole array with finite magnetized volumes for direct field calculations.
+
+## Files and outputs
+
+- `reiner_gamma_table4_direct.in` and `reiner_gamma_table4_surface_direct.in`: orbital-height and surface observation grids
+- `generate_reiner_gamma_test.py`: source/input-card generation
+- `run_reiner_gamma_table4_direct.sh` and `run_reiner_gamma_table4_surface_direct.sh`: direct solver and component conversion workflows
+- `plot_reiner_gamma_table4_*.py`: field maps and three-dimensional field-line views
+- `output/`: numeric field tables and field-line caches
+- `figs`: PNG maps and HTML views
+
+Run the Python case scripts with `/Users/danywaller/code/venvs/gravmagpy/bin/python`. Field-line HTML views require Plotly. The case uses singular `figs`; see [output path conventions](../../docs/output_paths.md).
+
 ## Hemingway & Garrick-Bethell Table 4 definitions
+
 - See Hemingway and Garrick-Bethell (2012), "Magnetic field direction and lunar swirl morphology: Insights from Airy and Reiner Gamma" :)
 - Table columns: `['Latitude', 'Longitude', 'Depth', 'Magnetic Moment', 'Inclination', 'Declination']`
 - Units: `['deg N', 'deg E', 'km', 'A-m^2', 'deg', 'deg']`
@@ -10,6 +24,7 @@
 - Local dipole orientation: `I=2.0 deg`, `D=-8.0 deg`
 
 ## GravMagPy definitions
+
 - Global GravMagPy orientation: `inc=77.639 deg`, `dec=161.754 deg`
   - Obtained by converting the Table 4 local direction to global direction at the source-set centroid (`lat=7.439 deg`, `lon=-58.765 deg`).
 - Finite-body approximation: `0.0196 deg x 0.0196 deg x 1.0 km`

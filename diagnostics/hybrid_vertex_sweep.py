@@ -32,7 +32,7 @@ import numpy as np
 
 
 repo_root = Path(__file__).resolve().parent.parent
-example_root = repo_root / "examples" / "gravmag_sphere"
+example_root = repo_root / "examples"
 DEFAULT_OUTDIR = repo_root / "diagnostics" / "hybrid_vertex_sweep"
 GEN_EXAMPLES_DIR = repo_root / "diagnostics" / "_hybrid_vertex_sweep_examples"
 WORK_DIR = repo_root / "diagnostics" / "_hybrid_vertex_sweep_workspace"

@@ -1,6 +1,6 @@
 # GravMag Sphere diagnostics
 
-This folder groups compiler benchmarks, direct/spectral comparisons, equivalent-source comparisons, their formatted inputs, and saved reports/figures. I AM ACTIVELY DEBUGGING THE CODE!!
+This folder contains compiler benchmarks, direct/spectral comparisons, equivalent-source comparisons, formatted inputs, and reports/figures. These workflows assess numerical behavior and modeling assumptions; the external comparison adapters are separate from the package's inversion interfaces.
 
 ## Contents
 
@@ -12,9 +12,9 @@ This folder groups compiler benchmarks, direct/spectral comparisons, equivalent-
 - `complexlarge_direct_vs_spectral_analysis.py`: boundary-visibility analysis
 - `plot_fixed_polygon_compare.py`: fixed-limit/polygon field comparison plot
 - `run_comparison_tests.sh`: comparison-suite runner
-- Markdown reports and residual/side-by-side plot directories: existing diagnostic results
+- Markdown reports and residual/side-by-side plot directories: reference results for the recorded case settings
 
-Relative paths for benchmark, comparison, and sweep options are resolved from the repository root. The fixed/polygon plotting script uses caller-relative input paths and defaults its output to this folder. The suite runner can be invoked from any directory. 
+Relative paths for benchmark, comparison, and sweep options are resolved from the repository root. The fixed/polygon plotting script uses caller-relative input paths and defaults its image to `figs/fixed_vs_polygon_components.png` under the fixed input's owning case directory. The suite runner can be invoked from any directory.
 
 ## Environment and usage
 
@@ -67,8 +67,8 @@ edge-focused ringing metrics (`edge_amp`, `edge_overshoot`) per `lmax`.
 Set `GRAVMAG_DIAGNOSTICS=1` to print stage timings and memory estimates:
 
 ```bash
-GRAVMAG_DIAGNOSTICS=1 examples/gravmag_sphere/gravmag_sphere_gauss 1737.4 examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in diagnostics/diag_gauss_xyz.txt 24 2 72 144 0.2 4.0 0 0 0
-GRAVMAG_DIAGNOSTICS=1 examples/gravmag_sphere/gravmag_sphere_bxyz 1737.4 examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in diagnostics/diag_direct_xyz.txt 2 0 0 0
+GRAVMAG_DIAGNOSTICS=1 examples/gravmag_sphere_gauss 1737.4 examples/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in diagnostics/diag_gauss_xyz.txt 24 2 72 144 0.2 4.0 0 0 0
+GRAVMAG_DIAGNOSTICS=1 examples/gravmag_sphere_bxyz 1737.4 examples/lunar_examples/gravmag_sphere_1body_mag_polygon_inc90_dec0_base.in diagnostics/diag_direct_xyz.txt 2 0 0 0
 ```
 
 Diagnostics lines are emitted as `DIAG|<solver>|<category>|<key>=<value>`.
@@ -84,19 +84,32 @@ Diagnostics lines are emitted as `DIAG|<solver>|<category>|<key>=<value>`.
 - hybrid-vs-spectral vertex sweep
 
 ```bash
-# Run all comparison suites
+# run all comparison suites
 bash diagnostics/run_comparison_tests.sh --python /Users/danywaller/code/venvs/gravmagpy/bin/python
 
-# Run selected suites only
+# run selected suites only
 bash diagnostics/run_comparison_tests.sh --python /Users/danywaller/code/venvs/gravmagpy/bin/python \
   --tests external,shtools,harmonica
 
-# Limit to specific lunar_examples
+# limit to specific lunar examples
 bash diagnostics/run_comparison_tests.sh --python /Users/danywaller/code/venvs/gravmagpy/bin/python \
   --tests external,harmonica \
-  --lunar_examples gravmag_sphere_1body_mag_polygon_inc90_dec0_base,gravmag_sphere_3body_mag_polygon_incmix_decmix
+  --examples gravmag_sphere_1body_mag_polygon_inc90_dec0_base,gravmag_sphere_3body_mag_polygon_incmix_decmix
 ```
 
 Notes:
+
 - Set `--no-clean` to keep intermediate txt/csv artifacts
 - Set `--strict-deps` to fail immediately if Python dependencies are missing
+
+### 5) Fixed-limit versus polygon maps
+
+After generating the corresponding BRTP tables:
+
+```bash
+/Users/danywaller/code/venvs/gravmagpy/bin/python diagnostics/plot_fixed_polygon_compare.py \
+  --fixed examples/lunar_examples/output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_brtp.txt \
+  --polygon examples/lunar_examples/output/gravmag_sphere_1body_mag_polygon_inc90_dec0_base_brtp.txt
+```
+
+Use `--out` to select a figure path explicitly. See [residual methodology](external_solver_residuals_method.md), [solver comparison](external_solver_comparison.md), and [coordinate conventions](gravmagsphere_inclination_declination_physical_audit.md) for interpretation. Benchmark timings and residual tables describe their recorded configurations, not universal accuracy or performance guarantees.

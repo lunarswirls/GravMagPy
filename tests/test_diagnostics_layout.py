@@ -16,7 +16,7 @@ class diagnostics_layout_tests(unittest.TestCase):
         self.assertTrue((directory / "README.md").is_file())
         self.assertTrue((directory / "external_solver_inputs").is_dir())
         for name in ("diagnostics", "external_solver_inputs", "external_solver_compare.py", "run_comparison_tests.sh"):
-            self.assertFalse((root / "examples" / "gravmag_sphere" / name).exists())
+            self.assertFalse((root / "examples" / name).exists())
 
     def test_formatted_case_artifact_paths_exist(self):
         root = Path(__file__).resolve().parents[1]

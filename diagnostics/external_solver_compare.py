@@ -26,7 +26,7 @@ from scipy.special import lpmv
 
 
 repo_root = Path(__file__).resolve().parent.parent
-example_root = repo_root / "examples" / "gravmag_sphere"
+example_root = repo_root / "examples"
 COMPONENTS = ("br", "btheta", "bphi", "btot")
 XYZ_COMPONENTS = ("bx", "by", "bz", "btot")
 METRIC_STATS = ("rmse", "mae", "max_abs", "r2")
@@ -565,7 +565,7 @@ def run_fortran_spectral_xyz_output(
         if nphi_fit != 144:
             cmd.extend(["--nphi-fit", f"{nphi_fit}"])
     else:
-        # Manual seed path (legacy behavior).
+        # use the manual seed settings
         cmd.extend(
             [
                 f"{refine_factor}",
@@ -1673,7 +1673,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     p_fmt = sub.add_parser("format", help="Format lunar_examples for external solver pipelines.")
-    p_fmt.add_argument("--examples-dir", "--lunar_examples-dir", default="examples/gravmag_sphere/lunar_examples")
+    p_fmt.add_argument("--examples-dir", "--lunar_examples-dir", default="examples/lunar_examples")
     p_fmt.add_argument("--out-root", default="diagnostics/external_solver_inputs")
     p_fmt.add_argument("--rsphere-km", type=float, default=1737.4)
     p_fmt.add_argument("--refine-factor", type=int, default=2)
@@ -1699,7 +1699,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--ridge-lambda",
         type=float,
         default=1.0e-8,
-        help="Legacy single-value scipy ridge parameter (used when scipy-ridge-grid is omitted).",
+        help="Single-value scipy ridge parameter (used when scipy-ridge-grid is omitted).",
     )
     p_cmp.add_argument("--scipy-lmax-grid", default="12,18,24,30,36")
     p_cmp.add_argument("--scipy-ridge-grid", default="0,1e-10,1e-8,1e-6")

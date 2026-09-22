@@ -13,7 +13,7 @@ def load_lpmag_csv(paths, *, radius_km=1737.4, columns=None, wake_only=True,
                    altitude_range_km=None, max_brms_nt=None):
     """load one or more csv files, preserving row order and per-sample altitude
 
-    defaults match lavapy: X_SEL/Y_SEL/Z_SEL [km], Bx_SEL/By_SEL/Bz_SEL [nt]
+    default columns: X_SEL/Y_SEL/Z_SEL [km], Bx_SEL/By_SEL/Bz_SEL [nt]
     columns maps lowercase canonical keys to actual headers; use lat_deg,
     lon_deg, altitude_km instead of x_km/y_km/z_km for spherical input
     wake_only uses finite positive wake_t_km and finite wake_rperp_km when

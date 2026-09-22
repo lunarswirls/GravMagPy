@@ -16,7 +16,7 @@ set -euo pipefail
 
 diagnostics_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${diagnostics_dir}/.." && pwd)"
-example_root="${repo_root}/examples/gravmag_sphere"
+example_root="${repo_root}/examples"
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 TESTS_RAW="external,shtools,harmonica,complexlarge,hybrid"
@@ -201,7 +201,7 @@ fi
 run_external_format() {
   local cmd=(
     "$PYTHON_BIN" diagnostics/external_solver_compare.py format
-    --lunar_examples-dir examples/gravmag_sphere/lunar_examples
+    --lunar_examples-dir examples/lunar_examples
     --out-root "$FORMATTED_ROOT"
     --rsphere-km "$RSPHERE_KM"
     --refine-factor "$REFINE_FACTOR"

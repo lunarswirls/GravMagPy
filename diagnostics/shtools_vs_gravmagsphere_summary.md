@@ -1,75 +1,26 @@
-# SHTOOLS vs GravMagSphere (Spectral) Summary
+# SHTOOLS and GravMag Sphere spectral comparison
 
 ## Scope
 
-This compares:
+The [external-solver report](external_solver_comparison.md) compares Fortran spectral predictions, SciPy spherical-harmonic least squares, and SHTOOLS least squares against direct-solver fields. The [pairwise residual report](gravmag_vs_shtools_residuals.md) compares GravMag Sphere spectral and SHTOOLS predictions directly.
 
-- `shtools_lsq` (SHTOOLS least-squares spherical-harmonic fit)
-- `fortran_spectral` (GravMagSphere Gauss/spectral solver)
+Each report records its solver settings and per-case residuals. Magnetic quantities use nT and gravity quantities use mGal; do not combine their dimensional errors into one aggregate score.
 
-using outputs already generated in this repo:
+## Model and fitting differences
 
-- `diagnostics/external_solver_comparison.csv`
-- `diagnostics/gravmag_vs_shtools_residuals.csv`
+- GravMag Sphere constructs physical source elements from the input geometry, samples their fields, and estimates spherical-harmonic coefficients with joint-component fitting and degree-dependent regularization
+- SciPy and SHTOOLS fit spherical-harmonic expansions to sampled field components independently in these diagnostic adapters
+- The Fortran spectral workflow can also apply local edge correction and direct/spectral hybrid evaluation
+- Search grids, automatic parameter selection, damping, and component coupling differ between workflows, so equal nominal harmonic degree does not define an equivalent inverse problem
 
-All values below are from the current comparison setup (`lmax=24` for the external-comparison tables unless noted otherwise)
+Independent component fits are useful approximation baselines, but are not automatically a physically coupled magnetic equivalent-source solution. The package's fixed-grid dipole inversion is a separate workflow described in [Python modeling](../docs/sphere.md#fit-an-equivalent-point-dipole-model).
 
-## Core method differences
+## Reading the comparisons
 
-### 1) How coefficients are estimated
+Residuals against the direct solver measure disagreement with that discretized baseline, not error against an exact physical solution. Baseline refinement and independent kernel checks are needed before attributing all disagreement to a spectral method.
 
-- **SHTOOLS**:
-  - Uses a spherical-harmonic least-squares expansion (`SHExpandLSQ`) from sampled data
-  - Solves a linear inverse problem directly in coefficient space
-- **GravMagSphere (spectral)**:
-  - Builds/solves its own Gauss-coefficient system with explicit regularization controls (`reg_lambda`, `reg_power`) and geometry-specific preprocessing
-  - Coefficients are then used to expand field components
+Finite harmonic bandwidth limits the representation of sharp spatial variations near source boundaries. Regularization changes the balance of low- and high-degree structure, while local correction and hybrid settings alter near-boundary predictions. Compare component errors as well as total magnitude, because a magnitude match can hide directional disagreement.
 
-### 2) Regularization and stability controls
+Multi-body fields add linearly for prescribed magnetization. Differences in joint fitting, regularization, and source sampling can change approximation errors without implying nonlinear magnetic superposition. Total-field magnitude and source-geometry optimization are nonlinear operations.
 
-- **SHTOOLS**:
-  - Baseline LSQ behavior is relatively stable across test cases at `lmax=24`
-- **GravMagSphere spectral**:
-  - Accuracy is very sensitive to `lmax`, `reg_lambda`, and `reg_power`
-  - Under-tuned settings can produce large residuals, especially for complex/sharp sources :(
-
-### 3) Behavior near sharp boundaries
-
-- Both approaches show Gibbs/ringing-type artifacts near discontinuities
-- SHTOOLS edge artifacts appear as localized oscillatory bands around sharp source boundaries
-- GravMagSphere shows stronger mismatch in difficult cases when coefficient fit/regularization is not tuned for that geometry
-
-## Differences from current runs
-
-From `diagnostics/external_solver_comparison.csv` (16 cases):
-
-- Median RMSE(Btot):
-  - `fortran_spectral`: **10.791**
-  - `shtools_lsq`: **6.301**
-- Case wins on RMSE(Btot):
-  - `shtools_lsq` better in **12/16** cases
-  - `fortran_spectral` better in **4/16** cases :(
-- Median ratio `fortran_spectral / shtools_lsq` (RMSE(Btot)): **1.513**
-  - GravMagSphere spectral error is ~1.5x SHTOOLS error at this setup :(
-
-Heavy outliers in complex case (`gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge`):
-
-- `fortran_spectral` RMSE(Btot): **10726.826**
-- `shtools_lsq` RMSE(Btot): **278.470**
-
-From direct GravMag-vs-SHTOOLS residuals (`diagnostics/gravmag_vs_shtools_residuals.csv`):
-
-- Median RMSE(Btot) across cases: **7.807**
-- Worst-case RMSE(Btot): **10713.753** (OOF)
-
-Even with the same nominal `lmax`, not solving identical inverse problems...
-
-- SHTOOLS LSQ minimizes SH fit residuals directly from sampled fields
-- GravMagSphere spectral performs equivalent-source physics, joint-component fitting, and custom regularization before coefficient estimate
-
-Case-dependent flip-flopping:
-
-- Smooth/simple anomalies seem to favor direct LSQ efficiency and low residuals
-- Sharp or highly structured boundaries can expose SH truncation limits in both models, but with different ringing signatures... Not sure why yet
-- Multi-body results depend on how solver allocates shared low-degree coefficients across interacting sources
-  - Stupid nonlinearity :(
+Use the [residual methodology](external_solver_residuals_method.md) for grid alignment, residual signs, metrics, and commands. The [architecture roadmap](../docs/architecture.md#path-forward-body-independent-multi-solver-equivalent-sources) describes the operator and validation contracts required for interchangeable production backends.

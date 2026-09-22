@@ -46,7 +46,7 @@ class sphere_tests(unittest.TestCase):
 
     def test_existing_input_card_numerical_compatibility(self):
         root = Path(__file__).resolve().parents[1]
-        path = root / "examples/gravmag_sphere/lunar_examples/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base.in"
+        path = root / "examples/lunar_examples/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base.in"
         model = read_model_input(path)
         result = run_sphere_model(model, solver_options={"refine_factor": 1})
         with tempfile.TemporaryDirectory() as directory:

@@ -16,8 +16,8 @@ os.environ["MPLCONFIGDIR"] = str(MPL_DIR)
 CASE_STEM = "reiner_gamma_table4_surface_direct"
 INPUT_IN = HERE / f"{CASE_STEM}.in"
 INPUT_BRTP = HERE / "output" / f"{CASE_STEM}_brtp.txt"
-OUTPUT_PNG = HERE / "fig" / f"{CASE_STEM}_topography_3d.png"
-OUTPUT_HTML = HERE / "fig" / f"{CASE_STEM}_topography_3d.html"
+OUTPUT_PNG = HERE / "figs" / f"{CASE_STEM}_topography_3d.png"
+OUTPUT_HTML = HERE / "figs" / f"{CASE_STEM}_topography_3d.html"
 TOPO_CACHE_NPZ = HERE / "output" / f"{CASE_STEM}_topography_patch.npz"
 
 MOON_MEAN_RADIUS_KM = 1737.4

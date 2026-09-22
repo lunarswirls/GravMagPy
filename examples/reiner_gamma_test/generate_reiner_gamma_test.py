@@ -626,8 +626,8 @@ input_path = HERE / "reiner_gamma_table4_direct.in"
 surface_input_path = HERE / "reiner_gamma_table4_surface_direct.in"
 xyz_path = HERE / "output" / "reiner_gamma_table4_direct_xyz.txt"
 brtp_path = HERE / "output" / "reiner_gamma_table4_direct_brtp.txt"
-field_plot = HERE / "fig" / "reiner_gamma_table4_direct_brtp_2x2.png"
-source_plot = HERE / "fig" / "reiner_gamma_table4_source_layout.png"
+field_plot = HERE / "figs" / "reiner_gamma_table4_direct_brtp_2x2.png"
+source_plot = HERE / "figs" / "reiner_gamma_table4_source_layout.png"
 xyz_path.parent.mkdir(parents=True, exist_ok=True)
 field_plot.parent.mkdir(parents=True, exist_ok=True)
 

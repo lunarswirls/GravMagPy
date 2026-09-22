@@ -1,178 +1,82 @@
-# GravMagSphere Inclination/Declination Physics
+# GravMag Sphere coordinates and magnetic physics
 
 ## Scope
-This exposes:
-- how GravMagSphere interprets inclination/declination
-- whether the implementation is physically coherent
-- how to interpret GravMagSphere vs SHTOOLS comparison residuals
 
----
+This guide describes source-angle conventions, magnetic kernels, and the interpretation of orientation diagnostics. The numerical comparisons below are reference results for their stated configurations; they do not establish accuracy for every geometry or solver setting.
 
-## 1) Coordinate System and Angle Convention Used by GravMagSphere
+## Body-fixed Cartesian frame
 
-### 1.1 Global Cartesian frame
-Both direct and spectral solvers use the same global planet-fixed Cartesian frame:
-- `x = r cos(lat) cos(lon)`
-- `y = r cos(lat) sin(lon)`
-- `z = r sin(lat)`
+Both grid solvers use:
 
-Source code:
-- `gravmag_sphere_bxyz.f90` lines 348-350, 678-680
-- `gravmag_sphere_gauss.f90` lines 493-495, 425-427
+```text
+x = r cos(latitude) cos(longitude)
+y = r cos(latitude) sin(longitude)
+z = r sin(latitude)
+```
 
-Interpretation:
-- +X points to lon=0, lat=0
-- +Y points to lon=90, lat=0
-- +Z points to the north pole
+The +x axis intersects latitude/longitude zero, +y intersects the equator at 90 degrees east, and +z points north. This corresponds to the SEL convention for lunar examples, not a sun-pointing frame.
 
-This makes sense to me, SEL frame of reference.
+Card 5 maps amplitude and global angles to uniform Cartesian magnetization:
 
-### 1.2 Inclination/declination mapping
-Both solvers convert Card-5 `(M_amp, inc, dec)` to Cartesian magnetization as:
-- `Mx = M cos(I) cos(D)`
-- `My = M cos(I) sin(D)`
-- `Mz = M sin(I)`
+```text
+mx = amplitude cos(inclination) cos(declination)
+my = amplitude cos(inclination) sin(declination)
+mz = amplitude sin(inclination)
+```
 
-Source code:
-- `gravmag_sphere_bxyz.f90` lines 247-254
-- `gravmag_sphere_gauss.f90` lines 322-329
+Inclination is elevation above the global xy plane toward +z. Declination is azimuth from +x toward +y. These are not local geophysical angles. A local north/east/down direction must be rotated into the body-fixed frame before constructing Card 5 or a Python magnetization vector.
 
-This is mathematically consistent and normalized, but it is a **global XYZ angular convention**:
-- declination `D` is azimuth in global XY plane from +X toward +Y
-- inclination `I` is elevation from global XY plane toward +Z
+The implementations are in [the direct solver](../fortran/gravmag_sphere_bxyz.f90) and [the spectral solver](../fortran/gravmag_sphere_gauss.f90). The [LPMAG reference workflow](../docs/architecture.md#lpmag-reference-workflow) describes the matching observation-frame requirements.
 
-Important!!!! This is **not** local geophysical declination/inclination convention (defined in local horizontal N/E plane with local vertical)
-- Do I want to change though...
+## Source kernels
 
----
+### Direct magnetic solver
 
-## 2) Physics Implementation Review
+The direct solver constructs equivalent surface charges for a uniformly magnetized volume:
 
-### 2.1 Direct solver magnetic physics (`gravmag_sphere_bxyz`)
-Magnetic field is computed with equivalent magnetic surface charge:
-- elemental charge: `q = (M · n_out) dS`
-- field kernel: `dB = mu0/(4pi) * q * R / |R|^3`
+```text
+q = (magnetization · outward_normal) d_area
+d_field = mu0 / (4 pi) * q * displacement / |displacement|^3
+```
 
-Source code:
-- physical kernel: `gravmag_sphere_physics.f90` lines 113-146
-- top/bottom/sides source construction: `gravmag_sphere_bxyz.f90` lines 388-477
-- side-wall triangle outward normal orientation by interior-point test: lines 755-761
-- elemental charge assignment: line 764
+Top, bottom, and side elements contribute to the field. Side-wall normals are oriented outward using an interior-point test. Kernel implementation is in [gravmag_sphere_physics.f90](../fortran/gravmag_sphere_physics.f90), with source construction in the direct executable.
 
-This is a standard for uniformly magnetized bodies, see von Frese & Hinze textbook.
+### Spectral magnetic solver
 
-### 2.2 Spectral solver magnetic physics (`gravmag_sphere_gauss`)
-Spectral solver first builds volume dipole elements (`m = M dV`) then fits SH coefficients:
-- dipole kernel: `B = mu0/(4pi) * (3 (m·R) R / |R|^5 - m / |R|^3)`
+The spectral workflow samples volume dipoles with moment `magnetization * d_volume`, then fits spherical-harmonic coefficients:
 
-Source code:
-- source dipoles from `Mx,My,Mz`: `gravmag_sphere_gauss.f90` lines 437-440
-- dipole kernel (double precision): lines 1014-1042
-- fit samples and SH solve: lines 502-583
+```text
+field = mu0 / (4 pi) *
+        (3 (moment · displacement) displacement / |displacement|^5
+         - moment / |displacement|^3)
+```
 
-Residuals relative to direct model are dominated by fit/truncation/regularization effects, no obvious inc/dec sign/frame bug...
+Finite source sampling, harmonic truncation, joint-component fitting, regularization, local correction, and hybrid settings all affect its agreement with direct surface-charge calculations. Neither solver is an exact reference solely by virtue of its formulation.
 
-### 2.3 Spherical component conventions
-`Br/Btheta/Bphi` conversion is internally consistent:
-- solver uses spherical basis with `theta` as colatitude and `Btheta` southward
-- converter uses inverse-consistent transform
+### Spherical components
 
-Source code:
-- XYZ from `Br/Btheta/Bphi`: `gravmag_sphere_gauss.f90` lines 760-763
-- `Br/Btheta/Bphi` from XYZ: `gravmag_xyz_to_brtp.f90` lines 141-143
+`Br` points radially outward, `Btheta` points toward increasing colatitude (south), and `Bphi` points east. [The converter](../fortran/gravmag_xyz_to_brtp.f90) rotates XYZ tables into this basis. Vector components are summed before calculating total magnitude.
 
-Direct numerical roundtrip test gave max error `1.33e-15` nT. Nice! :)
+## Orientation diagnostics
 
----
+The recorded coordinate-roundtrip check has a maximum error of `1.33e-15` nT. The unit-direction check of the global angle formula has a maximum norm error of `2.22e-16`.
 
-## 3) Targeted Numerical Validation Checks
+At inclination 90 degrees, declination has no effect in exact arithmetic. For the same test geometry with declinations 0 and 137 degrees:
 
-### 3.1 Unit-direction check for inc/dec formula
-Random Monte Carlo test over `(I,D)` confirmed
-`||[cosI cosD, cosI sinD, sinI]|| = 1` to machine precision.
-- max unit-vector norm error: `2.22e-16`
+| Diagnostic | Direct | Spectral |
+|---|---:|---:|
+| Maximum Btot difference, nT | 7.0e-06 | 2.13e-02 |
+| RMSE of Btot difference, nT | 3.34e-07 | 1.75e-02 |
+| Maximum difference as percent of peak field | 1.41e-05 | 0.116 |
 
-### 3.2 Declination invariance at vertical inclination (I=90)
-Expected: if `I=90`, `cos(I)=0`, so dec should not matter.
+The spectral comparison selects `lmax=18`, `reg_lambda=0.05`, and `reg_power=6` for both directions. These finite-precision differences test orientation sensitivity, not arbitrary-case accuracy.
 
-Test (direct solver, same geometry, `dec=0` vs `dec=137`):
-- max `|Btot diff| = 7.0e-06 nT`
-- RMSE `Btot diff = 3.34e-07 nT`
-- relative max diff `1.41e-05 %` of max field
+The direct fixed-limit center-point checks give field directions approximately `[+1, 0, 0]` for `inc=0, dec=0` and `[0, -1, 0]` for `inc=0, dec=90`. Field direction need not equal magnetization direction; the source geometry and observation position determine the response.
 
-Test (spectral solver, same geometry, `dec=0` vs `dec=137`):
-- same chosen auto params in both runs (`lmax=18`, `reg_lambda=0.05`, `reg_power=6`)
-- max `|Btot diff| = 2.13e-02 nT`
-- RMSE `Btot diff = 1.75e-02 nT`
-- relative max diff `0.116 %` of max field
+## Interpretation and development direction
 
-Interpretation:
-- Direct path is essentially dec-invariant at `I=90`
-- Spectral path shows tiny leakage from finite-precision + inversion sensitivity, but magnitude is very small...
+The direct and spectral implementations share the global angle mapping. The recorded orientation checks do not indicate an axis swap or sign inversion as the dominant cause of the [cross-solver residuals](external_solver_comparison.md). Source discretization and spectral fitting still require convergence and independent-reference tests.
 
-### 3.3 Orientation sanity at map center (I=0)
-Direct-solver center-point fields for fixed-limits orientation test:
-- `I=0, D=0`: center field unit direction ~ `[+1, 0, 0]`
-- `I=0, D=90`: center field unit direction ~ `[0, -1, 0]`
+Do not interpret a global Card-5 angle as a local north/east/down angle. Likewise, a small total-magnitude residual can hide component-direction errors. Check individual components, consistent units and frames, baseline refinement, and the declared fitting controls.
 
-Declination rotates the effective magnetization azimuth in the global XY frame as intended.
-
----
-
-## 4) SHTOOLS/SciPy Comparison Tests
-
-### 4.1 Residual behavior in latest comparison output
-From `diagnostics/external_solver_comparison.csv` (auto-mode GravMagSphere spectral + optimized SHTOOLS/SciPy grids):
-
-- Fixed-limit magnetic orientation cases (non-weak):
-  - GravMagSphere mean RMSE(Btot): `2.87`
-  - SHTOOLS mean RMSE(Btot): `4.19`
-  - SciPy mean RMSE(Btot): `4.26`
-
-- Multi-body polygon cases (non-weak):
-  - GravMagSphere mean RMSE(Btot): `4.91`
-  - SHTOOLS mean RMSE(Btot): `4.84`
-  - SciPy mean RMSE(Btot): `4.88`
-
-- Complex large polygon case:
-  - GravMagSphere RMSE(Btot): `318.99`
-  - SHTOOLS RMSE(Btot): `278.47`
-  - SciPy RMSE(Btot): `279.29`
-
-Interpretation:
-- No case pattern suggests an inc/dec sign/axis bug as the dominant residual source
-- Largest errors concentrate in geometrically sharp/complex cases where spectral truncation and ringing/regularization dominate
-
-Yay :)
-
----
-
-## 5) Physical Correctness?
-
-### The judge says:
-The inclination/declination implementation is **physically coherent and internally consistent** with global XYZ coordinate system :)
-
-Validated:
-- same `inc/dec -> Mx,My,Mz` mapping in direct and spectral paths
-- physically valid magnetic kernels in both paths
-- consistent Cartesian/spherical transforms
-- no evidence of a direct sign inversion or axis swap bug
-
-Maybe a sneaky pitfall:
-- The angle convention is global XYZ, not local geophysical dec/inc
-- If user assumes local N/E/U (or N/E/Down) conventions, can interpret inputs incorrectly even though solver math is consistent
-
----
-
-## 6) Maybe Future Improvements
-
-1. Add optional local geophysical mode
-- Add a switch to interpret dec/inc in local frame at body center (N/E/U or N/E/Down), then rotate to global XYZ
-
-2. Add a small numerical guard at `|I| ~ 90`
-- If `abs(cosI) < eps`, set horizontal components exactly to zero to suppress tiny dec leakage in spectral fitting
-
-3. Add more smoke tests?
-- Vertical-inclination dec-invariance test (`I=90`, vary `D`)
-- Known-axis tests (`I=0,D=0`; `I=0,D=90`; `I=90,D=any`)
-- Cartesian/spherical roundtrip consistency tests
+The [architecture roadmap](../docs/architecture.md#path-forward-body-independent-multi-solver-equivalent-sources) places explicit vector bases, frame transformations, and cross-backend validation in a body-independent interface. Useful orientation regression cases include vertical-inclination declination invariance, known-axis magnetizations, and Cartesian/spherical roundtrips.

@@ -55,9 +55,11 @@ The source papers constrain the dimensions and magnetic contrasts, but these fil
 
 ## Running
 
-From `examples/gravmag_sphere`:
+From `examples`:
 
 ```bash
+./build_gravmag_tools.sh
+
 ./gravmag_sphere_bxyz 6371.2 \
   seafloor_spreading_cases/st_paul_reference_body.in \
   seafloor_spreading_cases/output/st_paul_reference_body_xyz.txt 1
@@ -85,4 +87,4 @@ The direct solver is the clearest reference for the narrow bodies. The segmented
   seafloor_spreading_cases/figs/st_paul_symmetric_stripes_bxyz.png
 ```
 
-The image path is optional. When omitted, the script writes `<output_stem>_bxyz.png` in `figs/` beside the source `.in` file's directory. Numeric solver defaults use that same input directory's `output/` folder. Explicit output paths are preserved; see [output path conventions](../../../docs/output_paths.md).
+The image path is optional. When omitted, the script writes `<output_stem>_bxyz.png` in the source `.in` directory's `figs/` subfolder. Numeric solver defaults use that same input directory's `output/` folder. Explicit paths override defaults; see [output path conventions](../../docs/output_paths.md).

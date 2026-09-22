@@ -3,16 +3,16 @@
 This documents exactly how residuals in
 `diagnostics/external_solver_residuals` are generated
 
-Implementation source: `diagnostics/external_solver_compare.py`
+Implementation source: [external_solver_compare.py](external_solver_compare.py). Magnetic residuals use nT and gravity residuals use mGal.
 
 ## 1) Reference Baseline
 
 For each example case, the reference field is the **direct solver** output:
 
 1. Run:
-   - `examples/gravmag_sphere/run_input_to_xyz.sh direct ...`
+   - `examples/run_input_to_xyz.sh direct ...`
 2. Convert:
-   - `examples/gravmag_sphere/run_xyz_to_brtp.sh ...`
+   - `examples/run_xyz_to_brtp.sh ...`
 3. Load and aggregate by `(lon, lat)` using `load_brtp_aggregate(...)`
 
 Residuals are always computed against this direct baseline.
@@ -22,7 +22,7 @@ Residuals are always computed against this direct baseline.
 For each case, three predictors are compared to the direct baseline:
 
 1. `fortran_spectral`
-   - Runs `examples/gravmag_sphere/run_input_to_xyz.sh spectral ...` with configured `lmax`, `reg_lambda`, `reg_power`
+   - Runs `examples/run_input_to_xyz.sh spectral ...` with configured `lmax`, `reg_lambda`, `reg_power`
    - Converted to BRTP and aggregated by `(lon, lat)`.
 2. `scipy_sh_lsq`
    - Builds a real SH design matrix and solves least squares (optionally ridge-regularized)
@@ -79,7 +79,7 @@ Plot details:
   - `vmax = +max(abs(residual))`
 - colorbar label: `Pred - baseline`
 
-## 7) Regeneration Command
+## 7) Run the comparison
 
 From the repository root:
 
@@ -100,7 +100,7 @@ From the repository root:
 ```
 
 
-## 7) Interpretation of Model-to-Model Differences
+## 8) Interpretation of model-to-model differences
 
 These residuals are not only numerical error; they also encode model-assumption mismatch.
 
@@ -110,9 +110,9 @@ These residuals are not only numerical error; they also encode model-assumption 
 
 Pattern interpretation:
 
-- Narrow red/blue edge bands: Gibbs-type behavior from finite SH bandwidth at discontinuous boundaries
+- Narrow red/blue edge bands: limited SH bandwidth for sharp spatial variation near source boundaries
 - Broad smooth bias over an anomaly: low-degree dominance from regularization or underfit `lmax`
 - Strong `Bphi` mismatch near source corners: azimuthal component sensitivity to basis phase and component-wise inversion
 - Multi-body misfit "halos": coefficient competition between nearby sources and imperfect separation in low-order harmonics
 
-Because methods do not share identical priors, equal `lmax` does not imply equivalent solutions :(
+Because methods do not share identical priors, equal `lmax` does not imply equivalent solutions. The direct baseline also requires convergence checks; these residuals alone do not establish absolute physical accuracy.

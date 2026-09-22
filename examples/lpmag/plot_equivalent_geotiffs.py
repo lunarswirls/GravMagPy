@@ -15,7 +15,7 @@ altitude_km = 30.0
 radius_km = 1737.4
 shape = (281, 281)
 
-# independent panels use their own units and color limits, like lavapy spectral_plots.py
+# independent panels use their own units and color limits
 # replace or extend these dictionaries with lamp reflectance, uv ratio, or other geotiffs
 rasters = [
     {"path": map_root / "gradiometry_algorithm/Amitis_test/LROC_WAC_IF_lowres.tif",

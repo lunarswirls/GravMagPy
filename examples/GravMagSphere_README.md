@@ -6,7 +6,7 @@ Fortran + Python workflow for spherical gravity/magnetic forward modeling.
 - A Fortran converter rotates cartesian components (`Bx By Bz`) to spherical components (`Br Btheta Bphi`)
 - Python scripts create 2D PNG maps and 3D Plotly HTML views
 
-Reusable compilation/run functions are exposed by `gravmagpy.utils`, and the dictionary-based Python model interface is described in [the Python modeling guide](../../docs/sphere.md).
+Reusable compilation/run functions are exposed by `gravmagpy.utils`, and the dictionary-based Python model interface is described in [the Python modeling guide](../docs/sphere.md).
 
 ## Directory layout
 
@@ -14,10 +14,12 @@ Reusable compilation/run functions are exposed by `gravmagpy.utils`, and the dic
 - `<input-directory>/output`: numeric outputs (`*.txt`, `*.csv`)
 - `<input-directory>/figs`: figures (`*.png`, `*.html`)
 
+The Reiner Gamma case scripts use singular `reiner_gamma_test/figs`. Solver comparison scripts, formatted external inputs, and reports are in the top-level [diagnostics folder](../diagnostics/README.md). See [output path conventions](../docs/output_paths.md) for default filenames and explicit overrides.
+
 ## Build
 
 ```bash
-cd /Users/danywaller/code/GravMagPy/examples/gravmag_sphere
+cd /Users/danywaller/code/GravMagPy/examples
 ./build_gravmag_tools.sh
 ```
 
@@ -34,7 +36,7 @@ Build outputs:
 `gravmag_sphere_bxyz` computes XYZ fields directly from discretized source volume/surfaces
 
 ```bash
-./gravmag_sphere_bxyz <R_sphere_km> <input.in> <output_xyz.txt> [refine_factor] [source_nlat] [source_nlon] [source_nr]
+./gravmag_sphere_bxyz <radius_km> <input.in> [output_xyz.txt] [refine_factor] [source_nlat] [source_nlon] [source_nr]
 ```
 
 Example:
@@ -42,7 +44,7 @@ Example:
 ```bash
 ./gravmag_sphere_bxyz 1737.4 \
   lunar_examples/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base.in \
-  output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_xyz.txt \
+  lunar_examples/output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_xyz.txt \
   2 0 0 0
 ```
 
@@ -51,13 +53,14 @@ Example:
 `gravmag_sphere_gauss` fits spherical harmonic coefficients and evaluates XYZ fields
 
 ```bash
-./gravmag_sphere_gauss <R_sphere_km> <input.in> <output_xyz.txt> \
+./gravmag_sphere_gauss <radius_km> <input.in> [output_xyz.txt] \
   [lmax] [refine_factor] [ntheta_fit] [nphi_fit] [reg_lambda] [reg_power] \
   [source_nlat] [source_nlon] [source_nr] [auto_mode] [joint_strength] [edge_correction] \
   [hybrid_mode] [hybrid_band_deg] [complex_vertex_threshold] [hybrid_transition_deg]
 ```
 
 Defaults:
+
 - `auto_mode=1` (pilot sweep auto-selects `lmax/reg_lambda/reg_power`)
 - `joint_strength=1.0` (joint Br/Btheta/Bphi fit)
 - `edge_correction=1` (local edge RBF correction)
@@ -71,13 +74,13 @@ Example:
 ```bash
 ./gravmag_sphere_gauss 1737.4 \
   lunar_examples/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base.in \
-  output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_xyz.txt \
+  lunar_examples/output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_gauss_xyz.txt \
   24 2 72 144 0.2 4.0 0 0 0 1 1.0 1 1 1.5 12 0.75
 ```
 
 ### Spectral Flags and Use Cases
 
-`gravmag_sphere_gauss` / `run_input_to_xyz.sh` / `run_gravmag_sphere_gauss.sh` now expose:
+`gravmag_sphere_gauss`, `run_input_to_xyz.sh`, and `run_gravmag_sphere_gauss.sh` expose:
 
 - `auto_mode` (`0|1`):
   - `1` auto-selects `(lmax, reg_lambda, reg_power)` from a pilot sweep.
@@ -101,24 +104,24 @@ Example:
 Typical use cases:
 
 ```bash
-# 1) Simple body, spectral-only (disable hybrid + edge correction)
+# simple body, spectral-only evaluation
 ./run_input_to_xyz.sh spectral 1737.4 lunar_examples/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base.in \
-  output/simple_spectral_only_xyz.txt \
+  lunar_examples/output/simple_spectral_only_xyz.txt \
   --auto-mode 0 --lmax 24 --reg-lambda 0.2 --reg-power 4 \
   --edge-correction 0 --hybrid-mode 0
 
-# 2) Complex polygon, default robust mode (auto + local correction + hybrid auto)
+# complex polygon with automatic selection, local correction, and hybrid evaluation
 ./run_input_to_xyz.sh spectral 1737.4 lunar_examples/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge.in \
-  output/complex_auto_hybrid_xyz.txt
+  lunar_examples/output/complex_auto_hybrid_xyz.txt
 
-# 3) Force hybrid and widen direct edge band
+# force hybrid and widen the direct edge band
 ./run_input_to_xyz.sh spectral 1737.4 lunar_examples/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge.in \
-  output/complex_force_hybrid_xyz.txt \
+  lunar_examples/output/complex_force_hybrid_xyz.txt \
   --hybrid-mode 2 --hybrid-band-deg 2.0 --hybrid-transition-deg 1.0
 
-# 4) Multi-body collective fit (automatic when bodies share Card-2 grid)
+# collective fit for bodies sharing the card-2 grid
 ./run_input_to_xyz.sh spectral 1737.4 lunar_examples/gravmag_sphere_3body_mag_polygon_incmix_decmix.in \
-  output/multibody_collective_xyz.txt --auto-mode 1
+  lunar_examples/output/multibody_collective_xyz.txt --auto-mode 1
 ```
 
 ### 3) XYZ -> spherical converter (Fortran)
@@ -126,16 +129,17 @@ Typical use cases:
 `gravmag_xyz_to_brtp` converts XYZ components to `Br Btheta Bphi`
 
 ```bash
-./gravmag_xyz_to_brtp <input_xyz.txt> <output_brtp.txt>
+./gravmag_xyz_to_brtp <input_xyz.txt> [output_brtp.txt]
 ```
 
 Example:
 
 ```bash
 ./gravmag_xyz_to_brtp \
-  output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_xyz.txt \
-  output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_brtp.txt
+  lunar_examples/output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_xyz.txt
 ```
+
+Omitting an output argument uses the input-relative default. To supply later positional controls with a default output, pass `""` in the output slot. The converter writes the example above to `lunar_examples/output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_brtp.txt`.
 
 ## Batch shell scripts
 
@@ -193,7 +197,7 @@ Examples:
 Example:
 
 ```bash
-./run_all_examples_end_to_end.sh spectral 1737.4 lunar_examples output 2 24 72 144 0.2 4.0 0 0 0
+./run_all_examples_end_to_end.sh spectral 1737.4 lunar_examples "" 2 24 72 144 0.2 4.0 0 0 0
 ```
 
 ### Solver-specific wrappers
@@ -210,38 +214,33 @@ Example:
 `run_all_examples_brtp.py` can run solver + converter + plotting in one Python workflow
 
 ```bash
-.venv/bin/python run_all_examples_brtp.py \
+/Users/danywaller/code/venvs/gravmagpy/bin/python run_all_examples_brtp.py \
   --solver spectral \
   --rsphere-km 1737.4 \
-  --output-dir output \
-  --figs-dir figs
+  --examples-dir lunar_examples
 ```
 
 Outputs:
 
-- numeric tables in `earth_crust_cases/output`
-- PNG figures in `examples/figs` (`*_brtp_2x2.png`)
+- numeric tables in `lunar_examples/output`
+- PNG figures in `lunar_examples/figs` (`*_brtp_2x2.png`)
+
+The default example directory is `lunar_examples`. Batch directory overrides are relative to the launcher directory unless absolute paths are supplied.
 
 ### 3D Plotly for one source case
 
 ```bash
-.venv/bin/python plot_single_case_3d_plotly.py \
+/Users/danywaller/code/venvs/gravmagpy/bin/python plot_single_case_3d_plotly.py \
   lunar_examples/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge.in \
-  output/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge_brtp.txt \
-  gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge_3d.html \
+  lunar_examples/output/gravmag_sphere_1body_mag_polygon_inc30_dec210_complexlarge_brtp.txt \
   --sparse-step 8 --max-vectors 450 --vector-scale 0.06
 ```
 
-If the html filename has no directory component, it is written to `examples/figs`
+Omitting the HTML argument writes `<input-stem>_3d.html` under the input directory's `figs/`. An explicit HTML path is relative to the caller's working directory unless absolute.
 
 ### Fixed-limit vs polygon comparison plot
 
-```bash
-.venv/bin/python plot_fixed_polygon_compare.py \
-  --fixed output/gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base_brtp.txt \
-  --polygon output/gravmag_sphere_1body_mag_polygon_inc90_dec0_base_brtp.txt \
-  --out figs/fixed_vs_polygon_components.png
-```
+Use `diagnostics/plot_fixed_polygon_compare.py` with the two field tables. The [diagnostics guide](../diagnostics/README.md#5-fixed-limit-versus-polygon-maps) provides the repository-root command and output convention.
 
 ### Helper API for custom plotting
 
@@ -255,9 +254,10 @@ fig = plot_example(
   "gravmag_sphere_1body_mag_fixedlim_inc90_dec0_base",
   root_dir=Path("."),
   examples_dir="lunar_examples",
-  output_dir="earth_crust_cases/output",
 )
-fig.savefig("figs/custom_example.png", dpi=250)
+figs_dir = Path("lunar_examples/figs")
+figs_dir.mkdir(parents=True, exist_ok=True)
+fig.savefig(figs_dir / "custom_example.png", dpi=250)
 ```
 
 ## Notebook
@@ -275,7 +275,7 @@ The notebook is organized as:
 Run with Jupyter from this directory:
 
 ```bash
-.venv/bin/python -m jupyter notebook gravmag_examples_visualization.ipynb
+/Users/danywaller/code/venvs/gravmagpy/bin/python -m jupyter notebook gravmag_examples_visualization.ipynb
 ```
 
 ## Typical workflow
@@ -288,5 +288,5 @@ Run with Jupyter from this directory:
 ./run_all_examples_end_to_end.sh spectral
 
 # 3) generate figures
-.venv/bin/python run_all_examples_brtp.py --solver spectral --output-dir output --figs-dir figs
+/Users/danywaller/code/venvs/gravmagpy/bin/python run_all_examples_brtp.py --solver spectral
 ```

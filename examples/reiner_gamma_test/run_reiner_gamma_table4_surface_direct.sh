@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GRAVMAG_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-PROJECT_DIR="$(cd "${GRAVMAG_DIR}/../.." && pwd)"
+PROJECT_DIR="$(cd "${GRAVMAG_DIR}/.." && pwd)"
 
 RSPHERE_KM="1737.4"
 INPUT_IN="${SCRIPT_DIR}/reiner_gamma_table4_surface_direct.in"

@@ -23,7 +23,7 @@ WAC_MOSAIC_PATHS = (
     HERE / WAC_MOSAIC_NAME,
     Path("/Users/danywaller/Downloads") / WAC_MOSAIC_NAME,
 )
-OUTPUT_HTML = HERE / "fig" / f"{CASE_STEM}_fieldlines_3d.html"
+OUTPUT_HTML = HERE / "figs" / f"{CASE_STEM}_fieldlines_3d.html"
 
 MOON_MEAN_RADIUS_KM = 1737.4
 MU0_OVER_4PI = 1.0e-7
@@ -724,7 +724,7 @@ try:
     import plotly.graph_objects as go
 except Exception as exc:  # pragma: no cover - environment-specific dependency
     raise RuntimeError(
-        "plotly is required. Run this script with /Users/danywaller/code/venvs/lavapy/bin/python."
+        "plotly is required. Run this script with /Users/danywaller/code/venvs/gravmagpy/bin/python."
     ) from exc
 
 bodies = parse_body_models(INPUT_IN)
