@@ -241,9 +241,11 @@ def _solver_arguments(solver, options):
                 "reg_lambda": 0.2, "reg_power": 4.0, "source_nlat": 0, "source_nlon": 0, "source_nr": 0,
                 "auto_mode": 1, "joint_strength": 1.0, "edge_correction": 1, "hybrid_mode": 1,
                 "hybrid_band_deg": 1.5, "complex_vertex_threshold": 12, "hybrid_transition_deg": 0.75}
-    if solver not in ("direct", "spectral"):
-        raise ValueError("solver must be direct or spectral")
-    defaults = direct if solver == "direct" else spectral
+    gauss_legendre = {"radial_order": 0, "latitude_order": 0, "longitude_order": 0, "subdivisions": 1}
+    solvers = {"direct": direct, "spectral": spectral, "gauss_legendre": gauss_legendre}
+    if solver not in solvers:
+        raise ValueError("solver must be direct, spectral, or gauss_legendre")
+    defaults = solvers[solver]
     if set(options) - set(defaults):
         raise ValueError(f"unknown {solver} options: {sorted(set(options)-set(defaults))}")
     values = {**defaults, **options}
@@ -254,8 +256,10 @@ def _solver_arguments(solver, options):
             if int(value) != value:
                 raise ValueError(f"{key} must be an integer")
             values[key] = int(value)
-        if key in ("lmax", "refine_factor", "ntheta_fit", "nphi_fit", "complex_vertex_threshold") and value < 1:
+        if key in ("lmax", "refine_factor", "ntheta_fit", "nphi_fit", "complex_vertex_threshold", "subdivisions") and value < 1:
             raise ValueError(f"{key} must be positive")
+        if solver == "gauss_legendre" and value > 256:
+            raise ValueError(f"{key} must be at most 256")
         if key in ("auto_mode", "edge_correction") and value not in (0, 1):
             raise ValueError(f"{key} must be 0 or 1")
         if key == "hybrid_mode" and value not in (0, 1, 2):
@@ -283,10 +287,10 @@ def run_sphere_model(model, *, solver="direct", solver_options=None, output_dir=
         lat = np.asarray(model["grid"]["latitude_deg"])
         lon = np.asarray(model["grid"]["longitude_deg"])
         count = len(lat)*len(lon)
-        blocks = len(model["sources"]) if solver == "direct" else 1
+        blocks = 1 if solver == "spectral" else len(model["sources"])
         if table.shape != (count*blocks, 7) or not np.isfinite(table).all():
             raise RuntimeError("unexpected gravmag sphere output dimensions or nonfinite fields")
-        # both programs emit latitude-major grids; direct emits one block per body
+        # all solvers emit latitude-major grids; only spectral combines bodies on disk
         field = table[:, 3:6].reshape(blocks, len(lat), len(lon), 3).sum(axis=0)
         unit = "nt" if field_type == "magnetic" else "mgal"
         prefix = "b" if field_type == "magnetic" else "g"

@@ -66,9 +66,11 @@ contains
       xi = poly_lon(i); yi = poly_lat(i)
       xj = poly_lon(j); yj = poly_lat(j)
 
-      ! crossing test for one polygon edge (xi,yi)->(xj,yj)
-      intersect = ((yi > lat) .neqv. (yj > lat)) .and. &
-                  (lon < (xj - xi) * (lat - yi) / max((yj - yi), 1.0e-30_real32) + xi)
+      ! crossing edges have nonzero height; preserve its sign for descending edges
+      intersect = .false.
+      if ((yi > lat) .neqv. (yj > lat)) then
+        intersect = lon < (xj - xi) * (lat - yi) / (yj - yi) + xi
+      end if
       if (intersect) inside = .not. inside
       j = i
     end do

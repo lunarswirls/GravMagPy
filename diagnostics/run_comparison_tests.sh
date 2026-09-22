@@ -19,7 +19,7 @@ repo_root="$(cd "${diagnostics_dir}/.." && pwd)"
 example_root="${repo_root}/examples"
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
-TESTS_RAW="external,shtools,harmonica,complexlarge,hybrid"
+TESTS_RAW="external,shtools,harmonica,complexlarge,hybrid,quadrature"
 EXAMPLES_RAW=""
 
 SKIP_BUILD=0
@@ -56,8 +56,8 @@ Usage: bash diagnostics/run_comparison_tests.sh [options]
 Options:
   --python <bin>             Python executable (default: python3 or $PYTHON_BIN)
   --tests <csv>              Test groups to run.
-                             Available: external,shtools,harmonica,complexlarge,hybrid
-                             Default: external,shtools,harmonica,complexlarge,hybrid
+                             Available: external,shtools,harmonica,complexlarge,hybrid,quadrature
+                             Default: external,shtools,harmonica,complexlarge,hybrid,quadrature
   --examples <csv>           Optional example filters (e.g. "case1,case2" or "case1.in,case2.in")
                              Applied to external/shtools/harmonica workflows.
   --skip-build               Do not rebuild Fortran tools before running tests
@@ -164,10 +164,10 @@ fi
 
 for t in "${TESTS[@]}"; do
   case "$t" in
-    external|shtools|harmonica|complexlarge|hybrid) ;;
+    external|shtools|harmonica|complexlarge|hybrid|quadrature) ;;
     *)
       echo "ERROR: unknown test group '$t'." >&2
-      echo "Valid values: external,shtools,harmonica,complexlarge,hybrid" >&2
+      echo "Valid values: external,shtools,harmonica,complexlarge,hybrid,quadrature" >&2
       exit 2
       ;;
   esac
@@ -405,6 +405,13 @@ fi
 if have_test hybrid; then
   if require_modules numpy matplotlib; then
     run_hybrid_sweep
+  fi
+fi
+
+if have_test quadrature; then
+  if require_modules numpy scipy matplotlib; then
+    log "Running gauss-legendre, direct and pure spectral comparison"
+    "$PYTHON_BIN" diagnostics/gauss_legendre_compare.py
   fi
 fi
 

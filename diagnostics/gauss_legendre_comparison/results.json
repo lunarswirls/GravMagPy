@@ -1,0 +1,3489 @@
+{
+  "settings": {
+    "radius_km": 1737.4,
+    "latitude_deg": [
+      5.5,
+      6.0,
+      6.5,
+      7.0,
+      7.5,
+      8.0,
+      8.5
+    ],
+    "longitude_deg": [
+      -60.5,
+      -60.0,
+      -59.5,
+      -59.0,
+      -58.5,
+      -58.0,
+      -57.5
+    ],
+    "orders": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "refine_factors": [
+      1,
+      2,
+      4
+    ],
+    "degrees": [
+      4,
+      8,
+      12,
+      24
+    ],
+    "reference_options": {
+      "radial_order": 16,
+      "latitude_order": 48,
+      "longitude_order": 48,
+      "subdivisions": 4
+    },
+    "check_options": {
+      "radial_order": 12,
+      "latitude_order": 32,
+      "longitude_order": 32,
+      "subdivisions": 4
+    },
+    "reference_tolerance": 0.0001
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.14.4",
+  "numpy": "2.4.2",
+  "compiler": "GNU Fortran (Homebrew GCC 15.2.0_1) 15.2.0",
+  "binaries": {
+    "gauss_legendre": "/var/folders/bl/rkl9bvxs1yj6cfb239dm1vb40000gn/T/gravmagpy-build/17f3313c02400a39c5bd/gauss_legendre",
+    "direct": "/var/folders/bl/rkl9bvxs1yj6cfb239dm1vb40000gn/T/gravmagpy-build/001d8375f3e59404b338/direct",
+    "spectral": "/var/folders/bl/rkl9bvxs1yj6cfb239dm1vb40000gn/T/gravmagpy-build/66417fd2bc163732bc74/spectral"
+  },
+  "cases": [
+    {
+      "name": "magnetic_block_surface",
+      "model": {
+        "sources": [
+          {
+            "name": "block",
+            "geometry": "block",
+            "latitude_deg": [
+              6.0,
+              8.0
+            ],
+            "longitude_deg": [
+              -60.0,
+              -58.0
+            ],
+            "depth_km": [
+              2.0,
+              8.0
+            ],
+            "magnetization_a_m": [
+              1.0,
+              -2.0,
+              3.0
+            ]
+          }
+        ],
+        "radius_km": 1737.4,
+        "grid": {
+          "latitude_deg": [
+            5.5,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0,
+            8.5
+          ],
+          "longitude_deg": [
+            -60.5,
+            -60.0,
+            -59.5,
+            -59.0,
+            -58.5,
+            -58.0,
+            -57.5
+          ],
+          "altitude_km": 0.0
+        }
+      }
+    },
+    {
+      "name": "magnetic_block_orbital",
+      "model": {
+        "sources": [
+          {
+            "name": "block",
+            "geometry": "block",
+            "latitude_deg": [
+              6.0,
+              8.0
+            ],
+            "longitude_deg": [
+              -60.0,
+              -58.0
+            ],
+            "depth_km": [
+              2.0,
+              8.0
+            ],
+            "magnetization_a_m": [
+              1.0,
+              -2.0,
+              3.0
+            ]
+          }
+        ],
+        "radius_km": 1737.4,
+        "grid": {
+          "latitude_deg": [
+            5.5,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0,
+            8.5
+          ],
+          "longitude_deg": [
+            -60.5,
+            -60.0,
+            -59.5,
+            -59.0,
+            -58.5,
+            -58.0,
+            -57.5
+          ],
+          "altitude_km": 30.0
+        }
+      }
+    },
+    {
+      "name": "magnetic_concave_polygon_orbital",
+      "model": {
+        "sources": [
+          {
+            "name": "polygon",
+            "geometry": "polygon",
+            "vertices_lat_lon": [
+              [
+                6.0,
+                -60.0
+              ],
+              [
+                6.0,
+                -58.0
+              ],
+              [
+                6.5,
+                -58.0
+              ],
+              [
+                6.5,
+                -59.0
+              ],
+              [
+                7.5,
+                -59.0
+              ],
+              [
+                7.5,
+                -58.0
+              ],
+              [
+                8.0,
+                -58.0
+              ],
+              [
+                8.0,
+                -60.0
+              ]
+            ],
+            "depth_km": [
+              2.0,
+              8.0
+            ],
+            "magnetization_a_m": [
+              1.0,
+              -2.0,
+              3.0
+            ]
+          }
+        ],
+        "radius_km": 1737.4,
+        "grid": {
+          "latitude_deg": [
+            5.5,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0,
+            8.5
+          ],
+          "longitude_deg": [
+            -60.5,
+            -60.0,
+            -59.5,
+            -59.0,
+            -58.5,
+            -58.0,
+            -57.5
+          ],
+          "altitude_km": 30.0
+        }
+      }
+    },
+    {
+      "name": "gravity_sloping_polygon_orbital",
+      "model": {
+        "sources": [
+          {
+            "name": "polygon",
+            "geometry": "polygon",
+            "vertices_lat_lon": [
+              [
+                6.0,
+                -60.0
+              ],
+              [
+                8.0,
+                -59.5
+              ],
+              [
+                7.0,
+                -58.0
+              ]
+            ],
+            "depth_km": [
+              2.0,
+              8.0
+            ],
+            "density_kg_m3": 400.0
+          }
+        ],
+        "radius_km": 1737.4,
+        "grid": {
+          "latitude_deg": [
+            5.5,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0,
+            8.5
+          ],
+          "longitude_deg": [
+            -60.5,
+            -60.0,
+            -59.5,
+            -59.0,
+            -58.5,
+            -58.0,
+            -57.5
+          ],
+          "altitude_km": 30.0
+        }
+      }
+    },
+    {
+      "name": "magnetic_block_far",
+      "model": {
+        "sources": [
+          {
+            "name": "block",
+            "geometry": "block",
+            "latitude_deg": [
+              6.0,
+              8.0
+            ],
+            "longitude_deg": [
+              -60.0,
+              -58.0
+            ],
+            "depth_km": [
+              2.0,
+              8.0
+            ],
+            "magnetization_a_m": [
+              1.0,
+              -2.0,
+              3.0
+            ]
+          }
+        ],
+        "radius_km": 1737.4,
+        "grid": {
+          "latitude_deg": [
+            5.5,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0,
+            8.5
+          ],
+          "longitude_deg": [
+            -60.5,
+            -60.0,
+            -59.5,
+            -59.0,
+            -58.5,
+            -58.0,
+            -57.5
+          ],
+          "altitude_km": 5000.0
+        }
+      }
+    },
+    {
+      "name": "gravity_block_far",
+      "model": {
+        "sources": [
+          {
+            "name": "block",
+            "geometry": "block",
+            "latitude_deg": [
+              6.0,
+              8.0
+            ],
+            "longitude_deg": [
+              -60.0,
+              -58.0
+            ],
+            "depth_km": [
+              2.0,
+              8.0
+            ],
+            "density_kg_m3": 400.0
+          }
+        ],
+        "radius_km": 1737.4,
+        "grid": {
+          "latitude_deg": [
+            5.5,
+            6.0,
+            6.5,
+            7.0,
+            7.5,
+            8.0,
+            8.5
+          ],
+          "longitude_deg": [
+            -60.5,
+            -60.0,
+            -59.5,
+            -59.0,
+            -58.5,
+            -58.0,
+            -57.5
+          ],
+          "altitude_km": 5000.0
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "case": "magnetic_block_surface",
+      "unit": "nt",
+      "peak": 1109.5625133719464,
+      "check_relative_l2": 3.336604735038187e-14,
+      "converged": true
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "unit": "nt",
+      "peak": 117.2697759435505,
+      "check_relative_l2": 1.0385558975996901e-15,
+      "converged": true
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "unit": "nt",
+      "peak": 88.81048743422618,
+      "check_relative_l2": 5.701954340265092e-16,
+      "converged": true
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "unit": "mgal",
+      "peak": 15.255441723213508,
+      "check_relative_l2": 8.935155152107751e-16,
+      "converged": true
+    },
+    {
+      "case": "magnetic_block_far",
+      "unit": "nt",
+      "peak": 0.00010336381126925945,
+      "check_relative_l2": 6.334809609422038e-16,
+      "converged": true
+    },
+    {
+      "case": "gravity_block_far",
+      "unit": "mgal",
+      "peak": 0.0023206182550343205,
+      "check_relative_l2": 6.253414761015973e-16,
+      "converged": true
+    }
+  ],
+  "runs": [
+    {
+      "case": "magnetic_block_surface",
+      "solver": "gauss_legendre",
+      "setting": "order_4",
+      "unit": "nt",
+      "elapsed_s": 0.017203833034727722,
+      "relative_l2": 1.5435017976894962,
+      "component_rmse": [
+        481.26697524431887,
+        503.16451360979573,
+        406.0887710262373
+      ],
+      "vector_rmse": 806.0400233056656,
+      "max_vector_difference": 2175.5056159535475,
+      "options": {
+        "radial_order": 4,
+        "latitude_order": 4,
+        "longitude_order": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=64",
+        "DIAG|gauss_legendre|meta|radial_order=4",
+        "DIAG|gauss_legendre|meta|latitude_order=4",
+        "DIAG|gauss_legendre|meta|longitude_order=4",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291094E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000164"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "gauss_legendre",
+      "setting": "order_8",
+      "unit": "nt",
+      "elapsed_s": 0.016738042002543807,
+      "relative_l2": 2.4257734240756195,
+      "component_rmse": [
+        655.9119637413627,
+        878.7080803748267,
+        634.3280779228537
+      ],
+      "vector_rmse": 1266.775633305427,
+      "max_vector_difference": 4713.753637511195,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=512",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291102E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000223"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "gauss_legendre",
+      "setting": "order_16",
+      "unit": "nt",
+      "elapsed_s": 0.0181923329946585,
+      "relative_l2": 0.4106262486322839,
+      "component_rmse": [
+        110.73126324210347,
+        137.00085534083217,
+        122.27767019619534
+      ],
+      "vector_rmse": 214.43524815645665,
+      "max_vector_difference": 516.5295150894224,
+      "options": {
+        "radial_order": 16,
+        "latitude_order": 16,
+        "longitude_order": 16
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=4096",
+        "DIAG|gauss_legendre|meta|radial_order=16",
+        "DIAG|gauss_legendre|meta|latitude_order=16",
+        "DIAG|gauss_legendre|meta|longitude_order=16",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585290992E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000644"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "gauss_legendre",
+      "setting": "order_32",
+      "unit": "nt",
+      "elapsed_s": 0.021888915973249823,
+      "relative_l2": 0.04995779498756198,
+      "component_rmse": [
+        12.311052768228956,
+        18.20775945296046,
+        14.054773282558783
+      ],
+      "vector_rmse": 26.0887174192814,
+      "max_vector_difference": 82.15539546832649,
+      "options": {
+        "radial_order": 32,
+        "latitude_order": 32,
+        "longitude_order": 32
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=32",
+        "DIAG|gauss_legendre|meta|latitude_order=32",
+        "DIAG|gauss_legendre|meta|longitude_order=32",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291203E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.004455"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "gauss_legendre",
+      "setting": "order_64",
+      "unit": "nt",
+      "elapsed_s": 0.04978437500540167,
+      "relative_l2": 0.0006499356560148548,
+      "component_rmse": [
+        0.16190036436528019,
+        0.24265477284723777,
+        0.17350369813013247
+      ],
+      "vector_rmse": 0.33940624630667476,
+      "max_vector_difference": 1.397403749166697,
+      "options": {
+        "radial_order": 64,
+        "latitude_order": 64,
+        "longitude_order": 64
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=262144",
+        "DIAG|gauss_legendre|meta|radial_order=64",
+        "DIAG|gauss_legendre|meta|latitude_order=64",
+        "DIAG|gauss_legendre|meta|longitude_order=64",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291605E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.032240"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "gauss_legendre",
+      "setting": "order_8_panels_4",
+      "unit": "nt",
+      "elapsed_s": 0.021954875031951815,
+      "relative_l2": 0.001406088301506287,
+      "component_rmse": [
+        0.3711227216872234,
+        0.570599891406831,
+        0.27541188988150095
+      ],
+      "vector_rmse": 0.7342806137398151,
+      "max_vector_difference": 1.4468825543973303,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8,
+        "subdivisions": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=4",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291016E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.004296"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "direct",
+      "setting": "refine_1",
+      "unit": "nt",
+      "elapsed_s": 0.01786787499440834,
+      "relative_l2": 0.17418489995164313,
+      "component_rmse": [
+        48.03093942775889,
+        74.35489011375797,
+        20.939519430815608
+      ],
+      "vector_rmse": 90.96199371240479,
+      "max_vector_difference": 174.4154196677527,
+      "options": {
+        "refine_factor": 1
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 16, 16, 4",
+        "  Source elements (mag surface charges): 1024",
+        "DIAG|direct|meta|source_capacity=4096",
+        "DIAG|direct|meta|source_elements=1024",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.078125",
+        "DIAG|direct|memory|total_est_mib=    0.079247",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000016",
+        "DIAG|direct|time|field_accum_s=    0.000105",
+        "DIAG|direct|time|output_write_s=    0.000093",
+        "DIAG|direct|time|body_total_s=    0.000232"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "direct",
+      "setting": "refine_2",
+      "unit": "nt",
+      "elapsed_s": 0.016822041012346745,
+      "relative_l2": 0.023883496648268533,
+      "component_rmse": [
+        7.274823167841269,
+        6.579838889500431,
+        7.703345302414678
+      ],
+      "vector_rmse": 12.472323792436462,
+      "max_vector_difference": 24.774961837585778,
+      "options": {
+        "refine_factor": 2
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 32, 32, 4",
+        "  Source elements (mag surface charges): 3072",
+        "DIAG|direct|meta|source_capacity=4352",
+        "DIAG|direct|meta|source_elements=3072",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.083008",
+        "DIAG|direct|memory|total_est_mib=    0.084129",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000036",
+        "DIAG|direct|time|field_accum_s=    0.000315",
+        "DIAG|direct|time|output_write_s=    0.000108",
+        "DIAG|direct|time|body_total_s=    0.000477"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "direct",
+      "setting": "refine_4",
+      "unit": "nt",
+      "elapsed_s": 0.017138958966825157,
+      "relative_l2": 0.0074894569095753484,
+      "component_rmse": [
+        2.284928021016419,
+        2.828102076755126,
+        1.4414254475218222
+      ],
+      "vector_rmse": 3.911107865878433,
+      "max_vector_difference": 8.806973789660551,
+      "options": {
+        "refine_factor": 4
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 4",
+        "  Source elements (mag surface charges): 10240",
+        "DIAG|direct|meta|source_capacity=16896",
+        "DIAG|direct|meta|source_elements=10240",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.322266",
+        "DIAG|direct|memory|total_est_mib=    0.323387",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000101",
+        "DIAG|direct|time|field_accum_s=    0.000997",
+        "DIAG|direct|time|output_write_s=    0.000101",
+        "DIAG|direct|time|body_total_s=    0.001220"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "spectral",
+      "setting": "degree_4",
+      "unit": "nt",
+      "elapsed_s": 0.127553166996222,
+      "relative_l2": 1.0000678324332417,
+      "component_rmse": [
+        287.1249196555491,
+        304.7089778942985,
+        312.18164707494765
+      ],
+      "vector_rmse": 522.2505734482451,
+      "max_vector_difference": 1109.6936695684833,
+      "options": {
+        "lmax": 4,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=4",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.005707",
+        "DIAG|gauss|memory|total_est_mib=    5.403214",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000556",
+        "DIAG|gauss|time|fit_assembly_s=    0.111087",
+        "DIAG|gauss|time|linear_solve_s=    0.000583",
+        "DIAG|gauss|time|field_eval_s=    0.000008",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000100",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.112386"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "spectral",
+      "setting": "degree_8",
+      "unit": "nt",
+      "elapsed_s": 0.12746912497095764,
+      "relative_l2": 1.0002220922272829,
+      "component_rmse": [
+        287.16219861661386,
+        304.7854139286737,
+        312.2075155565786
+      ],
+      "vector_rmse": 522.3311302497791,
+      "max_vector_difference": 1109.9584628429332,
+      "options": {
+        "lmax": 8,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=8",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.053131",
+        "DIAG|gauss|memory|total_est_mib=    5.450638",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000571",
+        "DIAG|gauss|time|fit_assembly_s=    0.108799",
+        "DIAG|gauss|time|linear_solve_s=    0.003073",
+        "DIAG|gauss|time|field_eval_s=    0.000020",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000100",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.112617"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "spectral",
+      "setting": "degree_12",
+      "unit": "nt",
+      "elapsed_s": 0.1587784580187872,
+      "relative_l2": 1.0002071776376573,
+      "component_rmse": [
+        287.16831424062156,
+        304.7758836605633,
+        312.19816341796445
+      ],
+      "vector_rmse": 522.323341625116,
+      "max_vector_difference": 1110.1001019701791,
+      "options": {
+        "lmax": 12,
+        "ntheta_fit": 26,
+        "nphi_fit": 52,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=12",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.224335",
+        "DIAG|gauss|memory|total_est_mib=    5.621841",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000594",
+        "DIAG|gauss|time|fit_assembly_s=    0.127925",
+        "DIAG|gauss|time|linear_solve_s=    0.015531",
+        "DIAG|gauss|time|field_eval_s=    0.000040",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000096",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.144236"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_surface",
+      "solver": "spectral",
+      "setting": "degree_24",
+      "unit": "nt",
+      "elapsed_s": 1.3888848749920726,
+      "relative_l2": 0.9939844761420821,
+      "component_rmse": [
+        288.3454938329897,
+        310.5702437653946,
+        299.7341497747913
+      ],
+      "vector_rmse": 519.0737526281832,
+      "max_vector_difference": 1037.249909657407,
+      "options": {
+        "lmax": 24,
+        "ntheta_fit": 50,
+        "nphi_fit": 100,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=24",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    3.004059",
+        "DIAG|gauss|memory|total_est_mib=    8.401566",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000549",
+        "DIAG|gauss|time|fit_assembly_s=    0.471160",
+        "DIAG|gauss|time|linear_solve_s=    0.900691",
+        "DIAG|gauss|time|field_eval_s=    0.000148",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000109",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    1.372714"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_4",
+      "unit": "nt",
+      "elapsed_s": 0.014900041045621037,
+      "relative_l2": 0.004923504129782206,
+      "component_rmse": [
+        0.15870223045826082,
+        0.24433624158153155,
+        0.1808702096560469
+      ],
+      "vector_rmse": 0.3429294820274831,
+      "max_vector_difference": 1.1812270259453181,
+      "options": {
+        "radial_order": 4,
+        "latitude_order": 4,
+        "longitude_order": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=64",
+        "DIAG|gauss_legendre|meta|radial_order=4",
+        "DIAG|gauss_legendre|meta|latitude_order=4",
+        "DIAG|gauss_legendre|meta|longitude_order=4",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291094E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000135"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_8",
+      "unit": "nt",
+      "elapsed_s": 0.014416041027288884,
+      "relative_l2": 4.464613056767102e-06,
+      "component_rmse": [
+        0.00015413758918280835,
+        0.0002377214665925783,
+        0.00012818190189607768
+      ],
+      "vector_rmse": 0.00031096702727413113,
+      "max_vector_difference": 0.0010482812207934318,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=512",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291102E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000187"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_16",
+      "unit": "nt",
+      "elapsed_s": 0.015155041008256376,
+      "relative_l2": 1.76285285120796e-12,
+      "component_rmse": [
+        5.826125410127747e-11,
+        8.913405879312056e-11,
+        6.11309240182936e-11
+      ],
+      "vector_rmse": 1.2278535758680461e-10,
+      "max_vector_difference": 5.060280013864468e-10,
+      "options": {
+        "radial_order": 16,
+        "latitude_order": 16,
+        "longitude_order": 16
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=4096",
+        "DIAG|gauss_legendre|meta|radial_order=16",
+        "DIAG|gauss_legendre|meta|latitude_order=16",
+        "DIAG|gauss_legendre|meta|longitude_order=16",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585290992E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000617"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_32",
+      "unit": "nt",
+      "elapsed_s": 0.017513833998236805,
+      "relative_l2": 1.4454774878628453e-15,
+      "component_rmse": [
+        5.978410822226232e-14,
+        6.732715605883036e-14,
+        4.5047902131807336e-14
+      ],
+      "vector_rmse": 1.0067968526658278e-13,
+      "max_vector_difference": 2.455010144498838e-13,
+      "options": {
+        "radial_order": 32,
+        "latitude_order": 32,
+        "longitude_order": 32
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=32",
+        "DIAG|gauss_legendre|meta|latitude_order=32",
+        "DIAG|gauss_legendre|meta|longitude_order=32",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291203E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.003864"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_64",
+      "unit": "nt",
+      "elapsed_s": 0.04471170803299174,
+      "relative_l2": 8.2357374714311e-16,
+      "component_rmse": [
+        3.5471185069345456e-14,
+        4.025098069923393e-14,
+        2.0302336170466927e-14
+      ],
+      "vector_rmse": 5.736315255852408e-14,
+      "max_vector_difference": 1.3101760682293512e-13,
+      "options": {
+        "radial_order": 64,
+        "latitude_order": 64,
+        "longitude_order": 64
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=262144",
+        "DIAG|gauss_legendre|meta|radial_order=64",
+        "DIAG|gauss_legendre|meta|latitude_order=64",
+        "DIAG|gauss_legendre|meta|longitude_order=64",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291605E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.030121"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_8_panels_4",
+      "unit": "nt",
+      "elapsed_s": 0.019612832984421402,
+      "relative_l2": 8.595397790583498e-15,
+      "component_rmse": [
+        2.9914015312926163e-13,
+        4.4624474444550636e-13,
+        2.6419959016765464e-13
+      ],
+      "vector_rmse": 5.98682408798012e-13,
+      "max_vector_difference": 1.1338445492196283e-12,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8,
+        "subdivisions": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=4",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291016E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.003899"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "direct",
+      "setting": "refine_1",
+      "unit": "nt",
+      "elapsed_s": 0.015397000010125339,
+      "relative_l2": 0.0012327388112857497,
+      "component_rmse": [
+        0.04822803510482,
+        0.05581696616228109,
+        0.04394116359807391
+      ],
+      "vector_rmse": 0.08586211586017245,
+      "max_vector_difference": 0.13866010242717372,
+      "options": {
+        "refine_factor": 1
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 16, 16, 4",
+        "  Source elements (mag surface charges): 1024",
+        "DIAG|direct|meta|source_capacity=4096",
+        "DIAG|direct|meta|source_elements=1024",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.078125",
+        "DIAG|direct|memory|total_est_mib=    0.079247",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000015",
+        "DIAG|direct|time|field_accum_s=    0.000104",
+        "DIAG|direct|time|output_write_s=    0.000093",
+        "DIAG|direct|time|body_total_s=    0.000227"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "direct",
+      "setting": "refine_2",
+      "unit": "nt",
+      "elapsed_s": 0.014242250006645918,
+      "relative_l2": 0.00031531428621696834,
+      "component_rmse": [
+        0.012136526086652532,
+        0.014302790481700405,
+        0.0114223212486036
+      ],
+      "vector_rmse": 0.021962115192342434,
+      "max_vector_difference": 0.03485835141755429,
+      "options": {
+        "refine_factor": 2
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 32, 32, 4",
+        "  Source elements (mag surface charges): 3072",
+        "DIAG|direct|meta|source_capacity=4352",
+        "DIAG|direct|meta|source_elements=3072",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.083008",
+        "DIAG|direct|memory|total_est_mib=    0.084129",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000035",
+        "DIAG|direct|time|field_accum_s=    0.000288",
+        "DIAG|direct|time|output_write_s=    0.000089",
+        "DIAG|direct|time|body_total_s=    0.000430"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "direct",
+      "setting": "refine_4",
+      "unit": "nt",
+      "elapsed_s": 0.015516292012762278,
+      "relative_l2": 0.00011858834807174921,
+      "component_rmse": [
+        0.004168814563959231,
+        0.005374043417643581,
+        0.004686777419413082
+      ],
+      "vector_rmse": 0.008259857147827513,
+      "max_vector_difference": 0.014558330131082252,
+      "options": {
+        "refine_factor": 4
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 4",
+        "  Source elements (mag surface charges): 10240",
+        "DIAG|direct|meta|source_capacity=16896",
+        "DIAG|direct|meta|source_elements=10240",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.322266",
+        "DIAG|direct|memory|total_est_mib=    0.323387",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000091",
+        "DIAG|direct|time|field_accum_s=    0.000963",
+        "DIAG|direct|time|output_write_s=    0.000083",
+        "DIAG|direct|time|body_total_s=    0.001156"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "spectral",
+      "setting": "degree_4",
+      "unit": "nt",
+      "elapsed_s": 0.12711808300809935,
+      "relative_l2": 1.0013435243438835,
+      "component_rmse": [
+        37.06131121180685,
+        46.498383015730276,
+        36.451838492562516
+      ],
+      "vector_rmse": 69.74508542760427,
+      "max_vector_difference": 117.44985839454166,
+      "options": {
+        "lmax": 4,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=4",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.005707",
+        "DIAG|gauss|memory|total_est_mib=    5.403214",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000563",
+        "DIAG|gauss|time|fit_assembly_s=    0.109889",
+        "DIAG|gauss|time|linear_solve_s=    0.000577",
+        "DIAG|gauss|time|field_eval_s=    0.000006",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000112",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.111206"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "spectral",
+      "setting": "degree_8",
+      "unit": "nt",
+      "elapsed_s": 0.12875062500825152,
+      "relative_l2": 1.0036602894010644,
+      "component_rmse": [
+        37.14659443429741,
+        46.65906638253504,
+        36.468808895446045
+      ],
+      "vector_rmse": 69.90645160504539,
+      "max_vector_difference": 117.75357893502817,
+      "options": {
+        "lmax": 8,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=8",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.053131",
+        "DIAG|gauss|memory|total_est_mib=    5.450638",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000590",
+        "DIAG|gauss|time|fit_assembly_s=    0.109834",
+        "DIAG|gauss|time|linear_solve_s=    0.003159",
+        "DIAG|gauss|time|field_eval_s=    0.000018",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000105",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.113761"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "spectral",
+      "setting": "degree_12",
+      "unit": "nt",
+      "elapsed_s": 0.15974258299684152,
+      "relative_l2": 1.0023898095271198,
+      "component_rmse": [
+        37.115708904103364,
+        46.58129888360203,
+        36.430130284783914
+      ],
+      "vector_rmse": 69.81796076729778,
+      "max_vector_difference": 117.6213048806183,
+      "options": {
+        "lmax": 12,
+        "ntheta_fit": 26,
+        "nphi_fit": 52,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=12",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.224335",
+        "DIAG|gauss|memory|total_est_mib=    5.621841",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000584",
+        "DIAG|gauss|time|fit_assembly_s=    0.128015",
+        "DIAG|gauss|time|linear_solve_s=    0.015487",
+        "DIAG|gauss|time|field_eval_s=    0.000036",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000104",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.144279"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_orbital",
+      "solver": "spectral",
+      "setting": "degree_24",
+      "unit": "nt",
+      "elapsed_s": 1.3955612909630872,
+      "relative_l2": 0.809705718443265,
+      "component_rmse": [
+        31.604395903937657,
+        34.82828955192326,
+        31.12553968350352
+      ],
+      "vector_rmse": 56.39722346139738,
+      "max_vector_difference": 90.7264787597139,
+      "options": {
+        "lmax": 24,
+        "ntheta_fit": 50,
+        "nphi_fit": 100,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=24",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    3.004059",
+        "DIAG|gauss|memory|total_est_mib=    8.401566",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000569",
+        "DIAG|gauss|time|fit_assembly_s=    0.474723",
+        "DIAG|gauss|time|linear_solve_s=    0.903003",
+        "DIAG|gauss|time|field_eval_s=    0.000138",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000132",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    1.378630"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_4",
+      "unit": "nt",
+      "elapsed_s": 0.016738792008254677,
+      "relative_l2": 0.003383263542907649,
+      "component_rmse": [
+        0.07133355641779171,
+        0.11522625783913312,
+        0.10450505190233965
+      ],
+      "vector_rmse": 0.1711340779620803,
+      "max_vector_difference": 0.6171062936536935,
+      "options": {
+        "radial_order": 4,
+        "latitude_order": 4,
+        "longitude_order": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=192",
+        "DIAG|gauss_legendre|meta|radial_order=4",
+        "DIAG|gauss_legendre|meta|latitude_order=4",
+        "DIAG|gauss_legendre|meta|longitude_order=4",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  1.6332293383881217E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000168"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_8",
+      "unit": "nt",
+      "elapsed_s": 0.016612542036455125,
+      "relative_l2": 2.7339490789845667e-06,
+      "component_rmse": [
+        5.528965145375853e-05,
+        9.176895660432961e-05,
+        8.743949278261175e-05
+      ],
+      "vector_rmse": 0.00013829010034057337,
+      "max_vector_difference": 0.0006211170387355781,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=1536",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  1.6332293383881262E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000341"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_16",
+      "unit": "nt",
+      "elapsed_s": 0.01768129103584215,
+      "relative_l2": 1.2467887143536167e-12,
+      "component_rmse": [
+        2.4590091320024524e-11,
+        4.133766307929965e-11,
+        4.0789867079922426e-11
+      ],
+      "vector_rmse": 6.306574534866435e-11,
+      "max_vector_difference": 3.3746392522023e-10,
+      "options": {
+        "radial_order": 16,
+        "latitude_order": 16,
+        "longitude_order": 16
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=12288",
+        "DIAG|gauss_legendre|meta|radial_order=16",
+        "DIAG|gauss_legendre|meta|latitude_order=16",
+        "DIAG|gauss_legendre|meta|longitude_order=16",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  1.6332293383881098E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.001627"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_32",
+      "unit": "nt",
+      "elapsed_s": 0.0279945419752039,
+      "relative_l2": 1.5313898690694542e-15,
+      "component_rmse": [
+        5.0557727387474845e-14,
+        5.311566615614775e-14,
+        2.4958786892705204e-14
+      ],
+      "vector_rmse": 7.746159585854811e-14,
+      "max_vector_difference": 1.59619185532887e-13,
+      "options": {
+        "radial_order": 32,
+        "latitude_order": 32,
+        "longitude_order": 32
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=98304",
+        "DIAG|gauss_legendre|meta|radial_order=32",
+        "DIAG|gauss_legendre|meta|latitude_order=32",
+        "DIAG|gauss_legendre|meta|longitude_order=32",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  1.6332293383881551E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.011294"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_64",
+      "unit": "nt",
+      "elapsed_s": 0.10577262501465157,
+      "relative_l2": 7.479855219026807e-16,
+      "component_rmse": [
+        2.3750640004864572e-14,
+        2.552297529754257e-14,
+        1.469601551763991e-14
+      ],
+      "vector_rmse": 3.783501078068242e-14,
+      "max_vector_difference": 1.0253749628689812e-13,
+      "options": {
+        "radial_order": 64,
+        "latitude_order": 64,
+        "longitude_order": 64
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=786432",
+        "DIAG|gauss_legendre|meta|radial_order=64",
+        "DIAG|gauss_legendre|meta|latitude_order=64",
+        "DIAG|gauss_legendre|meta|longitude_order=64",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  1.6332293383881436E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.091275"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_8_panels_4",
+      "unit": "nt",
+      "elapsed_s": 0.025623083987738937,
+      "relative_l2": 5.5099050348477385e-15,
+      "component_rmse": [
+        1.1033296217097735e-13,
+        1.9538176141898528e-13,
+        1.6531512443630836e-13
+      ],
+      "vector_rmse": 2.7870501539082446e-13,
+      "max_vector_difference": 6.693071193179304e-13,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8,
+        "subdivisions": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=98304",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=4",
+        "DIAG|gauss_legendre|meta|volume_m3=  1.6332293383880930E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.011330"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "direct",
+      "setting": "refine_1",
+      "unit": "nt",
+      "elapsed_s": 0.013810875010676682,
+      "relative_l2": 0.7410549406514686,
+      "component_rmse": [
+        19.392484842397423,
+        27.646389474156702,
+        16.26936534516415
+      ],
+      "vector_rmse": 37.48444434767313,
+      "max_vector_difference": 72.88904127585691,
+      "options": {
+        "refine_factor": 1
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Source mesh cells (nlat,nlon,nr): 16, 16, 4",
+        "  Source elements (mag surface charges): 1024",
+        "DIAG|direct|meta|source_capacity=4096",
+        "DIAG|direct|meta|source_elements=1024",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.078125",
+        "DIAG|direct|memory|total_est_mib=    0.079247",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000015",
+        "DIAG|direct|time|field_accum_s=    0.000092",
+        "DIAG|direct|time|output_write_s=    0.000079",
+        "DIAG|direct|time|body_total_s=    0.000201"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "direct",
+      "setting": "refine_2",
+      "unit": "nt",
+      "elapsed_s": 0.013642790960147977,
+      "relative_l2": 0.7404536351816683,
+      "component_rmse": [
+        19.372657589342445,
+        27.629052835293965,
+        16.25237981765235
+      ],
+      "vector_rmse": 37.454028787122574,
+      "max_vector_difference": 72.82638372423386,
+      "options": {
+        "refine_factor": 2
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Source mesh cells (nlat,nlon,nr): 32, 32, 4",
+        "  Source elements (mag surface charges): 2816",
+        "DIAG|direct|meta|source_capacity=4352",
+        "DIAG|direct|meta|source_elements=2816",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.083008",
+        "DIAG|direct|memory|total_est_mib=    0.084129",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000036",
+        "DIAG|direct|time|field_accum_s=    0.000255",
+        "DIAG|direct|time|output_write_s=    0.000079",
+        "DIAG|direct|time|body_total_s=    0.000388"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "direct",
+      "setting": "refine_4",
+      "unit": "nt",
+      "elapsed_s": 0.014018333982676268,
+      "relative_l2": 0.7402990126248973,
+      "component_rmse": [
+        19.36752980433119,
+        27.624552513501364,
+        16.248118358473377
+      ],
+      "vector_rmse": 37.44620758479837,
+      "max_vector_difference": 72.81035240645481,
+      "options": {
+        "refine_factor": 4
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 4",
+        "  Source elements (mag surface charges): 8704",
+        "DIAG|direct|meta|source_capacity=16896",
+        "DIAG|direct|meta|source_elements=8704",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.322266",
+        "DIAG|direct|memory|total_est_mib=    0.323387",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000091",
+        "DIAG|direct|time|field_accum_s=    0.000813",
+        "DIAG|direct|time|output_write_s=    0.000080",
+        "DIAG|direct|time|body_total_s=    0.001002"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_4",
+      "unit": "nt",
+      "elapsed_s": 0.09564725001109764,
+      "relative_l2": 1.0014870310080501,
+      "component_rmse": [
+        27.552604823070247,
+        34.02983189960809,
+        25.476133306685604
+      ],
+      "vector_rmse": 50.65776208945549,
+      "max_vector_difference": 88.95160064179915,
+      "options": {
+        "lmax": 4,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as COMPLEX (vertices=8)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 36864",
+        "Hybrid mode inactive. input_complex=T mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=36864",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=4",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.005707",
+        "DIAG|gauss|memory|total_est_mib=    5.403214",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000432",
+        "DIAG|gauss|time|fit_assembly_s=    0.081111",
+        "DIAG|gauss|time|linear_solve_s=    0.000567",
+        "DIAG|gauss|time|field_eval_s=    0.000008",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000095",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.082260"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_8",
+      "unit": "nt",
+      "elapsed_s": 0.09964933304581791,
+      "relative_l2": 1.004070316031148,
+      "component_rmse": [
+        27.62498516024487,
+        34.1551097026053,
+        25.490261311673418
+      ],
+      "vector_rmse": 50.78843121851812,
+      "max_vector_difference": 89.1912705666953,
+      "options": {
+        "lmax": 8,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as COMPLEX (vertices=8)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 36864",
+        "Hybrid mode inactive. input_complex=T mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=36864",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=8",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.053131",
+        "DIAG|gauss|memory|total_est_mib=    5.450638",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000465",
+        "DIAG|gauss|time|fit_assembly_s=    0.081479",
+        "DIAG|gauss|time|linear_solve_s=    0.003135",
+        "DIAG|gauss|time|field_eval_s=    0.000018",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000106",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.085269"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_12",
+      "unit": "nt",
+      "elapsed_s": 0.12705562496557832,
+      "relative_l2": 1.0025264433081353,
+      "component_rmse": [
+        27.598657767540793,
+        34.08528154010391,
+        25.45674906477051
+      ],
+      "vector_rmse": 50.710338208147284,
+      "max_vector_difference": 89.07009747860268,
+      "options": {
+        "lmax": 12,
+        "ntheta_fit": 26,
+        "nphi_fit": 52,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as COMPLEX (vertices=8)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 36864",
+        "Hybrid mode inactive. input_complex=T mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=36864",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=12",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.224335",
+        "DIAG|gauss|memory|total_est_mib=    5.621841",
+        "DIAG|gauss|time|obs_grid_s=    0.000003",
+        "DIAG|gauss|time|source_mesh_s=    0.000472",
+        "DIAG|gauss|time|fit_assembly_s=    0.095382",
+        "DIAG|gauss|time|linear_solve_s=    0.015681",
+        "DIAG|gauss|time|field_eval_s=    0.000040",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000114",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.111747"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_concave_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_24",
+      "unit": "nt",
+      "elapsed_s": 1.267891708004754,
+      "relative_l2": 1.2286889406731836,
+      "component_rmse": [
+        33.04173860448475,
+        34.92258130831742,
+        39.38661916200581
+      ],
+      "vector_rmse": 62.15021274505842,
+      "max_vector_difference": 106.61833654840365,
+      "options": {
+        "lmax": 24,
+        "ntheta_fit": 50,
+        "nphi_fit": 100,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as COMPLEX (vertices=8)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 36864",
+        "Hybrid mode inactive. input_complex=T mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=36864",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=24",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    3.004059",
+        "DIAG|gauss|memory|total_est_mib=    8.401566",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000453",
+        "DIAG|gauss|time|fit_assembly_s=    0.354804",
+        "DIAG|gauss|time|linear_solve_s=    0.897375",
+        "DIAG|gauss|time|field_eval_s=    0.000142",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000103",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    1.252933"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_4",
+      "unit": "mgal",
+      "elapsed_s": 0.014900874986778945,
+      "relative_l2": 0.00016176361247999054,
+      "component_rmse": [
+        0.001253617701740782,
+        0.0007201335621896351,
+        0.0003971780925785268
+      ],
+      "vector_rmse": 0.001499299878854824,
+      "max_vector_difference": 0.004975073268181212,
+      "options": {
+        "radial_order": 4,
+        "latitude_order": 4,
+        "longitude_order": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=128",
+        "DIAG|gauss_legendre|meta|radial_order=4",
+        "DIAG|gauss_legendre|meta|latitude_order=4",
+        "DIAG|gauss_legendre|meta|longitude_order=4",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  9.5275339241928223E+12",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000142"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_8",
+      "unit": "mgal",
+      "elapsed_s": 0.014321082970127463,
+      "relative_l2": 1.816062421089312e-08,
+      "component_rmse": [
+        9.50127620972487e-08,
+        1.1621062308385e-07,
+        7.615538845424241e-08
+      ],
+      "vector_rmse": 1.6832105355391994e-07,
+      "max_vector_difference": 6.138004910630868e-07,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=1024",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  9.5275339241928379E+12",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000219"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_16",
+      "unit": "mgal",
+      "elapsed_s": 0.013794084021355957,
+      "relative_l2": 2.48606720721267e-15,
+      "component_rmse": [
+        1.1418423480962275e-14,
+        1.7821936332674908e-14,
+        9.10674688345792e-15
+      ],
+      "vector_rmse": 2.3042019187473114e-14,
+      "max_vector_difference": 1.0069595836255179e-13,
+      "options": {
+        "radial_order": 16,
+        "latitude_order": 16,
+        "longitude_order": 16
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=8192",
+        "DIAG|gauss_legendre|meta|radial_order=16",
+        "DIAG|gauss_legendre|meta|latitude_order=16",
+        "DIAG|gauss_legendre|meta|longitude_order=16",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  9.5275339241928281E+12",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000832"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_32",
+      "unit": "mgal",
+      "elapsed_s": 0.019252500031143427,
+      "relative_l2": 1.8038872716010815e-15,
+      "component_rmse": [
+        1.0327705761627688e-14,
+        1.1497015580393488e-14,
+        6.378933791393352e-15
+      ],
+      "vector_rmse": 1.6719260446250256e-14,
+      "max_vector_difference": 3.4310023110106684e-14,
+      "options": {
+        "radial_order": 32,
+        "latitude_order": 32,
+        "longitude_order": 32
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=65536",
+        "DIAG|gauss_legendre|meta|radial_order=32",
+        "DIAG|gauss_legendre|meta|latitude_order=32",
+        "DIAG|gauss_legendre|meta|longitude_order=32",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  9.5275339241927930E+12",
+        "DIAG|gauss_legendre|time|body_total_s=      0.005899"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_64",
+      "unit": "mgal",
+      "elapsed_s": 0.06070704205194488,
+      "relative_l2": 1.0951052238610582e-15,
+      "component_rmse": [
+        5.8088711802084784e-15,
+        7.2942982617306e-15,
+        4.0089314840337195e-15
+      ],
+      "vector_rmse": 1.0149941042342044e-14,
+      "max_vector_difference": 1.855102611454866e-14,
+      "options": {
+        "radial_order": 64,
+        "latitude_order": 64,
+        "longitude_order": 64
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=524288",
+        "DIAG|gauss_legendre|meta|radial_order=64",
+        "DIAG|gauss_legendre|meta|latitude_order=64",
+        "DIAG|gauss_legendre|meta|longitude_order=64",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  9.5275339241927949E+12",
+        "DIAG|gauss_legendre|time|body_total_s=      0.047354"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "gauss_legendre",
+      "setting": "order_8_panels_4",
+      "unit": "mgal",
+      "elapsed_s": 0.020093833038117737,
+      "relative_l2": 2.8082571841862215e-15,
+      "component_rmse": [
+        1.4366948426543232e-14,
+        1.86094353780294e-14,
+        1.1169072904200576e-14
+      ],
+      "vector_rmse": 2.6028224713171524e-14,
+      "max_vector_difference": 4.641582096618738e-14,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8,
+        "subdivisions": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=65536",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=4",
+        "DIAG|gauss_legendre|meta|volume_m3=  9.5275339241928633E+12",
+        "DIAG|gauss_legendre|time|body_total_s=      0.005803"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "direct",
+      "setting": "refine_1",
+      "unit": "mgal",
+      "elapsed_s": 0.013265083020087332,
+      "relative_l2": 0.0032369241957069307,
+      "component_rmse": [
+        0.017482331725683264,
+        0.02102883605813551,
+        0.012338340560405005
+      ],
+      "vector_rmse": 0.030001308576648903,
+      "max_vector_difference": 0.050790610236127985,
+      "options": {
+        "refine_factor": 1
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Source mesh cells (nlat,nlon,nr): 16, 16, 4",
+        "  Source elements (grav masses): 448",
+        "DIAG|direct|meta|source_capacity=4096",
+        "DIAG|direct|meta|source_elements=448",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.078125",
+        "DIAG|direct|memory|total_est_mib=    0.079247",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000011",
+        "DIAG|direct|time|field_accum_s=    0.000042",
+        "DIAG|direct|time|output_write_s=    0.000072",
+        "DIAG|direct|time|body_total_s=    0.000140"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "direct",
+      "setting": "refine_2",
+      "unit": "mgal",
+      "elapsed_s": 0.013146083045285195,
+      "relative_l2": 0.0008206596949579053,
+      "component_rmse": [
+        0.004334345931374059,
+        0.005293231270811991,
+        0.0033241892999701476
+      ],
+      "vector_rmse": 0.007606253114455028,
+      "max_vector_difference": 0.01274930360544399,
+      "options": {
+        "refine_factor": 2
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Source mesh cells (nlat,nlon,nr): 32, 32, 4",
+        "  Source elements (grav masses): 1792",
+        "DIAG|direct|meta|source_capacity=4352",
+        "DIAG|direct|meta|source_elements=1792",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.083008",
+        "DIAG|direct|memory|total_est_mib=    0.084129",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000028",
+        "DIAG|direct|time|field_accum_s=    0.000166",
+        "DIAG|direct|time|output_write_s=    0.000074",
+        "DIAG|direct|time|body_total_s=    0.000284"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "direct",
+      "setting": "refine_4",
+      "unit": "mgal",
+      "elapsed_s": 0.013414583983831108,
+      "relative_l2": 0.0002628798782653999,
+      "component_rmse": [
+        0.0013028408594030602,
+        0.0016335786775149108,
+        0.0012532040242385929
+      ],
+      "vector_rmse": 0.002436492135618187,
+      "max_vector_difference": 0.004404811924639649,
+      "options": {
+        "refine_factor": 4
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 4",
+        "  Source elements (grav masses): 7168",
+        "DIAG|direct|meta|source_capacity=16896",
+        "DIAG|direct|meta|source_elements=7168",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.322266",
+        "DIAG|direct|memory|total_est_mib=    0.323387",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000090",
+        "DIAG|direct|time|field_accum_s=    0.000668",
+        "DIAG|direct|time|output_write_s=    0.000073",
+        "DIAG|direct|time|body_total_s=    0.000848"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_4",
+      "unit": "mgal",
+      "elapsed_s": 0.04654341598507017,
+      "relative_l2": 0.9934941652354047,
+      "component_rmse": [
+        5.111668336130937,
+        6.551095880426522,
+        3.9679027270175955
+      ],
+      "vector_rmse": 9.208162816991164,
+      "max_vector_difference": 15.174784537200047,
+      "options": {
+        "lmax": 4,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=3)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 21504",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=21504",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=4",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.005707",
+        "DIAG|gauss|memory|total_est_mib=    5.403214",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000273",
+        "DIAG|gauss|time|fit_assembly_s=    0.032291",
+        "DIAG|gauss|time|linear_solve_s=    0.000581",
+        "DIAG|gauss|time|field_eval_s=    0.000006",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000090",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.033283"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_8",
+      "unit": "mgal",
+      "elapsed_s": 0.049849624978378415,
+      "relative_l2": 0.980620941989489,
+      "component_rmse": [
+        5.0521002897296965,
+        6.43735997875668,
+        3.9552287146928657
+      ],
+      "vector_rmse": 9.088847837823895,
+      "max_vector_difference": 15.018559570340612,
+      "options": {
+        "lmax": 8,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=3)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 21504",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=21504",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=8",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.053131",
+        "DIAG|gauss|memory|total_est_mib=    5.450638",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000257",
+        "DIAG|gauss|time|fit_assembly_s=    0.031917",
+        "DIAG|gauss|time|linear_solve_s=    0.003333",
+        "DIAG|gauss|time|field_eval_s=    0.000018",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000079",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.035647"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_12",
+      "unit": "mgal",
+      "elapsed_s": 0.06831841700477526,
+      "relative_l2": 0.9667111353917046,
+      "component_rmse": [
+        4.982194785924928,
+        6.324606184412622,
+        3.931584103530203
+      ],
+      "vector_rmse": 8.959925325355078,
+      "max_vector_difference": 14.853407759357975,
+      "options": {
+        "lmax": 12,
+        "ntheta_fit": 26,
+        "nphi_fit": 52,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=3)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 21504",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=21504",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=12",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.224335",
+        "DIAG|gauss|memory|total_est_mib=    5.621841",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000309",
+        "DIAG|gauss|time|fit_assembly_s=    0.038200",
+        "DIAG|gauss|time|linear_solve_s=    0.015646",
+        "DIAG|gauss|time|field_eval_s=    0.000040",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000101",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.054342"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_sloping_polygon_orbital",
+      "solver": "spectral",
+      "setting": "degree_24",
+      "unit": "mgal",
+      "elapsed_s": 1.0635386659996584,
+      "relative_l2": 0.953435184146206,
+      "component_rmse": [
+        3.4689924237823786,
+        4.55136545462613,
+        6.7336150128769585
+      ],
+      "vector_rmse": 8.836877677068163,
+      "max_vector_difference": 13.073189191406556,
+      "options": {
+        "lmax": 24,
+        "ntheta_fit": 50,
+        "nphi_fit": 100,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: polygon",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=3)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 21504",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=21504",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=24",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    3.004059",
+        "DIAG|gauss|memory|total_est_mib=    8.401566",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000296",
+        "DIAG|gauss|time|fit_assembly_s=    0.141914",
+        "DIAG|gauss|time|linear_solve_s=    0.906448",
+        "DIAG|gauss|time|field_eval_s=    0.000133",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000116",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    1.048962"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_4",
+      "unit": "nt",
+      "elapsed_s": 0.014792374975513667,
+      "relative_l2": 2.0235428082043443e-15,
+      "component_rmse": [
+        1.026530790365282e-19,
+        1.6095063433161763e-19,
+        7.36790495270994e-20
+      ],
+      "vector_rmse": 2.0462493412740923e-19,
+      "max_vector_difference": 2.1905261181403524e-19,
+      "options": {
+        "radial_order": 4,
+        "latitude_order": 4,
+        "longitude_order": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=64",
+        "DIAG|gauss_legendre|meta|radial_order=4",
+        "DIAG|gauss_legendre|meta|latitude_order=4",
+        "DIAG|gauss_legendre|meta|longitude_order=4",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291094E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000142"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_8",
+      "unit": "nt",
+      "elapsed_s": 0.013302708975970745,
+      "relative_l2": 2.4447708361848627e-15,
+      "component_rmse": [
+        1.2526272584620893e-19,
+        1.9438041822857668e-19,
+        8.742671709125093e-20
+      ],
+      "vector_rmse": 2.4722040437328895e-19,
+      "max_vector_difference": 2.620276947483189e-19,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=512",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291102E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000203"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_16",
+      "unit": "nt",
+      "elapsed_s": 0.013102833996526897,
+      "relative_l2": 1.4077048279184547e-15,
+      "component_rmse": [
+        7.278330009883296e-20,
+        1.116395483880995e-19,
+        5.0027507878467756e-20
+      ],
+      "vector_rmse": 1.4235009336879882e-19,
+      "max_vector_difference": 1.5306707992676776e-19,
+      "options": {
+        "radial_order": 16,
+        "latitude_order": 16,
+        "longitude_order": 16
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=4096",
+        "DIAG|gauss_legendre|meta|radial_order=16",
+        "DIAG|gauss_legendre|meta|latitude_order=16",
+        "DIAG|gauss_legendre|meta|longitude_order=16",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585290992E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000586"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_32",
+      "unit": "nt",
+      "elapsed_s": 0.016379375010728836,
+      "relative_l2": 4.566009331746382e-17,
+      "component_rmse": [
+        2.9041129620147442e-21,
+        2.738023958363168e-21,
+        2.3212727484152308e-21
+      ],
+      "vector_rmse": 4.617245333014909e-21,
+      "max_vector_difference": 1.5152185993940876e-20,
+      "options": {
+        "radial_order": 32,
+        "latitude_order": 32,
+        "longitude_order": 32
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=32",
+        "DIAG|gauss_legendre|meta|latitude_order=32",
+        "DIAG|gauss_legendre|meta|longitude_order=32",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291203E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.003792"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_64",
+      "unit": "nt",
+      "elapsed_s": 0.044872916012536734,
+      "relative_l2": 6.902825352776836e-16,
+      "component_rmse": [
+        3.5686337532975413e-20,
+        5.441714989454548e-20,
+        2.5252612541246027e-20
+      ],
+      "vector_rmse": 6.980283181448426e-20,
+      "max_vector_difference": 8.159701876572675e-20,
+      "options": {
+        "radial_order": 64,
+        "latitude_order": 64,
+        "longitude_order": 64
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=262144",
+        "DIAG|gauss_legendre|meta|radial_order=64",
+        "DIAG|gauss_legendre|meta|latitude_order=64",
+        "DIAG|gauss_legendre|meta|longitude_order=64",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291605E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.030801"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_8_panels_4",
+      "unit": "nt",
+      "elapsed_s": 0.017063790990505368,
+      "relative_l2": 2.515557363322148e-15,
+      "component_rmse": [
+        1.2871989077574935e-19,
+        2.0018494402244324e-19,
+        8.980864665838426e-20
+      ],
+      "vector_rmse": 2.543784879057191e-19,
+      "max_vector_difference": 2.649683694571567e-19,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8,
+        "subdivisions": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=4",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291016E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.003849"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "direct",
+      "setting": "refine_1",
+      "unit": "nt",
+      "elapsed_s": 0.013519083033315837,
+      "relative_l2": 0.001019067863334415,
+      "component_rmse": [
+        5.2588669161692315e-08,
+        8.777111062865085e-08,
+        1.2248609817648228e-08
+      ],
+      "vector_rmse": 1.0305030047336001e-07,
+      "max_vector_difference": 1.082752915783869e-07,
+      "options": {
+        "refine_factor": 1
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 16, 16, 4",
+        "  Source elements (mag surface charges): 1024",
+        "DIAG|direct|meta|source_capacity=4096",
+        "DIAG|direct|meta|source_elements=1024",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.078125",
+        "DIAG|direct|memory|total_est_mib=    0.079247",
+        "DIAG|direct|time|obs_grid_s=    0.000003",
+        "DIAG|direct|time|source_mesh_s=    0.000018",
+        "DIAG|direct|time|field_accum_s=    0.000103",
+        "DIAG|direct|time|output_write_s=    0.000085",
+        "DIAG|direct|time|body_total_s=    0.000225"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "direct",
+      "setting": "refine_2",
+      "unit": "nt",
+      "elapsed_s": 0.01325675001135096,
+      "relative_l2": 0.0008847369079752646,
+      "component_rmse": [
+        4.600667691289698e-08,
+        7.598072882243124e-08,
+        1.0703445395531732e-08
+      ],
+      "vector_rmse": 8.94664697877962e-08,
+      "max_vector_difference": 9.395845864367799e-08,
+      "options": {
+        "refine_factor": 2
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 32, 32, 4",
+        "  Source elements (mag surface charges): 3072",
+        "DIAG|direct|meta|source_capacity=4352",
+        "DIAG|direct|meta|source_elements=3072",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.083008",
+        "DIAG|direct|memory|total_est_mib=    0.084129",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000042",
+        "DIAG|direct|time|field_accum_s=    0.000291",
+        "DIAG|direct|time|output_write_s=    0.000078",
+        "DIAG|direct|time|body_total_s=    0.000427"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "direct",
+      "setting": "refine_4",
+      "unit": "nt",
+      "elapsed_s": 0.014426750014536083,
+      "relative_l2": 0.0008230676247172196,
+      "component_rmse": [
+        4.235629863700082e-08,
+        7.094957874636369e-08,
+        9.96950091485093e-09
+      ],
+      "vector_rmse": 8.323034126449605e-08,
+      "max_vector_difference": 8.807576445612267e-08,
+      "options": {
+        "refine_factor": 4
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 4",
+        "  Source elements (mag surface charges): 10240",
+        "DIAG|direct|meta|source_capacity=16896",
+        "DIAG|direct|meta|source_elements=10240",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.322266",
+        "DIAG|direct|memory|total_est_mib=    0.323387",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000092",
+        "DIAG|direct|time|field_accum_s=    0.001044",
+        "DIAG|direct|time|output_write_s=    0.000086",
+        "DIAG|direct|time|body_total_s=    0.001238"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "spectral",
+      "setting": "degree_4",
+      "unit": "nt",
+      "elapsed_s": 0.12447837501531467,
+      "relative_l2": 0.04137313737685072,
+      "component_rmse": [
+        2.122790021947766e-06,
+        3.280969948720443e-06,
+        1.4942131689379528e-06
+      ],
+      "vector_rmse": 4.183739269590687e-06,
+      "max_vector_difference": 4.353721782022335e-06,
+      "options": {
+        "lmax": 4,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=4",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.005707",
+        "DIAG|gauss|memory|total_est_mib=    5.403214",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000552",
+        "DIAG|gauss|time|fit_assembly_s=    0.109839",
+        "DIAG|gauss|time|linear_solve_s=    0.000600",
+        "DIAG|gauss|time|field_eval_s=    0.000006",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000107",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.111155"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "spectral",
+      "setting": "degree_8",
+      "unit": "nt",
+      "elapsed_s": 0.12785604101372883,
+      "relative_l2": 0.0005076415466161913,
+      "component_rmse": [
+        2.6068619361943794e-08,
+        4.0119723221442304e-08,
+        1.8600879268785905e-08
+      ],
+      "vector_rmse": 5.133378825271905e-08,
+      "max_vector_difference": 5.4465764959689564e-08,
+      "options": {
+        "lmax": 8,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=8",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.053131",
+        "DIAG|gauss|memory|total_est_mib=    5.450638",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000565",
+        "DIAG|gauss|time|fit_assembly_s=    0.109483",
+        "DIAG|gauss|time|linear_solve_s=    0.003155",
+        "DIAG|gauss|time|field_eval_s=    0.000019",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000101",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.113379"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "spectral",
+      "setting": "degree_12",
+      "unit": "nt",
+      "elapsed_s": 0.15813879197230563,
+      "relative_l2": 4.312150266021033e-06,
+      "component_rmse": [
+        2.2168965161634796e-10,
+        3.391549708681184e-10,
+        1.6115362790165307e-10
+      ],
+      "vector_rmse": 4.3605376696480493e-10,
+      "max_vector_difference": 4.719148626082926e-10,
+      "options": {
+        "lmax": 12,
+        "ntheta_fit": 26,
+        "nphi_fit": 52,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=12",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.224335",
+        "DIAG|gauss|memory|total_est_mib=    5.621841",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000627",
+        "DIAG|gauss|time|fit_assembly_s=    0.128074",
+        "DIAG|gauss|time|linear_solve_s=    0.015301",
+        "DIAG|gauss|time|field_eval_s=    0.000040",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000100",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.144191"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "magnetic_block_far",
+      "solver": "spectral",
+      "setting": "degree_24",
+      "unit": "nt",
+      "elapsed_s": 1.4051089160493575,
+      "relative_l2": 9.844365445121653e-07,
+      "component_rmse": [
+        2.1072724302720707e-11,
+        5.1883198143441097e-11,
+        8.230394705649357e-11
+      ],
+      "vector_rmse": 9.954830817351012e-11,
+      "max_vector_difference": 1.0086170200119993e-10,
+      "options": {
+        "lmax": 24,
+        "ntheta_fit": 50,
+        "nphi_fit": 100,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=24",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    3.004059",
+        "DIAG|gauss|memory|total_est_mib=    8.401566",
+        "DIAG|gauss|time|obs_grid_s=    0.000001",
+        "DIAG|gauss|time|source_mesh_s=    0.000636",
+        "DIAG|gauss|time|fit_assembly_s=    0.481608",
+        "DIAG|gauss|time|linear_solve_s=    0.907179",
+        "DIAG|gauss|time|field_eval_s=    0.000134",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000112",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    1.389727"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_4",
+      "unit": "mgal",
+      "elapsed_s": 0.014923957991413772,
+      "relative_l2": 2.0788206364650847e-15,
+      "component_rmse": [
+        2.4209830175537578e-18,
+        4.1291580033538984e-18,
+        5.900933945828545e-19
+      ],
+      "vector_rmse": 4.822791183772688e-18,
+      "max_vector_difference": 5.092577354838777e-18,
+      "options": {
+        "radial_order": 4,
+        "latitude_order": 4,
+        "longitude_order": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=64",
+        "DIAG|gauss_legendre|meta|radial_order=4",
+        "DIAG|gauss_legendre|meta|latitude_order=4",
+        "DIAG|gauss_legendre|meta|longitude_order=4",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291094E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000160"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_8",
+      "unit": "mgal",
+      "elapsed_s": 0.01496929198037833,
+      "relative_l2": 2.4589624596662534e-15,
+      "component_rmse": [
+        2.8986455015248353e-18,
+        4.8627305500529865e-18,
+        7.038372716682406e-19
+      ],
+      "vector_rmse": 5.7047069206855994e-18,
+      "max_vector_difference": 6.072500126413762e-18,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=512",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291102E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000186"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_16",
+      "unit": "mgal",
+      "elapsed_s": 0.01435933297034353,
+      "relative_l2": 1.4071207769924466e-15,
+      "component_rmse": [
+        1.6896070533867119e-18,
+        2.763229188939362e-18,
+        4.0812173590413934e-19
+      ],
+      "vector_rmse": 3.2644709979992193e-18,
+      "max_vector_difference": 3.538221987984553e-18,
+      "options": {
+        "radial_order": 16,
+        "latitude_order": 16,
+        "longitude_order": 16
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=4096",
+        "DIAG|gauss_legendre|meta|radial_order=16",
+        "DIAG|gauss_legendre|meta|latitude_order=16",
+        "DIAG|gauss_legendre|meta|longitude_order=16",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585290992E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.000480"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_32",
+      "unit": "mgal",
+      "elapsed_s": 0.017105999984778464,
+      "relative_l2": 8.291696181273794e-17,
+      "component_rmse": [
+        9.795852311876957e-20,
+        1.6391596110357717e-19,
+        2.3232903696117954e-20
+      ],
+      "vector_rmse": 1.9236445194025072e-19,
+      "max_vector_difference": 4.370558682921689e-19,
+      "options": {
+        "radial_order": 32,
+        "latitude_order": 32,
+        "longitude_order": 32
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=32",
+        "DIAG|gauss_legendre|meta|latitude_order=32",
+        "DIAG|gauss_legendre|meta|longitude_order=32",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291203E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.003002"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_64",
+      "unit": "mgal",
+      "elapsed_s": 0.03754762501921505,
+      "relative_l2": 6.953474706459455e-16,
+      "component_rmse": [
+        8.113426134873485e-19,
+        1.3804855048749507e-18,
+        1.9580221744214905e-19
+      ],
+      "vector_rmse": 1.6131818167787509e-18,
+      "max_vector_difference": 1.951563910473908e-18,
+      "options": {
+        "radial_order": 64,
+        "latitude_order": 64,
+        "longitude_order": 64
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=262144",
+        "DIAG|gauss_legendre|meta|radial_order=64",
+        "DIAG|gauss_legendre|meta|latitude_order=64",
+        "DIAG|gauss_legendre|meta|longitude_order=64",
+        "DIAG|gauss_legendre|meta|subdivisions=1",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291605E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.023590"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "gauss_legendre",
+      "setting": "order_8_panels_4",
+      "unit": "mgal",
+      "elapsed_s": 0.01770658395253122,
+      "relative_l2": 2.517904654673357e-15,
+      "component_rmse": [
+        2.9919875039056306e-18,
+        4.9647675728791085e-18,
+        7.222469188080924e-19
+      ],
+      "vector_rmse": 5.841450751993647e-18,
+      "max_vector_difference": 6.087001062749907e-18,
+      "options": {
+        "radial_order": 8,
+        "latitude_order": 8,
+        "longitude_order": 8,
+        "subdivisions": 4
+      },
+      "diagnostics": [
+        "DIAG|gauss_legendre|meta|body_id=1",
+        "DIAG|gauss_legendre|meta|source_nodes=32768",
+        "DIAG|gauss_legendre|meta|radial_order=8",
+        "DIAG|gauss_legendre|meta|latitude_order=8",
+        "DIAG|gauss_legendre|meta|longitude_order=8",
+        "DIAG|gauss_legendre|meta|subdivisions=4",
+        "DIAG|gauss_legendre|meta|volume_m3=  2.1776667585291016E+13",
+        "DIAG|gauss_legendre|time|body_total_s=      0.003076"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "direct",
+      "setting": "refine_1",
+      "unit": "mgal",
+      "elapsed_s": 0.013550166971981525,
+      "relative_l2": 7.437124464918315e-07,
+      "component_rmse": [
+        6.967980259018859e-10,
+        1.5672419804954826e-09,
+        1.8757647804400834e-10
+      ],
+      "vector_rmse": 1.72538686950016e-09,
+      "max_vector_difference": 4.575339409504664e-09,
+      "options": {
+        "refine_factor": 1
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 16, 16, 4",
+        "  Source elements (grav masses): 1024",
+        "DIAG|direct|meta|source_capacity=4096",
+        "DIAG|direct|meta|source_elements=1024",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.078125",
+        "DIAG|direct|memory|total_est_mib=    0.079247",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000016",
+        "DIAG|direct|time|field_accum_s=    0.000094",
+        "DIAG|direct|time|output_write_s=    0.000074",
+        "DIAG|direct|time|body_total_s=    0.000201"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "direct",
+      "setting": "refine_2",
+      "unit": "mgal",
+      "elapsed_s": 0.013363500009290874,
+      "relative_l2": 7.042334332845729e-07,
+      "component_rmse": [
+        7.651592937132134e-10,
+        1.2997885583040737e-09,
+        6.279915589017352e-10
+      ],
+      "vector_rmse": 1.6337969393733473e-09,
+      "max_vector_difference": 3.1542964694784034e-09,
+      "options": {
+        "refine_factor": 2
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 32, 32, 4",
+        "  Source elements (grav masses): 4096",
+        "DIAG|direct|meta|source_capacity=4352",
+        "DIAG|direct|meta|source_elements=4096",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.083008",
+        "DIAG|direct|memory|total_est_mib=    0.084129",
+        "DIAG|direct|time|obs_grid_s=    0.000002",
+        "DIAG|direct|time|source_mesh_s=    0.000050",
+        "DIAG|direct|time|field_accum_s=    0.000376",
+        "DIAG|direct|time|output_write_s=    0.000073",
+        "DIAG|direct|time|body_total_s=    0.000516"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "direct",
+      "setting": "refine_4",
+      "unit": "mgal",
+      "elapsed_s": 0.01462950004497543,
+      "relative_l2": 7.656211117770627e-07,
+      "component_rmse": [
+        9.88156056758351e-10,
+        1.1034982444980336e-09,
+        9.801918896360495e-10
+      ],
+      "vector_rmse": 1.776214206853088e-09,
+      "max_vector_difference": 3.3997447241596874e-09,
+      "options": {
+        "refine_factor": 4
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 4",
+        "  Source elements (grav masses): 16384",
+        "DIAG|direct|meta|source_capacity=16896",
+        "DIAG|direct|meta|source_elements=16384",
+        "DIAG|direct|memory|obs_arrays_mib=    0.001122",
+        "DIAG|direct|memory|source_arrays_mib=    0.322266",
+        "DIAG|direct|memory|total_est_mib=    0.323387",
+        "DIAG|direct|time|obs_grid_s=    0.000001",
+        "DIAG|direct|time|source_mesh_s=    0.000182",
+        "DIAG|direct|time|field_accum_s=    0.001546",
+        "DIAG|direct|time|output_write_s=    0.000080",
+        "DIAG|direct|time|body_total_s=    0.001824"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "spectral",
+      "setting": "degree_4",
+      "unit": "mgal",
+      "elapsed_s": 0.09069033298874274,
+      "relative_l2": 0.5572588010545607,
+      "component_rmse": [
+        0.0006610020620165306,
+        0.001099667858561372,
+        0.00015872251639628744
+      ],
+      "vector_rmse": 0.0012928209320529386,
+      "max_vector_difference": 0.0012929062351981395,
+      "options": {
+        "lmax": 4,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=4",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.005707",
+        "DIAG|gauss|memory|total_est_mib=    5.403214",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000583",
+        "DIAG|gauss|time|fit_assembly_s=    0.074651",
+        "DIAG|gauss|time|linear_solve_s=    0.000568",
+        "DIAG|gauss|time|field_eval_s=    0.000006",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000077",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.075936"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "spectral",
+      "setting": "degree_8",
+      "unit": "mgal",
+      "elapsed_s": 0.09250608301954344,
+      "relative_l2": 0.5521367217523686,
+      "component_rmse": [
+        0.0006549565132917881,
+        0.0010896307375153286,
+        0.00015664830793031204
+      ],
+      "vector_rmse": 0.0012809378871822652,
+      "max_vector_difference": 0.001281225899263192,
+      "options": {
+        "lmax": 8,
+        "ntheta_fit": 24,
+        "nphi_fit": 48,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=8",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.053131",
+        "DIAG|gauss|memory|total_est_mib=    5.450638",
+        "DIAG|gauss|time|obs_grid_s=    0.000003",
+        "DIAG|gauss|time|source_mesh_s=    0.000579",
+        "DIAG|gauss|time|fit_assembly_s=    0.074351",
+        "DIAG|gauss|time|linear_solve_s=    0.003141",
+        "DIAG|gauss|time|field_eval_s=    0.000018",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000102",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.078241"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "spectral",
+      "setting": "degree_12",
+      "unit": "mgal",
+      "elapsed_s": 0.1201155410381034,
+      "relative_l2": 0.5523167462890604,
+      "component_rmse": [
+        0.0006551786825122543,
+        0.0010900006031540526,
+        0.00015656178776252467
+      ],
+      "vector_rmse": 0.001281355537812238,
+      "max_vector_difference": 0.001281803749848855,
+      "options": {
+        "lmax": 12,
+        "ntheta_fit": 26,
+        "nphi_fit": 52,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=12",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    0.224335",
+        "DIAG|gauss|memory|total_est_mib=    5.621841",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000568",
+        "DIAG|gauss|time|fit_assembly_s=    0.087399",
+        "DIAG|gauss|time|linear_solve_s=    0.015698",
+        "DIAG|gauss|time|field_eval_s=    0.000040",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000109",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    0.103875"
+      ],
+      "stderr": ""
+    },
+    {
+      "case": "gravity_block_far",
+      "solver": "spectral",
+      "setting": "degree_24",
+      "unit": "mgal",
+      "elapsed_s": 1.2525599999935366,
+      "relative_l2": 0.5523087175630679,
+      "component_rmse": [
+        0.0006550946428160421,
+        0.0010898608031909935,
+        0.00015772989336984428
+      ],
+      "vector_rmse": 0.0012813369114486862,
+      "max_vector_difference": 0.001281382618038151,
+      "options": {
+        "lmax": 24,
+        "ntheta_fit": 50,
+        "nphi_fit": 100,
+        "auto_mode": 0,
+        "edge_correction": 0,
+        "hybrid_mode": 0,
+        "reg_lambda": 0,
+        "refine_factor": 4,
+        "source_nr": 12
+      },
+      "diagnostics": [
+        "Body 1: block",
+        "  Complexity check: body 1 classified as SIMPLE (vertices=4)",
+        "  Source mesh cells (nlat,nlon,nr): 64, 64, 12",
+        "  Cumulative source elements: 49152",
+        "Hybrid mode inactive. input_complex=F mode=0",
+        "Single-body input detected; using the collective solver path.",
+        "DIAG|gauss|meta|source_capacity=101024",
+        "DIAG|gauss|meta|source_elements=49152",
+        "DIAG|gauss|meta|collective_bodies=1",
+        "DIAG|gauss|meta|lmax_used=24",
+        "DIAG|gauss|meta|reg_lambda_used=  0.0000E+00",
+        "DIAG|gauss|meta|reg_power_used=   4.000",
+        "DIAG|gauss|meta|joint_strength=   1.000",
+        "DIAG|gauss|memory|obs_arrays_mib=    0.002243",
+        "DIAG|gauss|memory|source_arrays_mib=    5.395264",
+        "DIAG|gauss|memory|solver_arrays_mib=    3.004059",
+        "DIAG|gauss|memory|total_est_mib=    8.401566",
+        "DIAG|gauss|time|obs_grid_s=    0.000002",
+        "DIAG|gauss|time|source_mesh_s=    0.000551",
+        "DIAG|gauss|time|fit_assembly_s=    0.322191",
+        "DIAG|gauss|time|linear_solve_s=    0.912732",
+        "DIAG|gauss|time|field_eval_s=    0.000151",
+        "DIAG|gauss|time|hybrid_direct_eval_s=    0.000000",
+        "DIAG|gauss|time|output_write_s=    0.000135",
+        "DIAG|gauss|meta|hybrid_cells=0",
+        "DIAG|gauss|time|body_total_s=    1.235814"
+      ],
+      "stderr": ""
+    }
+  ]
+}

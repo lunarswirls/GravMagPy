@@ -34,8 +34,8 @@ SOURCE_NLAT="${11:-0}"
 SOURCE_NLON="${12:-0}"
 SOURCE_NR="${13:-0}"
 
-if [[ "${SOLVER}" != "spectral" && "${SOLVER}" != "direct" ]]; then
-  echo "ERROR: solver must be 'spectral' or 'direct' (got: ${SOLVER})"
+if [[ "${SOLVER}" != "spectral" && "${SOLVER}" != "direct" && "${SOLVER}" != "gauss_legendre" ]]; then
+  echo "ERROR: solver must be 'spectral', 'direct', or 'gauss_legendre' (got: ${SOLVER})"
   exit 2
 fi
 

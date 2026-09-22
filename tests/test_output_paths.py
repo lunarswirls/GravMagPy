@@ -51,13 +51,14 @@ class output_path_tests(unittest.TestCase):
         directory = self.root / "launchers"
         directory.mkdir()
         scripts = self.repo / "examples"
-        for name in ("run_gravmag_sphere_f90.sh", "run_gravmag_sphere_gauss.sh",
+        for name in ("run_gravmag_sphere_f90.sh", "run_gravmag_sphere_gauss.sh", "run_gravmag_sphere_quadrature.sh",
                      "run_input_to_xyz.sh", "run_xyz_to_brtp.sh", "run_gravmag_end_to_end.sh",
                      "run_all_examples_end_to_end.sh", "run_all_examples_brtp.py"):
             shutil.copy2(scripts / name, directory / name)
         shutil.copy2(self.repo / "tests/fixtures/skip_build.sh", directory / "build_gravmag_tools.sh")
         (directory / "build_gravmag_tools.sh").chmod(0o755)
         for name, target in (("gravmag_sphere_bxyz", "direct"), ("gravmag_sphere_gauss", "spectral"),
+                             ("gravmag_sphere_quadrature", "gauss_legendre"),
                              ("gravmag_xyz_to_brtp", "xyz_to_brtp")):
             (directory / name).symlink_to(build_fortran(target))
         dipole_dir = directory / "dipole_fit_test"
@@ -100,6 +101,19 @@ class output_path_tests(unittest.TestCase):
         for suffix in ("_dipole_fit_predictions.csv", "_dipole_fit_dipoles.csv"):
             self.assertTrue(artifact_path(path, suffix=suffix).is_file())
         self.assertFalse((self.root / "output").exists())
+
+    def test_quadrature_fortran_and_shell_launchers(self):
+        scripts = self.make_launchers()
+        self.run_command([build_fortran("gauss_legendre"), 1737.4, self.input_path])
+        expected = np.loadtxt(self.case_dir / "output/small_quadrature.txt")
+        explicit = self.root / "quadrature output" / "chosen.txt"
+        self.run_command(["bash", scripts / "run_gravmag_sphere_quadrature.sh", 1737.4, self.input_path, explicit])
+        np.testing.assert_allclose(np.loadtxt(explicit), expected)
+        self.run_command(["bash", scripts / "run_input_to_xyz.sh", "gauss_legendre", 1737.4, self.input_path,
+                          explicit, "--refine-factor", 1])
+        np.testing.assert_allclose(np.loadtxt(explicit), expected)
+        self.run_command(["bash", scripts / "run_all_examples_end_to_end.sh", "gauss_legendre", 1737.4, self.case_dir])
+        self.assertTrue((self.case_dir / "output/small_brtp.txt").is_file())
 
     def test_shell_single_case_launchers_and_overrides(self):
         scripts = self.make_launchers()
@@ -155,6 +169,10 @@ class output_path_tests(unittest.TestCase):
                           "--examples-dir", self.case_dir, "--output-dir", "custom_output", "--figs-dir", "custom_figs"])
         self.assertTrue((scripts / "custom_output/small_xyz.txt").is_file())
         self.assertTrue((scripts / "custom_figs/small_brtp_2x2.png").is_file())
+        self.run_command([sys.executable, scripts / "run_all_examples_brtp.py", "--solver", "gauss_legendre",
+                          "--examples-dir", self.case_dir, "--refine-factor", 1])
+        np.testing.assert_allclose(np.loadtxt(self.case_dir / "output/small_xyz.txt"),
+                                   np.loadtxt(run_grid_model(self.input_path, solver="gauss_legendre")["output_path"]))
 
     @unittest.skipUnless(importlib.util.find_spec("matplotlib"), "matplotlib is optional")
     def test_observation_save_and_plot_defaults(self):

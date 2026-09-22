@@ -23,13 +23,14 @@ def fortran_source_dir():
 def build_fortran(target="orbital", *, compiler=None, build_dir=None, force=False):
     """compile a target once per source/compiler/flag fingerprint and return its path
 
-    targets are orbital (shared library), direct, spectral, xyz_to_brtp, and
+    targets are orbital (shared library), direct, spectral, gauss_legendre, xyz_to_brtp, and
     dipole_grid (executables); an installed gfortran compiler is required
     """
     targets = {
         "orbital": ["orbital.f90"],
         "direct": [f"gravmag_sphere_{part}.f90" for part in ("state", "subs", "physics", "bxyz")],
         "spectral": ["gravmag_sphere_gauss.f90"],
+        "gauss_legendre": ["gravmag_sphere_quadrature.f90"],
         "xyz_to_brtp": ["gravmag_xyz_to_brtp.f90"],
         "dipole_grid": ["gravmag_sphere_dipole_grid_fit.f90"],
     }

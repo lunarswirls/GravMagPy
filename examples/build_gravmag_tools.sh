@@ -33,6 +33,13 @@ gfortran -std=f2008 -O2 -J"${MODDIR}" -I"${MODDIR}" \
   "${source_dir}/gravmag_sphere_gauss.f90" \
   -o "${ROOT_DIR}/gravmag_sphere_gauss"
 
+echo "+ building gravmag_sphere_quadrature"
+# gauss-legendre volume integration shares only output path handling
+gfortran -std=f2008 -O2 -ffree-line-length-none -J"${MODDIR}" -I"${MODDIR}" \
+  "${source_dir}/gravmag_paths.f90" \
+  "${source_dir}/gravmag_sphere_quadrature.f90" \
+  -o "${ROOT_DIR}/gravmag_sphere_quadrature"
+
 echo "+ building gravmag_xyz_to_brtp"
 # build the converter with the shared output path utility
 gfortran -std=f2008 -O2 -J"${MODDIR}" -I"${MODDIR}" \

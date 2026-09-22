@@ -19,6 +19,8 @@ set -euo pipefail
 # solver:
 #   - spectral : gravmag_sphere_gauss
 #   - direct   : gravmag_sphere_bxyz
+#   - gauss_legendre: gravmag_sphere_quadrature
+#     source_nr/source_nlat/source_nlon set node orders; refine_factor sets subdivisions
 #
 # output:
 #   - writes one XYZ table (body_id lon lat Fx Fy Fz Ftot)
@@ -235,8 +237,13 @@ case "${SOLVER}" in
         "${REFINE_FACTOR}" "${SOURCE_NLAT}" "${SOURCE_NLON}" "${SOURCE_NR}"
     fi
     ;;
+  gauss_legendre)
+    "${ROOT_DIR}/gravmag_sphere_quadrature" \
+      "${R_SPHERE_KM}" "${INPUT_FILE}" "${XYZ_OUT}" \
+      "${SOURCE_NR}" "${SOURCE_NLAT}" "${SOURCE_NLON}" "${REFINE_FACTOR}"
+    ;;
   *)
-    echo "ERROR: solver must be 'spectral' or 'direct' (got: ${SOLVER})"
+    echo "ERROR: solver must be 'spectral', 'direct', or 'gauss_legendre' (got: ${SOLVER})"
     exit 2
     ;;
 esac
