@@ -48,7 +48,22 @@ Direct options: `refine_factor`, `source_nlat`, `source_nlon`, and `source_nr`. 
 
 Spectral options use the Fortran names: `lmax`, `refine_factor`, `ntheta_fit`, `nphi_fit`, `reg_lambda`, `reg_power`, `source_nlat`, `source_nlon`, `source_nr`, `auto_mode`, `joint_strength`, `edge_correction`, `hybrid_mode`, `hybrid_band_deg`, `complex_vertex_threshold`, and `hybrid_transition_deg`. Defaults match the executable. Set `auto_mode=0` to prevent its automatic parameter selection. Compiler/cache/timeout options can be passed through as keyword arguments.
 
-Returned `field` has shape `(nlat, nlon, 3)` in the input grid order; `total` has shape `(nlat, nlon)`. Magnetic aliases are `bx_nt`, `by_nt`, `bz_nt`, `btot_nt`; gravity aliases are `gx_mgal`, `gy_mgal`, `gz_mgal`, `gtot_mgal`. Direct body contributions are summed as vectors before calculating total magnitude. Spectral output already represents the collective model and is not multiplied by the source count. `raw_output`, `stdout`, and `stderr` are available for diagnostics.
+`solver="gauss_legendre"` restores nested longitude, latitude and radius Gauss–Legendre volume integration. It supports magnetic and gravity blocks and simple concave polygons in double precision. The historical executable named `gravmag_sphere_gauss` remains the spectral solver; the new executable is `gravmag_sphere_quadrature`.
+
+```python
+result = run_sphere_model(model, solver="gauss_legendre", solver_options={
+    "radial_order": 8, "latitude_order": 16, "longitude_order": 16,
+    "subdivisions": 2,
+})
+```
+
+The three orders default to zero, inheriting each source's `mesh` radial/latitude/longitude counts (card 3). Explicit orders are integers 1–256. `subdivisions` defaults to 1 and divides each integration interval into that many equal panels in every dimension; it accepts integers 1–256. Cost grows approximately as the product of the three orders times `subdivisions**3`, multiplied by the observation count and polygon longitude slabs. Increase orders or split intervals until the fields converge, particularly for shallow sources and surface observations.
+
+Polygon edges are straight in unwrapped longitude/latitude coordinates. Integration splits at vertex longitudes and pairs all latitude crossings, avoiding a masked bounding-box raster. Simple polygons may be clockwise or counterclockwise, closed or open, and cross the longitude seam. Holes and self-intersecting footprints are outside the supported geometry. Sources must avoid the poles and span less than 180° longitude. The observation sphere must lie strictly above every source top (`altitude_km + depth_top_km > 0`); surface observations are supported for buried sources.
+
+This restores the numerical method from `gravmag_sphere_brtp.f` at historical Git revision `71d13a1`, using computed roots/weights, modern SI properties and XYZ output. It does not reproduce the old single-precision program or its obsolete card conventions bit for bit. Cards 4 and 6 remain compatibility metadata. See the [executed comparison report](../diagnostics/gauss_legendre_comparison/README.md) for convergence, timing and spectral limitations.
+
+Returned `field` has shape `(nlat, nlon, 3)` in the input grid order; `total` has shape `(nlat, nlon)`. Magnetic aliases are `bx_nt`, `by_nt`, `bz_nt`, `btot_nt`; gravity aliases are `gx_mgal`, `gy_mgal`, `gz_mgal`, `gtot_mgal`. Direct and Gauss–Legendre body contributions are summed as vectors before calculating total magnitude. Spectral output already represents the collective model and is not multiplied by the source count. `raw_output`, `stdout`, and `stderr` are available for diagnostics.
 
 For magnetic plotting, retain outputs and call `gravmagpy.plotting.plot_fields(result['input_path'], result['output_path'])`. Figures default to the owning input directory's `figs/`; an explicit third `image_path` argument overrides it. `run_grid_model(input_path)` defaults numeric output to `output/<input-stem>.txt` for the direct solver. See [output paths](output_paths.md).
 

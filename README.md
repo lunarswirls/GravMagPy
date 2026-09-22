@@ -114,9 +114,13 @@ result = run_grid_model(input_path, radius_km=6371.2, solver='direct', options=(
 plot_fields(input_path, result['output_path'])
 ```
 
-`build_fortran` supports `orbital`, `direct`, `spectral`, `xyz_to_brtp`, and `dipole_grid`. `run_fortran` exposes the positional interfaces. Shell runners work from `examples`; their builds resolve the canonical files directly under `fortran`. Fortran `.in` files are supported directly. See [architecture and development direction](docs/architecture.md) and the [solver guide](examples/GravMagSphere_README.md).
+`build_fortran` supports `orbital`, `direct`, `spectral`, `gauss_legendre`, `xyz_to_brtp`, and `dipole_grid`. `run_fortran` exposes the positional interfaces. Shell runners work from `examples`; their builds resolve the canonical files directly under `fortran`. Fortran `.in` files are supported directly. See [architecture and development direction](docs/architecture.md) and the [solver guide](examples/GravMagSphere_README.md).
+
+Use `run_sphere_model(model, solver="gauss_legendre")` to evaluate blocks or polygons with the restored Gauss–Legendre volume method in double precision. Node orders and composite subdivisions are configurable; see the [Python modeling guide](docs/sphere.md). The [three-solver diagnostic report](diagnostics/gauss_legendre_comparison/README.md) compares quadrature convergence with direct and pure spectral fields at surface, orbital and far-field altitudes.
 
 ## Tests and diagnostics
+
+Two author-named Reiner Gamma examples provide published source geometries in the Python dictionary and `.in` card formats: the [Hemingway and Garrick-Bethell (2012) 55-dipole array](examples/reiner_gamma_hemingway_garrick_bethell_2012_test/README.md) and the [Chaffee et al. (2025) four-intrusion model](examples/reiner_gamma_chaffee_2025_test/README.md). Each includes source provenance and a runner for surface/orbital field maps. Their finite-volume approximations and coordinate conventions are documented in the case folders.
 
 Solver comparisons and compiler diagnostics are grouped in the top-level [diagnostics folder](diagnostics/README.md). Package regression tests are in `tests/`.
 

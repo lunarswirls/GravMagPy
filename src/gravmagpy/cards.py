@@ -94,11 +94,12 @@ def write_source_input(sources, path, *, radius_km=1737.4, grid=None, mesh=(4, 1
 
 
 def run_grid_model(input_path, output_path=None, *, radius_km=1737.4, solver="direct", options=(), **build_options):
-    """run an existing direct or spectral .in model through the python interface"""
-    if solver not in ("direct", "spectral"):
-        raise ValueError("solver must be direct or spectral")
+    """run an existing direct, spectral, or gauss_legendre .in model"""
+    suffixes = {"direct": ".txt", "spectral": "_gauss.txt", "gauss_legendre": "_quadrature.txt"}
+    if solver not in suffixes:
+        raise ValueError("solver must be direct, spectral, or gauss_legendre")
     input_path = Path(input_path).expanduser().resolve()
-    output_path = (artifact_path(input_path, suffix=".txt" if solver == "direct" else "_gauss.txt")
+    output_path = (artifact_path(input_path, suffix=suffixes[solver])
                    if output_path is None else Path(output_path).expanduser().resolve())
     read_input(input_path)
     if input_path == output_path:

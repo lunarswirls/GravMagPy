@@ -67,6 +67,7 @@ Nonlinear fit results include predictions, residuals, source parameters, backgro
 | `orbital` | C-interoperable shared library | Double-precision magnetic spherical-block integration and point-dipole prediction at arbitrary external Cartesian positions |
 | `direct` | `gravmag_sphere_bxyz` executable | Input-card block/polygon magnetic or gravity fields on a regular grid; single-precision field calculations |
 | `spectral` | `gravmag_sphere_gauss` executable | Grid fields using a spherical-harmonic representation, with configurable local and hybrid corrections |
+| `gauss_legendre` | `gravmag_sphere_quadrature` executable | Double-precision magnetic/gravity volume quadrature for blocks and simple polygons, with configurable node orders and composite panels |
 | `xyz_to_brtp` | `gravmag_xyz_to_brtp` executable | Rotation of Cartesian field tables into spherical components; no source inversion |
 | `dipole_grid` | `gravmag_sphere_dipole_grid_fit` executable | Linear fitting of vector dipole moments on a fixed subsurface grid from orbital magnetic samples |
 

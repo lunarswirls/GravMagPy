@@ -12,6 +12,8 @@ This folder contains compiler benchmarks, direct/spectral comparisons, equivalen
 - `complexlarge_direct_vs_spectral_analysis.py`: boundary-visibility analysis
 - `plot_fixed_polygon_compare.py`: fixed-limit/polygon field comparison plot
 - `run_comparison_tests.sh`: comparison-suite runner
+- `gauss_legendre_compare.py`: node-order, panel, direct-mesh and pure spectral degree sweeps
+- `gauss_legendre_comparison/`: executed three-solver report, figure, inputs, fields and machine-readable metrics
 - Markdown reports and residual/side-by-side plot directories: reference results for the recorded case settings
 
 Relative paths for benchmark, comparison, and sweep options are resolved from the repository root. The fixed/polygon plotting script uses caller-relative input paths and defaults its image to `figs/fixed_vs_polygon_components.png` under the fixed input's owning case directory. The suite runner can be invoked from any directory.
@@ -26,6 +28,18 @@ bash diagnostics/run_comparison_tests.sh --help
 ```
 
 ## Workflows
+
+### Gauss–Legendre restoration and three-solver comparison
+
+```bash
+/Users/danywaller/code/venvs/gravmagpy/bin/python -m unittest discover -s tests -p test_gauss_legendre.py -v
+/Users/danywaller/code/venvs/gravmagpy/bin/python diagnostics/gauss_legendre_compare.py
+bash diagnostics/run_comparison_tests.sh --python /Users/danywaller/code/venvs/gravmagpy/bin/python --tests quadrature --skip-build
+```
+
+The script accepts an optional output directory and a non-mutating `--help`; edit its `settings` dictionary for other sweep resolutions. It compiles through the package cache before timing runs. Default outputs are in [gauss_legendre_comparison](gauss_legendre_comparison/README.md): Markdown, CSV, JSON, compressed XYZ arrays, six card inputs and a convergence/cost figure. A failed reference-resolution check returns nonzero after saving the report.
+
+Tests independently compare the restored tensor quadrature with the orbital backend, exact polygon volume, decomposed concave bodies, a point-mass limit, longitude wrapping and multiple source summation. Direct comparisons cover magnetic and gravity fields; a high-altitude magnetic case checks spectral-degree convergence. The full sweep also reports near-surface resolution limits and the current spectral gravity basis's missing degree-0 monopole. Spectral auto selection, edge corrections and hybrid mode are explicitly disabled for this comparison.
 
 ### 1) Compiler runtime benchmark + hotspot report
 

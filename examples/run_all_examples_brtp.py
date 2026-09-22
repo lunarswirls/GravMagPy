@@ -221,7 +221,7 @@ def main():
     ap = argparse.ArgumentParser(
         description="Run all example inputs, convert XYZ->Br/Btheta/Bphi, and plot Br/Btheta/Bphi/Btot."
     )
-    ap.add_argument("--solver", choices=["spectral", "direct"], default="spectral")
+    ap.add_argument("--solver", choices=["spectral", "direct", "gauss_legendre"], default="spectral")
     ap.add_argument("--rsphere-km", type=float, default=1737.4)
     ap.add_argument("--refine-factor", type=int, default=2)
     ap.add_argument("--lmax", type=int, default=24)
@@ -263,7 +263,7 @@ def main():
         # Keep this parse for early input-format validation (Card 5 exists)
         _ = first_body_ifield(ex)
         use_spectral = args.solver == "spectral"
-        solver_label = "spectral" if use_spectral else "direct"
+        solver_label = args.solver
 
         print(f"[RUN] {ex.name} ({solver_label})")
         if use_spectral:
@@ -285,6 +285,10 @@ def main():
                 ],
                 cwd,
             )
+        elif args.solver == "gauss_legendre":
+            # preserve the shared launcher controls: source counts are orders, refinement is panels
+            run_cmd(["./gravmag_sphere_quadrature", str(args.rsphere_km), str(ex), str(out_xyz),
+                     str(args.source_nr), str(args.source_nlat), str(args.source_nlon), str(args.refine_factor)], cwd)
         else:
             run_cmd(
                 [
