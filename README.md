@@ -30,8 +30,6 @@ data/spice_kernels/         SPICE kernels, separate from package code
 
 ## Install
 
-Numeric outputs default to `output/` beside the input file, and figures to sibling `figs/`. Explicit destinations also work; see [output path conventions](docs/output_paths.md) for Python, Bash, and Fortran examples.
-
 Use a virtual environment and an installed `gfortran` compiler:
 
 ```bash
@@ -84,7 +82,7 @@ For geologic context maps, use `gravmagpy.maps.plot_equivalent_maps` to place th
 
 ## Python models for GravMag Sphere
 
-The GravMag Sphere tools are maintained as backends with Python frontends. You can define sources and grids in Python; input cards are generated internally:
+The GravMag Sphere tools are maintained as backends with Python frontends. You can define sources and grids in Python, input cards are generated internally:
 
 ```python
 import numpy as np
@@ -116,7 +114,7 @@ plot_fields(input_path, result['output_path'])
 
 `build_fortran` supports `orbital`, `direct`, `spectral`, `gauss_legendre`, `xyz_to_brtp`, and `dipole_grid`. `run_fortran` exposes the positional interfaces. Shell runners work from `examples`; their builds resolve the canonical files directly under `fortran`. Fortran `.in` files are supported directly. See [architecture and development direction](docs/architecture.md) and the [solver guide](examples/GravMagSphere_README.md).
 
-Use `run_sphere_model(model, solver="gauss_legendre")` to evaluate blocks or polygons with the restored Gauss–Legendre volume method in double precision. Node orders and composite subdivisions are configurable; see the [Python modeling guide](docs/sphere.md). The [three-solver diagnostic report](diagnostics/gauss_legendre_comparison/README.md) compares quadrature convergence with direct and pure spectral fields at surface, orbital and far-field altitudes.
+Use `run_sphere_model(model, solver="gauss_legendre")` to evaluate blocks or polygons with the Gauss–Legendre volume method in double precision. Node orders and composite subdivisions are configurable; see the [Python modeling guide](docs/sphere.md). The [three-solver diagnostic report](diagnostics/gauss_legendre_comparison/README.md) compares quadrature convergence with direct and pure spectral fields at surface, orbital and far-field altitudes.
 
 ## Tests and diagnostics
 
@@ -128,4 +126,4 @@ Tests exercise the Fortran kernel against an independent point-dipole limit and 
 
 Primary author: [Dany Waller](https://danywaller.github.io), [dany.c.waller@gmail.com](mailto:dany.c.waller@gmail.com).
 
-GravMag Sphere credits Dr. Dhahanjay Ravat for the `sphere` program and the University of Kentucky Fall 2018 EES-395 course for its modular formulation. The Fortran sources contain attribution and numerical references.
+GravMag Sphere is based on legacy `sphere` program developed by Dr. Dhahanjay Ravat, modernized and modularized during his Fall 2018 EES-395 "Special Topics: Gravity and Magnetics" course at the University of Kentucky. Modifications are documented inline and output has been validated against last known working version of `sphere`.
