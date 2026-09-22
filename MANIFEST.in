@@ -1,0 +1,3 @@
+recursive-include fortran *.f90 *.md
+recursive-include docs *.md
+include LICENSE README.md

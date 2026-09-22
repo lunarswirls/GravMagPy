@@ -1,17 +1,21 @@
-# Imports:
-from setuptools import setup, find_packages
+"""include portable fortran sources in wheels without compiling at install time"""
 
-setup(
-    name="gravmagpy",
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
-    # Version scheme is last date updated in YYYY.MM.DDv format
-    # where 'v' may increment [a...z] for multiple releases on the same day
-    version="2026.03.01a",
-    description="Gravity and Magnetic (GravMag) Modeling and Visualization Python Package",
-    author="Dany Waller",
-    author_email="dany.c.waller@gmail.com",
-    long_description=open('README.md').read(),
-    long_description_content_type="text/markdown",
-    python_requires=">=3.13, <4",
-)
+from pathlib import Path
+import shutil
+
+from setuptools import setup
+from setuptools.command.build_py import build_py
+
+
+class build_with_fortran(build_py):
+    def run(self):
+        super().run()
+        source = Path(__file__).parent / "fortran"
+        destination = Path(self.build_lib) / "gravmagpy" / "_fortran"
+        # replace only this generated build subtree so moved sources cannot linger in wheels
+        if destination.is_dir():
+            shutil.rmtree(destination)
+        shutil.copytree(source, destination, dirs_exist_ok=True, ignore=shutil.ignore_patterns("*.mod", "*.o"))
+
+
+setup(cmdclass={"build_py": build_with_fortran})
