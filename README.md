@@ -120,8 +120,6 @@ Use `run_sphere_model(model, solver="gauss_legendre")` to evaluate blocks or pol
 
 ## Tests and diagnostics
 
-Two author-named Reiner Gamma examples provide published source geometries in the Python dictionary and `.in` card formats: the [Hemingway and Garrick-Bethell (2012) 55-dipole array](examples/reiner_gamma_hemingway_garrick_bethell_2012_test/README.md) and the [Chaffee et al. (2025) four-intrusion model](examples/reiner_gamma_chaffee_2025_test/README.md). Each includes source provenance and a runner for surface/orbital field maps. Their finite-volume approximations and coordinate conventions are documented in the case folders.
-
 Solver comparisons and compiler diagnostics are grouped in the top-level [diagnostics folder](diagnostics/README.md). Package regression tests are in `tests/`.
 
 Tests exercise the Fortran kernel against an independent point-dipole limit and the GravMag Sphere surface-charge solver, quadrature convergence, magnetic cancellation, CSV handling, inversion, Python model/card compatibility, gravity and spectral calls, and equivalent-dipole fitting.
