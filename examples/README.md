@@ -1,6 +1,6 @@
-# GravMag Sphere
+# GravMagSphere Examples
 
-Fortran + Python workflow for spherical gravity/magnetic forward modeling.
+Example Fortran + Python workflow for spherical gravity/magnetic forward modeling.
 
 - Fortran solvers produce cartesian field components (`Fx Fy Fz`) on a lon/lat grid
 - A Fortran converter rotates cartesian components (`Bx By Bz`) to spherical components (`Br Btheta Bphi`)
